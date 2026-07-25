@@ -565,7 +565,7 @@ img {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 10000;
   padding: 16px;
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
@@ -626,6 +626,14 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
+  transition: bottom 0.4s ease;
+}
+
+/* En móvil, sube el botón cuando el banner de cookies está visible */
+@media (max-width: 767px) {
+  body:not(.cookies-accepted) .vm-whatsapp-widget {
+    bottom: 130px;
+  }
 }
 
 .vm-whatsapp-tooltip {

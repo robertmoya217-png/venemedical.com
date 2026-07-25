@@ -69,9 +69,10 @@
     var banner = document.getElementById('vm-cookie-banner');
     if (!banner) return;
 
-    // Si ya aceptó, no mostrar
+    // Si ya aceptó, no mostrar y marcar body
     if (localStorage.getItem('vm_cookies_accepted') === '1') {
       banner.style.display = 'none';
+      document.body.classList.add('cookies-accepted');
       return;
     }
 
@@ -79,6 +80,7 @@
     if (acceptBtn) {
       acceptBtn.addEventListener('click', function () {
         localStorage.setItem('vm_cookies_accepted', '1');
+        document.body.classList.add('cookies-accepted');
         banner.classList.add('hidden');
         setTimeout(function () { banner.style.display = 'none'; }, 400);
       });
