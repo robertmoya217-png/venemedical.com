@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio Clínico - Venemedical</title>
+  <meta name="description" content="Venemedical - Centro Médico y Laboratorio Clínico de alta precisión en Caracas, Sucre, Estado Miranda. Exámenes de laboratorio, especialistas y agendamiento de citas.">
+  <link rel="canonical" href="https://venemedical.github.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Venemedical - Centro Médico y Laboratorio Clínico">
+  <meta property="og:description" content="Centro Médico y Laboratorio Clínico de alta precisión en Caracas, Sucre. Atención inmediata y resultados confiables.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_VE">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["MedicalClinic", "MedicalLaboratory"],
+    "name": "Venemedical Care",
+    "alternateName": "Venemedical Centro Médico y Laboratorio Clínico",
+    "description": "Centro médico y laboratorio clínico de alta precisión en Caracas, Sucre, Estado Miranda.",
+    "telephone": "+58-424-1296288",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Primer local a mano izquierda, Local 11",
+      "addressLocality": "Sucre, Caracas",
+      "addressRegion": "Estado Miranda",
+      "postalCode": "1080",
+      "addressCountry": "VE"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "16:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "13:00" }
+    ],
+    "medicalSpecialty": ["MedicalLaboratory","PrimaryCare","GeneralPractice"],
+    "contactPoint": [
+      { "@type": "ContactPoint", "telephone": "+58-424-1296288", "contactType": "Recepción Central" },
+      { "@type": "ContactPoint", "telephone": "+58-424-1288247", "contactType": "Atención al Cliente / WhatsApp" }
+    ]
+  }
+  </script>
+
+  <!-- Preconnect para velocidad -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Material Symbols (UNA sola vez) -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Config centralizada -->
+  <script src="../assets/js/tailwind-config.js"></script>
+
+  <!-- Sistema de Diseño Centralizado -->
+  <link rel="stylesheet" href="../assets/css/venemedical.css">
+</head>
+<body class="antialiased">
+
+<!-- ═══ MOBILE DRAWER ══════════════════════════════════════════════ -->
+<div id="mobile-backdrop" class="vm-backdrop" aria-hidden="true"></div>
+
+<aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
+  <div class="vm-drawer-header">
+    <a href="../index.html">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+    </a>
+    <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <nav class="vm-drawer-nav">
+    <a href="../index.html" class="vm-drawer-link active" aria-current="page">
+      <span class="material-symbols-outlined" style="font-size:22px">home</span>
+      Inicio
+    </a>
+    <a href="../nosotros/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">info</span>
+      Nosotros
+    </a>
+    <a href="../laboratorio/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">science</span>
+      Laboratorio
+    </a>
+    <a href="../especialistas/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">stethoscope</span>
+      Especialistas
+    </a>
+    <a href="../citas/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">calendar_month</span>
+      Citas
+    </a>
+    <a href="../ubicacion/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">location_on</span>
+      Ubicación
+    </a>
+  </nav>
+
+  <div class="vm-drawer-footer">
+    <a href="../citas/index.html" class="vm-drawer-cta">
+      <span class="material-symbols-outlined" style="font-size:20px">calendar_month</span>
+      Agendar Cita
+    </a>
+  </div>
+</aside>
+<!-- ══════════════════════════════════════════════════════════════ -->
+
+<!-- NAVBAR -->
+<header class="vm-navbar" role="banner">
+  <div class="vm-navbar-inner">
+    <!-- Logo -->
+    <a href="../index.html" aria-label="Venemedical - Página de inicio">
+      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+    </a>
+
+    <!-- Nav Desktop -->
+    <nav aria-label="Navegación principal">
+      <ul class="vm-nav-links">
+        <li><a href="../index.html" class="vm-nav-link active" aria-current="page">Inicio</a></li>
+        <li><a href="../nosotros/index.html" class="vm-nav-link">Nosotros</a></li>
+        <li><a href="../laboratorio/index.html" class="vm-nav-link">Laboratorio</a></li>
+        <li><a href="../especialistas/index.html" class="vm-nav-link">Especialistas</a></li>
+        <li><a href="../citas/index.html" class="vm-nav-link">Citas</a></li>
+        <li><a href="../ubicacion/index.html" class="vm-nav-link">Ubicación</a></li>
+      </ul>
+    </nav>
+
+    <!-- Trailing -->
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="../citas/index.html" class="vm-btn-cta" style="display:none" id="nav-cta">
+        <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
+        Agendar Cita
+      </a>
+      <button onclick="openMobileMenu()" class="vm-menu-toggle" aria-label="Abrir menú">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="w-full bg-surface-pure border-b border-border-subtle py-section-padding px-margin-mobile md:px-gutter">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-6">
+<span class="text-primary font-label-md text-label-md uppercase tracking-wider">Precisión Clínica</span>
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary-fixed-variant">
+                        Laboratorio Clínico Avanzado
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Tecnología de vanguardia y especialistas altamente capacitados para brindar resultados precisos y confiables en tiempo récord. Su salud respaldada por casi una década de excelencia médica.
+                    </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="bg-[#28A745] text-on-primary px-6 py-3 rounded-lg hover:shadow-md transition-all font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined filled-icon">calendar_month</span>
+                            Agendar Prueba
+                        </button>
+<button class="bg-surface-container text-primary-fixed-variant px-6 py-3 rounded-lg hover:bg-border-subtle transition-all font-label-md text-label-md flex items-center gap-2 border border-border-subtle">
+<span class="material-symbols-outlined">science</span>
+                            Ver Catálogo
+                        </button>
+</div>
+</div>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container shadow-sm">
+<img class="object-cover w-full h-full" data-alt="A pristine, modern clinical laboratory setting bathed in bright, soft white light. Highly advanced medical analysis equipment rests on spotless, minimalist white surfaces. A subtle medical blue glow emanates from digital displays, reflecting on sterile glassware. The atmosphere conveys precision, hygiene, and cutting-edge technology characteristic of a top-tier medical facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfc4t9GjrNJHoe9kGh1tw9F_dQmUUxkCBsa2O5FyQHiAhFsfe1FO8Wsrv14xc96y4YI1xGX36MuDfRCHxI9_9ymocUf51_dvfH4GHY9Lkqfq2SmIlI6FfWrOnnxBtVbGFcTwM9RgEhhnUus2ezH4_1-wEe1Sv7ZqCtAvqtfBzjTSNYc7hWticjhL77HsgtrlTcx0vXcfg9g-GTYgu0dmWlEKy1Tbfr39kdJnvJhVwNqNXKntpNteY"/>
+</div>
+</div>
+</section>
+
+<!-- Catálogo Section -->
+<section id="catalogo-examenes" class="py-16 px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+  <div class="text-center mb-10">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Catálogo de Exámenes</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Explore nuestra amplia gama de estudios de laboratorio. Puede buscar por nombre o filtrar por categoría.</p>
+  </div>
+
+  <!-- Controles (Buscador y Filtros) -->
+  <div class="flex flex-col gap-6 mb-10">
+    <!-- Buscador -->
+    <div class="relative max-w-lg mx-auto w-full">
+      <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+      <input type="text" id="catalogo-search" placeholder="Buscar examen por nombre..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-border-subtle bg-surface-pure focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md text-on-surface placeholder:text-text-muted shadow-sm">
+    </div>
+
+    <!-- Filtros (Chips) -->
+    <div class="relative w-full overflow-hidden">
+      <div id="catalogo-chips" class="flex overflow-x-auto gap-3 pb-4 scroll-smooth hide-scrollbar px-2" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <!-- Chips dinámicos insertados por JS -->
+      </div>
+      <!-- Gradientes opcionales para indicar scroll -->
+      <div class="absolute top-0 right-0 bottom-4 w-12 bg-gradient-to-l from-surface-pure to-transparent pointer-events-none md:hidden"></div>
+      <div class="absolute top-0 left-0 bottom-4 w-12 bg-gradient-to-r from-surface-pure to-transparent pointer-events-none md:hidden"></div>
+    </div>
+
+    <!-- Filtro Abecedario (A-Z) -->
+    <div class="w-full bg-surface-container-low rounded-xl p-2 border border-border-subtle">
+      <div id="catalogo-alphabet" class="flex overflow-x-auto gap-1 hide-scrollbar justify-start md:justify-center px-2 py-1" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <!-- Letras inyectadas por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div id="catalogo-loader" class="flex justify-center items-center py-12">
+    <span class="material-symbols-outlined animate-spin text-primary text-4xl">autorenew</span>
+  </div>
+
+  <!-- Grid de Resultados -->
+  <div id="catalogo-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
+    <!-- Tarjetas dinámicas insertadas por JS -->
+  </div>
+
+  <!-- Estado Vacío -->
+  <div id="catalogo-empty" class="hidden text-center py-12">
+    <span class="material-symbols-outlined text-outline text-6xl mb-4">search_off</span>
+    <h3 class="font-headline-md text-on-surface mb-2">No se encontraron resultados</h3>
+    <p class="text-on-surface-variant">Intente con otros términos de búsqueda o seleccione otra categoría.</p>
+  </div>
+
+</section>
+
+<!-- Bottom Sheet para Resultados de Búsqueda (Móvil) -->
+<div id="search-bottom-sheet" class="fixed inset-0 z-50 flex flex-col justify-end pointer-events-none sm:hidden transition-all duration-300">
+  <div id="search-bottom-sheet-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+  <div id="search-bottom-sheet-content" class="relative bg-surface-pure w-full h-[75vh] rounded-t-2xl shadow-xl flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto">
+    <!-- Header/Handle -->
+    <div class="w-full flex justify-center py-3 cursor-grab" id="bottom-sheet-handle">
+      <div class="w-12 h-1.5 bg-border-subtle rounded-full"></div>
+    </div>
+    <div class="px-4 pb-3 border-b border-border-subtle flex justify-between items-center">
+       <h3 class="font-headline-sm text-on-surface">Resultados (<span id="bottom-sheet-count">0</span>)</h3>
+       <button id="close-bottom-sheet" class="text-on-surface-variant hover:text-error transition-colors p-1">
+         <span class="material-symbols-outlined">close</span>
+       </button>
+    </div>
+    <!-- Contenido Scroll -->
+    <div id="bottom-sheet-results" class="flex-grow overflow-y-auto p-4 flex flex-col gap-3">
+      <!-- Resultados inyectados por JS -->
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="vm-footer" role="contentinfo">
+  <div class="vm-footer-inner">
+    <!-- Brand -->
+    <div>
+      <a href="../index.html" aria-label="Venemedical inicio">
+        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+      </a>
+      <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
+    </div>
+
+    <!-- Navegación -->
+    <div>
+      <p class="vm-footer-heading">Navegación</p>
+      <nav class="vm-footer-nav" aria-label="Enlaces del footer">
+        <a href="../index.html" class="vm-footer-link active">Inicio</a>
+        <a href="../nosotros/index.html" class="vm-footer-link">Nosotros</a>
+        <a href="../laboratorio/index.html" class="vm-footer-link">Laboratorio</a>
+        <a href="../especialistas/index.html" class="vm-footer-link">Especialistas</a>
+        <a href="../citas/index.html" class="vm-footer-link">Agendar Cita</a>
+        <a href="../ubicacion/index.html" class="vm-footer-link">Ubicación</a>
+      </nav>
+    </div>
+
+    <!-- Legal -->
+    <div>
+      <p class="vm-footer-heading">Legal</p>
+      <nav class="vm-footer-nav">
+        <a href="../aviso-de-privacidad/index.html" class="vm-footer-link">Aviso de Privacidad</a>
+        <a href="../terminos-y-condiciones/index.html" class="vm-footer-link">Términos de Servicio</a>
+      </nav>
+    </div>
+
+    <!-- Contacto -->
+    <div>
+      <p class="vm-footer-heading">Contacto</p>
+      <nav class="vm-footer-nav">
+        <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer" class="vm-footer-link">
+          <span class="material-symbols-outlined" style="font-size:18px">chat</span>
+          +58 424 1288247
+        </a>
+        <a href="https://www.instagram.com/venemedicalcare" target="_blank" rel="noopener noreferrer" class="vm-footer-link">
+          <span class="material-symbols-outlined" style="font-size:18px">photo_camera</span>
+          Instagram
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="vm-footer-bottom">
+    © <span class="vm-copyright-year">2025</span> Venemedical. Casi una década de excelencia médica.
+  </div>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div id="vm-cookie-banner" class="vm-cookie-banner" role="region" aria-label="Aviso de cookies">
+  <div class="vm-cookie-inner">
+    <p class="vm-cookie-text">
+      Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra
+      <a href="../aviso-de-privacidad/index.html" style="color:var(--color-primary);text-decoration:underline">política de privacidad</a>.
+    </p>
+    <div class="vm-cookie-actions">
+      <a href="../aviso-de-privacidad/index.html" style="font-size:14px;color:var(--color-primary);text-decoration:underline">Ver más</a>
+      <button id="vm-cookie-accept" class="vm-btn vm-btn-primary" style="padding:8px 20px">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- VENEMEBOT / WHATSAPP FLOTANTE -->
+<div class="vm-whatsapp-widget" id="venemebot-container">
+  <div class="vm-whatsapp-tooltip">¡Hola! Soy Venemebot 🤖</div>
+  <a href="https://wa.me/584241288247?text=Hola,%20Venemebot,%20necesito%20informaci%C3%B3n"
+     target="_blank" rel="noopener noreferrer"
+     class="vm-whatsapp-btn"
+     aria-label="Contactar a Venemebot por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="vm-whatsapp-icon" aria-hidden="true">
+      <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7C53.7 322.6 45 289 45 254c0-98.7 80.3-179 179-179 47.8 0 92.8 18.6 126.6 52.4 33.8 33.8 52.4 78.8 52.4 126.6 0 98.7-80.3 178.7-179.1 178.7zm101.7-134.1c-5.6-2.8-33.1-16.3-38.2-18.2-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18.2-17.6 22-3.3 3.7-6.5 4.2-12.1 1.4-5.6-2.8-23.7-8.7-45.1-27.8-16.7-14.9-28-33.3-31.3-39-3.3-5.6-.4-8.6 2.4-11.4 2.5-2.5 5.6-6.5 8.4-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7 1-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.8 1.4-14.9 6.9-5.1 5.6-19.6 19.2-19.6 46.8 0 27.6 20.1 54.3 22.9 58 2.8 3.7 39.6 60.5 95.9 84.9 13.4 5.8 23.9 9.3 32.1 11.9 13.5 4.3 25.8 3.7 35.5 2.3 10.8-1.6 33.1-13.5 37.8-26.6 4.7-13.1 4.7-24.3 3.3-26.6-1.4-2.3-5.1-3.7-10.7-6.5z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- JS compartido (al final del body para no bloquear render) -->
+<script src="../assets/data/catalogo_data.js"></script>
+<script src="../assets/js/venemedical.js"></script>
+<script src="../assets/js/catalogo.js"></script>
+<script>
+  // Mostrar el botón CTA del navbar en desktop
+  var navCta = document.getElementById('nav-cta');
+  if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
+  window.addEventListener('resize', function() {
+    if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
+  });
+  // Mostrar badge hero
+  var badge = document.getElementById('hero-badge');
+  if (badge && window.innerWidth > 480) badge.style.display = 'flex';
+</script>
+</body>
+</html>

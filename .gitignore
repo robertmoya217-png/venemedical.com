@@ -1,0 +1,19 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de precio / datos internos (no publicar)
+*.xls
+*.xlsx
+*.csv
+
+# Archivos de configuración de IA y notas internas
+configuracion_seo_ia/
+DEVELOPER_NOTES.md
+
+# Archivo de exportación DNS (solo referencia local)
+venemedical.com.txt
+
+# Node modules (por si se usa en el futuro)
+node_modules/

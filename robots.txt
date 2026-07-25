@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Directives for AI Crawlers (Google Gemini, ChatGPT, Perplexity, Claude)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://venemedical.com/sitemap.xml
