@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Visual de Lentes y Monturas - Venemedical</title>
+  <meta name="description" content="Catálogo visual interactivo de lentes, monturas y óptica en Venemedical Caracas. Explora más de 117 hojas de nuestro catálogo impreso con la mejor tecnología de visión.">
+  <link rel="canonical" href="https://venemedical.com/catalogo-visual/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Catálogo Visual de Lentes y Monturas - Venemedical">
+  <meta property="og:description" content="Explora las 117+ hojas de nuestro catálogo visual de óptica, lentes antirreflejos, progresivos y monturas de alta gama.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_VE">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "Venemedical Optical & Visual Catalog",
+    "alternateName": "Venemedical Catálogo Visual de Lentes",
+    "description": "Centro médico y servicio óptico de alta precisión en Caracas, Sucre, Estado Miranda.",
+    "telephone": "+58-424-1296288",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Primer local a mano izquierda, Local 11",
+      "addressLocality": "Sucre, Caracas",
+      "addressRegion": "Estado Miranda",
+      "postalCode": "1080",
+      "addressCountry": "VE"
+    }
+  }
+  </script>
+
+  <!-- Preconnect para velocidad -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+
+  <!-- Tailwind CDN + Config centralizada -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+
+  <!-- React 18 & ReactDOM 18 (Carga ultrarrápida via CDN para GitHub Pages) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+
+  <!-- Sistema de Diseño Centralizado Venemedical -->
+  <link rel="stylesheet" href="../assets/css/venemedical.css">
+</head>
+
+<body class="antialiased flex flex-col min-h-screen bg-background text-on-surface">
+
+<!-- ═══ MOBILE DRAWER ══════════════════════════════════════════════ -->
+<div id="mobile-backdrop" class="vm-backdrop" aria-hidden="true"></div>
+
+<aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
+  <div class="vm-drawer-header">
+    <a href="../index.html">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+    </a>
+    <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <nav class="vm-drawer-nav">
+    <a href="../index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">home</span>
+      Inicio
+    </a>
+    <a href="../nosotros/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">info</span>
+      Nosotros
+    </a>
+    <a href="../laboratorio/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">science</span>
+      Laboratorio
+    </a>
+    <a href="../catalogo-visual/index.html" class="vm-drawer-link active" aria-current="page">
+      <span class="material-symbols-outlined" style="font-size:22px">auto_stories</span>
+      Catálogo Visual
+    </a>
+    <a href="../especialistas/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">stethoscope</span>
+      Especialistas
+    </a>
+    <a href="../citas/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">calendar_month</span>
+      Citas
+    </a>
+    <a href="../ubicacion/index.html" class="vm-drawer-link">
+      <span class="material-symbols-outlined" style="font-size:22px">location_on</span>
+      Ubicación
+    </a>
+  </nav>
+
+  <div class="vm-drawer-footer">
+    <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer" class="vm-drawer-cta">
+      <span class="material-symbols-outlined">chat</span>
+      Atención WhatsApp
+    </a>
+  </div>
+</aside>
+
+<!-- ═══ NAVBAR PRINCIPAL ════════════════════════════════════════════ -->
+<header class="vm-navbar">
+  <div class="vm-navbar-inner">
+    <a href="../index.html" class="flex items-center">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-navbar-logo" width="180" height="48">
+    </a>
+
+    <nav class="vm-nav-links" aria-label="Navegación principal">
+      <a href="../index.html" class="vm-nav-link">Inicio</a>
+      <a href="../nosotros/index.html" class="vm-nav-link">Nosotros</a>
+      <a href="../laboratorio/index.html" class="vm-nav-link">Laboratorio</a>
+      <a href="../catalogo-visual/index.html" class="vm-nav-link active" aria-current="page">Catálogo Visual</a>
+      <a href="../especialistas/index.html" class="vm-nav-link">Especialistas</a>
+      <a href="../citas/index.html" class="vm-nav-link">Citas</a>
+      <a href="../ubicacion/index.html" class="vm-nav-link">Ubicación</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer" class="vm-btn-cta hidden sm:inline-flex">
+        <span class="material-symbols-outlined text-lg">chat</span>
+        Contactar
+      </a>
+      <button onclick="openMobileMenu()" class="vm-menu-toggle" aria-label="Abrir menú">
+        <span class="material-symbols-outlined" style="font-size:28px">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ CONTENEDOR DE LA APP REACT DEL CATÁLOGO VISUAL ════════════════ -->
+<div id="catalogo-visual-root" class="flex-1 w-full">
+  <!-- Fallback animado durante la hidratación de React -->
+  <div class="max-w-[1200px] mx-auto py-16 px-4 text-center">
+    <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-primary border-t-transparent mb-4"></div>
+    <p class="text-sm font-semibold text-on-surface-variant">Cargando Catálogo Visual Venemedical...</p>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════════ -->
+<footer class="vm-footer">
+  <div class="vm-footer-inner">
+    <div>
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="180" height="48">
+      <p class="vm-footer-desc">Centro Médico y Laboratorio Clínico de alta precisión en Caracas. Diagnósticos confiables y atención especializada.</p>
+    </div>
+
+    <div>
+      <h4 class="vm-footer-heading">Navegación</h4>
+      <div class="vm-footer-nav">
+        <a href="../index.html" class="vm-footer-link">Inicio</a>
+        <a href="../nosotros/index.html" class="vm-footer-link">Nosotros</a>
+        <a href="../laboratorio/index.html" class="vm-footer-link">Laboratorio</a>
+        <a href="../catalogo-visual/index.html" class="vm-footer-link active">Catálogo Visual</a>
+        <a href="../especialistas/index.html" class="vm-footer-link">Especialistas</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="vm-footer-heading">Servicios</h4>
+      <div class="vm-footer-nav">
+        <a href="../laboratorio/index.html" class="vm-footer-link">Exámenes Clínicos</a>
+        <a href="../catalogo-visual/index.html" class="vm-footer-link">Catálogo de Lentes</a>
+        <a href="../citas/index.html" class="vm-footer-link">Agendamiento de Citas</a>
+        <a href="../resultados/index.html" class="vm-footer-link">Consulta de Resultados</a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="vm-footer-heading">Contacto</h4>
+      <div class="vm-footer-nav text-xs text-on-surface-variant">
+        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">location_on</span> Primer local a mano izquierda, Local 11, Caracas</p>
+        <p class="flex items-center gap-2 mt-1"><span class="material-symbols-outlined text-primary text-base">call</span> +58 424-1296288</p>
+        <p class="flex items-center gap-2 mt-1"><span class="material-symbols-outlined text-primary text-base">chat</span> +58 424-1288247 (WhatsApp)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="vm-footer-bottom">
+    <p>&copy; 2026 Venemedical. Todos los derechos reservados. | <a href="../aviso-de-privacidad/index.html" class="underline hover:text-primary">Aviso de Privacidad</a> | <a href="../terminos-y-condiciones/index.html" class="underline hover:text-primary">Términos y Condiciones</a></p>
+  </div>
+</footer>
+
+<!-- ═══ WHATSAPP WIDGET ══════════════════════════════════════════════ -->
+<div class="vm-whatsapp-widget">
+  <span class="vm-whatsapp-tooltip">¿Consultas sobre el catálogo?</span>
+  <a href="https://wa.me/584241288247?text=Hola%20Venemedical,%20tengo%20una%20consulta%20sobre%20el%20Cat%C3%A1logo%20Visual" target="_blank" rel="noopener noreferrer" class="vm-whatsapp-btn" aria-label="Contactar por WhatsApp">
+    <svg class="vm-whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- Scripts de Funcionamiento -->
+<script src="../assets/js/venemedical.js"></script>
+<script src="../assets/js/catalogo-visual-data.js"></script>
+<script src="../assets/js/catalogo-visual-app.js"></script>
+
+</body>
+</html>

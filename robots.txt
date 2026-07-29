@@ -1,7 +1,14 @@
+# robots.txt for venemedical.com
+
 User-agent: *
 Allow: /
 
-# Directives for AI Crawlers (Google Gemini, ChatGPT, Perplexity, Claude)
+# Disallow private directories
+Disallow: /configuracion_seo_ia/
+Disallow: /private/
+Disallow: /tmp/
+
+# Allow AI crawlers
 User-agent: Googlebot
 Allow: /
 
