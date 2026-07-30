@@ -1,152 +1,158 @@
 /* ═══════════════════════════════════════════════════════════════════
-   VENEMEDICAL — App React de Catálogo Visual (Versión Senior Pro)
-   Integración completa con las 135 imágenes reales de Palazzo Dama y Caballeros
+   VENEMEDICAL — App React Catálogo Visual (Versión Senior Pro v2)
+   Responsive completo · Animaciones premium · 135 imágenes reales
    ════════════════════════════════════════════════════════════════════ */
 
-(function() {
+(function () {
   'use strict';
 
-  const { useState, useEffect, useMemo, useRef, useCallback, createElement: e } = React;
+  const { useState, useEffect, useMemo, useRef, useCallback, createElement: h } = React;
 
-  // ── 1. COMPONENTE: Carrusel de Lentes Destacado (Autoplay + Progress Bar + Touch) ─────────────
-  function LensesCarousel({ slides = [], onSelectCollection }) {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
+  /* ═══════════════════════════════════════════════════════════════════
+     UTILIDADES
+  ════════════════════════════════════════════════════════════════════ */
+  const cx = (...args) => args.filter(Boolean).join(' ');
+
+  function buildWAUrl(text) {
+    return 'https://wa.me/584241288247?text=' + encodeURIComponent(text);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     COMPONENTE: BARRA DE PROGRESO ANIMADA (usada en el carrusel)
+  ════════════════════════════════════════════════════════════════════ */
+  function ProgressBar({ value }) {
+    return h('div', { className: 'w-full h-1 bg-surface-container-high overflow-hidden flex-shrink-0' },
+      h('div', {
+        className: 'h-full bg-primary progress-bar',
+        style: { width: value + '%' },
+        role: 'progressbar',
+        'aria-valuenow': Math.round(value),
+        'aria-valuemin': 0,
+        'aria-valuemax': 100
+      })
+    );
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     COMPONENTE: CARRUSEL HERO (Autoplay + Barra de Progreso + Swipe)
+  ════════════════════════════════════════════════════════════════════ */
+  function HeroCarousel({ slides, onScrollToCatalog, onFilterCollection }) {
+    const [idx, setIdx]         = useState(0);
+    const [paused, setPaused]   = useState(false);
     const [progress, setProgress] = useState(0);
-    const touchStartX = useRef(0);
-    const SLIDE_DURATION = 5000; // 5 segundos por slide
+    const touchStartX            = useRef(0);
+    const DURATION               = 5500;
 
-    // Animación de barra de progreso e intervalo de autoplay
     useEffect(() => {
-      if (isPaused || !slides.length) return;
-
-      const startTime = Date.now();
-      const interval = setInterval(() => {
-        const elapsedTime = Date.now() - startTime;
-        const currentProgress = Math.min((elapsedTime / SLIDE_DURATION) * 100, 100);
-        setProgress(currentProgress);
-
-        if (elapsedTime >= SLIDE_DURATION) {
-          setCurrentIndex((prev) => (prev + 1) % slides.length);
+      if (paused || !slides.length) return;
+      const t0 = Date.now();
+      const tick = setInterval(() => {
+        const elapsed = Date.now() - t0;
+        const pct = Math.min((elapsed / DURATION) * 100, 100);
+        setProgress(pct);
+        if (elapsed >= DURATION) {
+          setIdx(p => (p + 1) % slides.length);
           setProgress(0);
+          clearInterval(tick);
         }
       }, 50);
+      return () => clearInterval(tick);
+    }, [idx, paused, slides.length]);
 
-      return () => clearInterval(interval);
-    }, [slides.length, isPaused, currentIndex]);
-
-    const handleNext = useCallback(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
+    const goTo = useCallback((n) => {
+      setIdx(((n % slides.length) + slides.length) % slides.length);
       setProgress(0);
     }, [slides.length]);
 
-    const handlePrev = useCallback(() => {
-      setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-      setProgress(0);
-    }, [slides.length]);
+    const slide = slides[idx] || {};
 
-    const handleTouchStart = (evt) => {
-      touchStartX.current = evt.touches[0].clientX;
-    };
-
-    const handleTouchEnd = (evt) => {
-      const diff = touchStartX.current - evt.changedTouches[0].clientX;
-      if (diff > 50) handleNext();
-      if (diff < -50) handlePrev();
-    };
-
-    if (!slides.length) return null;
-    const currentSlide = slides[currentIndex];
-
-    return e('section', {
-      className: 'relative w-full overflow-hidden bg-gradient-to-b from-surface-container-low to-surface py-6 px-4 md:px-8',
-      onMouseEnter: () => setIsPaused(true),
-      onMouseLeave: () => setIsPaused(false),
-      onTouchStart: handleTouchStart,
-      onTouchEnd: handleTouchEnd
+    return h('section', {
+      className: 'relative w-full bg-surface-container-low py-4 sm:py-6 px-4 sm:px-6 lg:px-8',
+      onMouseEnter: () => setPaused(true),
+      onMouseLeave: () => setPaused(false),
+      onTouchStart: (e) => { touchStartX.current = e.touches[0].clientX; },
+      onTouchEnd:   (e) => {
+        const d = touchStartX.current - e.changedTouches[0].clientX;
+        if (d > 45) goTo(idx + 1);
+        if (d < -45) goTo(idx - 1);
+      }
     },
-      e('div', { className: 'max-w-[1200px] mx-auto relative rounded-3xl overflow-hidden shadow-2xl border border-border-subtle bg-surface-pure' },
-        
-        // Barra de Progreso Superior
-        e('div', { className: 'w-full h-1.5 bg-surface-container-high relative overflow-hidden' },
-          e('div', {
-            className: 'h-full bg-primary transition-all duration-75 ease-linear',
-            style: { width: `${progress}%` }
-          })
-        ),
+      h('div', { className: 'max-w-[1200px] mx-auto rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-border-subtle bg-surface-pure' },
 
-        // Slider Container
-        e('div', {
-          className: 'flex transition-transform duration-700 ease-out min-h-[380px] md:min-h-[480px]',
-          style: { transform: `translateX(-${currentIndex * 100}%)` }
-        },
-          slides.map((slide, idx) =>
-            e('div', { key: slide.id || idx, className: 'min-w-full h-full flex flex-col md:flex-row items-stretch' },
-              
-              // Lado Izquierdo: Imagen del producto/portada
-              e('div', { className: 'w-full md:w-3/5 h-[260px] md:h-[480px] relative overflow-hidden bg-slate-900' },
-                e('img', {
-                  src: slide.image,
-                  alt: slide.title,
-                  className: 'w-full h-full object-contain p-4 md:p-6 transition-transform duration-1000 transform hover:scale-105',
-                  loading: idx === 0 ? 'eager' : 'lazy'
-                }),
-                e('div', { className: 'absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/40 via-transparent to-transparent' })
-              ),
+        h(ProgressBar, { value: progress }),
 
-              // Lado Derecho: Detalles de la Colección
-              e('div', { className: 'w-full md:w-2/5 p-6 md:p-10 flex flex-col justify-center items-start bg-surface-pure z-10' },
-                e('span', { className: `inline-flex items-center gap-1.5 px-3.5 py-1 mb-3 text-xs font-bold uppercase tracking-wider rounded-full ${slide.badgeColor}` },
-                  e('span', { className: 'material-symbols-outlined text-sm' }, 'auto_awesome'),
-                  slide.tag
+        /* Pista de slides */
+        h('div', { className: 'relative overflow-hidden' },
+          h('div', {
+            className: 'flex carousel-track',
+            style: { transform: 'translateX(-' + (idx * 100) + '%)' , transition: 'transform 0.65s cubic-bezier(.4,0,.2,1)' }
+          },
+            slides.map((s, i) =>
+              h('div', { key: s.id, className: 'min-w-full flex flex-col md:flex-row items-stretch' },
+
+                /* Imagen del slide */
+                h('div', { className: 'w-full md:w-3/5 carousel-slide-img md:h-auto relative bg-[#0a0f1a] overflow-hidden flex items-center justify-center' },
+                  h('img', {
+                    src: s.image, alt: s.title,
+                    loading: i === 0 ? 'eager' : 'lazy',
+                    decoding: 'async',
+                    className: 'w-full h-full object-contain p-3 sm:p-6 transition-transform duration-[1.2s] hover:scale-105'
+                  }),
+                  h('div', { className: 'absolute inset-0 bg-gradient-to-r from-transparent to-surface-pure/5 pointer-events-none' })
                 ),
-                e('h2', { className: 'text-2xl md:text-3xl font-extrabold text-on-surface leading-tight mb-3' }, slide.title),
-                e('p', { className: 'text-on-surface-variant text-sm md:text-base mb-6 leading-relaxed' }, slide.subtitle),
-                
-                e('div', { className: 'flex flex-wrap items-center gap-3' },
-                  e('button', {
-                    onClick: () => onSelectCollection(slide.category),
-                    className: 'vm-btn-cta inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-on-primary-fixed-variant text-white font-semibold text-sm transition-all shadow-md hover:-translate-y-0.5'
-                  },
-                    e('span', null, slide.ctaText),
-                    e('span', { className: 'material-symbols-outlined text-lg' }, 'arrow_forward')
+
+                /* Contenido de texto */
+                h('div', { className: 'w-full md:w-2/5 px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10 flex flex-col justify-center gap-4 bg-surface-pure' },
+                  h('span', { className: cx('inline-flex items-center gap-1.5 self-start px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest rounded-full border', s.badgeColor) },
+                    h('span', { className: 'material-symbols-outlined text-sm', 'aria-hidden': 'true' }, 'auto_awesome'),
+                    s.tag
                   ),
-                  e('a', {
-                    href: `https://wa.me/584241288247?text=${encodeURIComponent('Hola Venemedical, me interesa información sobre: ' + slide.title)}`,
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                    className: 'inline-flex items-center gap-1.5 px-4 py-3 rounded-xl border border-border-subtle hover:bg-surface-container text-on-surface font-semibold text-sm transition-all'
-                  },
-                    e('span', { className: 'material-symbols-outlined text-base text-[#25D366]' }, 'chat'),
-                    'WhatsApp'
+                  h('div', null,
+                    h('h2', { className: 'text-xl sm:text-2xl md:text-3xl font-black text-on-surface leading-tight' }, s.title),
+                    h('p', { className: 'mt-2 text-sm sm:text-base text-on-surface-variant leading-relaxed line-clamp-3' }, s.subtitle)
+                  ),
+                  h('div', { className: 'flex flex-wrap items-center gap-2 sm:gap-3' },
+                    h('button', {
+                      onClick: () => { onFilterCollection(s.category); onScrollToCatalog(); },
+                      className: 'btn-touch inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary hover:bg-[#004491] text-white text-xs sm:text-sm font-bold shadow-lg hover:-translate-y-0.5 transition-all'
+                    }, s.ctaText, h('span', { className: 'material-symbols-outlined text-base', 'aria-hidden': 'true' }, 'arrow_forward')),
+                    h('a', {
+                      href: buildWAUrl('Hola Venemedical, me interesa: ' + s.title),
+                      target: '_blank', rel: 'noopener noreferrer',
+                      className: 'btn-touch inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-border-subtle hover:bg-surface-container text-on-surface text-xs sm:text-sm font-semibold transition-colors'
+                    },
+                      h('span', { className: 'material-symbols-outlined text-base text-[#25D366]', 'aria-hidden': 'true' }, 'chat'),
+                      'WhatsApp'
+                    )
                   )
                 )
               )
             )
-          )
+          ),
+
+          /* Flechas prev/next */
+          h('button', {
+            onClick: () => goTo(idx - 1),
+            'aria-label': 'Slide anterior',
+            className: 'absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 btn-touch w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-surface-pure/90 hover:bg-white border border-border-subtle shadow-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 z-10'
+          }, h('span', { className: 'material-symbols-outlined text-xl', 'aria-hidden': 'true' }, 'chevron_left')),
+
+          h('button', {
+            onClick: () => goTo(idx + 1),
+            'aria-label': 'Siguiente slide',
+            className: 'absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 btn-touch w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-surface-pure/90 hover:bg-white border border-border-subtle shadow-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 z-10'
+          }, h('span', { className: 'material-symbols-outlined text-xl', 'aria-hidden': 'true' }, 'chevron_right'))
         ),
 
-        // Botones de Navegación Flechas
-        e('button', {
-          onClick: handlePrev,
-          'aria-label': 'Slide anterior',
-          className: 'absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-surface-pure/90 hover:bg-white text-on-surface border border-border-subtle shadow-xl backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 z-20'
-        }, e('span', { className: 'material-symbols-outlined' }, 'chevron_left')),
-        
-        e('button', {
-          onClick: handleNext,
-          'aria-label': 'Siguiente slide',
-          className: 'absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-surface-pure/90 hover:bg-white text-on-surface border border-border-subtle shadow-xl backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 z-20'
-        }, e('span', { className: 'material-symbols-outlined' }, 'chevron_right')),
-
-        // Indicadores Dots
-        e('div', { className: 'absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-on-surface-fixed/30 backdrop-blur-sm px-3.5 py-1.5 rounded-full z-20' },
-          slides.map((_, idx) =>
-            e('button', {
-              key: idx,
-              onClick: () => { setCurrentIndex(idx); setProgress(0); },
-              'aria-label': `Ir al slide ${idx + 1}`,
-              className: `h-2.5 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-primary' : 'w-2.5 bg-surface-pure/60 hover:bg-surface-pure'}`
+        /* Dots indicadores */
+        h('div', { className: 'flex items-center justify-center gap-2 py-3 bg-surface-bright border-t border-border-subtle' },
+          slides.map((_, i) =>
+            h('button', {
+              key: i,
+              onClick: () => goTo(i),
+              'aria-label': 'Ir al slide ' + (i + 1),
+              'aria-current': i === idx ? 'true' : 'false',
+              className: cx('rounded-full transition-all duration-300', i === idx ? 'w-8 h-2 bg-primary' : 'w-2 h-2 bg-outline-variant hover:bg-outline')
             })
           )
         )
@@ -154,396 +160,336 @@
     );
   }
 
-  // ── 2. COMPONENTE: Tarjeta Individual de Catálogo (Grid / List View) ──────
+  /* ═══════════════════════════════════════════════════════════════════
+     COMPONENTE: TARJETA DE CATÁLOGO (Grid & List)
+  ════════════════════════════════════════════════════════════════════ */
   function CatalogCard({ item, viewMode, onSelect }) {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [hasError, setHasError] = useState(false);
+    const [loaded, setLoaded]   = useState(false);
+    const [errored, setErrored] = useState(false);
 
-    const whatsappUrl = `https://wa.me/584241288247?text=${encodeURIComponent('Hola Venemedical, quisiera consultar disponibilidad de la montura: ' + item.title + ' (Ref: ' + item.refCode + ')')}`;
+    const waUrl = buildWAUrl('Hola Venemedical, me interesa la montura: ' + item.title + ' (Ref: ' + item.refCode + ')');
 
+    /* Vista Lista compacta */
     if (viewMode === 'list') {
-      return e('div', {
-        className: 'bg-surface-pure border border-border-subtle rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex items-center justify-between gap-4 cursor-pointer group',
+      return h('div', {
+        className: 'group flex items-center justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-surface-pure border border-border-subtle rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer',
         onClick: () => onSelect(item)
       },
-        e('div', { className: 'flex items-center gap-4' },
-          e('div', { className: 'w-20 h-20 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0 relative' },
-            !isLoaded && !hasError && e('div', { className: 'absolute inset-0 animate-pulse bg-surface-container-high' }),
-            e('img', {
-              src: item.imageUrl,
-              alt: item.title,
-              loading: 'lazy',
-              onLoad: () => setIsLoaded(true),
-              onError: () => setHasError(true),
+        h('div', { className: 'flex items-center gap-3 min-w-0' },
+          h('div', { className: 'w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 bg-surface-container-low rounded-lg overflow-hidden relative' },
+            !loaded && !errored && h('div', { className: 'absolute inset-0 skeleton' }),
+            h('img', {
+              src: item.imageUrl, alt: item.title, loading: 'lazy',
+              onLoad: () => setLoaded(true), onError: () => setErrored(true),
               className: 'w-full h-full object-contain p-1'
             })
           ),
-          e('div', null,
-            e('span', { className: 'inline-block text-[11px] font-bold text-primary bg-primary-fixed px-2 py-0.5 rounded-full mb-1' }, item.refCode),
-            e('h4', { className: 'text-sm font-bold text-on-surface group-hover:text-primary transition-colors' }, item.title),
-            e('p', { className: 'text-xs text-text-muted mt-0.5' }, `${item.collection} • Pág. ${item.pageNumber}`)
+          h('div', { className: 'min-w-0' },
+            h('span', { className: 'inline-block text-[10px] sm:text-[11px] font-extrabold text-primary bg-primary-fixed px-2 py-0.5 rounded-full mb-1' }, item.refCode),
+            h('p', { className: 'text-xs sm:text-sm font-bold text-on-surface group-hover:text-primary transition-colors truncate' }, item.title),
+            h('p', { className: 'text-[11px] sm:text-xs text-text-muted mt-0.5 truncate' }, item.collection + ' · Pág. ' + item.pageNumber)
           )
         ),
-        e('div', { className: 'flex items-center gap-2' },
-          e('button', {
-            onClick: (evt) => { evt.stopPropagation(); onSelect(item); },
-            className: 'px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-semibold flex items-center gap-1 transition-colors'
-          },
-            e('span', { className: 'material-symbols-outlined text-base' }, 'visibility'),
-            'Ver'
-          ),
-          e('a', {
-            href: whatsappUrl,
-            target: '_blank',
-            rel: 'noopener noreferrer',
-            onClick: (evt) => evt.stopPropagation(),
-            className: 'px-3 py-1.5 rounded-lg bg-[#25D366] text-white text-xs font-semibold flex items-center gap-1 hover:brightness-105 transition-all'
-          },
-            e('span', { className: 'material-symbols-outlined text-base' }, 'chat'),
-            'Cotizar'
-          )
+        h('div', { className: 'flex items-center gap-2 flex-shrink-0' },
+          h('button', {
+            onClick: (e) => { e.stopPropagation(); onSelect(item); },
+            className: 'btn-touch hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-semibold transition-colors'
+          }, h('span', { className: 'material-symbols-outlined text-base', 'aria-hidden': 'true' }, 'visibility'), 'Ver'),
+          h('a', {
+            href: waUrl, target: '_blank', rel: 'noopener noreferrer',
+            onClick: (e) => e.stopPropagation(),
+            className: 'btn-touch inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#25D366] text-white text-xs font-bold hover:brightness-105 transition-all'
+          }, h('span', { className: 'material-symbols-outlined text-base', 'aria-hidden': 'true' }, 'chat'), 'Cotizar')
         )
       );
     }
 
-    return e('div', {
-      className: 'group relative bg-surface-pure border border-border-subtle rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1',
+    /* Vista Cuadrícula (default) */
+    return h('div', {
+      className: 'catalog-card group relative bg-surface-pure border border-border-subtle rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer flex flex-col anim-fade-up',
       onClick: () => onSelect(item)
     },
-      // Aspect ratio de imagen
-      e('div', { className: 'relative w-full aspect-[4/3] bg-surface-container-low overflow-hidden p-3' },
-        
-        // Badge de Referencia
-        e('span', { className: 'absolute top-3 left-3 z-10 text-[10px] font-extrabold text-primary bg-surface-pure/95 border border-primary-fixed-dim px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm' },
+      h('div', { className: 'relative w-full overflow-hidden bg-surface-container-low', style: { aspectRatio: '3/4' } },
+
+        /* Ref Badge */
+        h('span', { className: 'absolute top-2 left-2 z-10 text-[9px] sm:text-[10px] font-extrabold text-primary bg-surface-pure/95 border border-primary-fixed-dim px-2 py-0.5 rounded-full shadow-sm backdrop-blur-sm' },
           item.refCode
         ),
 
-        // Skeleton Loader
-        !isLoaded && !hasError && e('div', { className: 'absolute inset-0 animate-pulse bg-gradient-to-r from-surface-container-low via-surface-container-high to-surface-container-low' }),
+        /* Skeleton */
+        !loaded && !errored && h('div', { className: 'absolute inset-0 skeleton' }),
 
-        // Imagen Principal
-        e('img', {
-          src: item.imageUrl,
-          alt: item.title,
-          loading: 'lazy',
-          onLoad: () => setIsLoaded(true),
-          onError: () => setHasError(true),
-          className: `w-full h-full object-contain transition-all duration-500 group-hover:scale-110 ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`
+        /* Imagen */
+        h('img', {
+          src: item.imageUrl, alt: item.title, loading: 'lazy',
+          onLoad: () => setLoaded(true), onError: () => setErrored(true),
+          className: cx('w-full h-full object-contain p-2 transition-all duration-500 group-hover:scale-110', loaded ? 'opacity-100' : 'opacity-0')
         }),
 
-        // Error Fallback
-        hasError && e('div', { className: 'absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-text-muted bg-surface-container' },
-          e('span', { className: 'material-symbols-outlined text-3xl mb-1 text-error' }, 'broken_image'),
-          e('span', { className: 'text-xs font-medium' }, 'No disponible')
+        /* Error */
+        errored && h('div', { className: 'absolute inset-0 flex flex-col items-center justify-center p-3 bg-surface-container text-text-muted text-center' },
+          h('span', { className: 'material-symbols-outlined text-2xl text-error mb-1', 'aria-hidden': 'true' }, 'broken_image'),
+          h('span', { className: 'text-[11px]' }, 'No disponible')
         ),
 
-        // Hover Overlay con Botón Zoom y Cotizar
-        e('div', { className: 'absolute inset-0 bg-primary/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 p-2' },
-          e('button', {
-            onClick: (evt) => { evt.stopPropagation(); onSelect(item); },
-            className: 'px-3.5 py-2 bg-surface-pure text-primary font-bold text-xs rounded-full shadow-lg hover:bg-primary hover:text-white transition-all flex items-center gap-1 transform translate-y-2 group-hover:translate-y-0 duration-300'
-          },
-            e('span', { className: 'material-symbols-outlined text-base' }, 'zoom_in'),
-            'Ampliar'
-          ),
-          e('a', {
-            href: whatsappUrl,
-            target: '_blank',
-            rel: 'noopener noreferrer',
-            onClick: (evt) => evt.stopPropagation(),
-            className: 'px-3.5 py-2 bg-[#25D366] text-white font-bold text-xs rounded-full shadow-lg hover:bg-[#20ba5a] transition-all flex items-center gap-1 transform translate-y-2 group-hover:translate-y-0 duration-300'
-          },
-            e('span', { className: 'material-symbols-outlined text-base' }, 'chat'),
-            'WhatsApp'
-          )
+        /* Hover Overlay */
+        h('div', { className: 'absolute inset-0 bg-primary/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-2' },
+          h('button', {
+            onClick: (e) => { e.stopPropagation(); onSelect(item); },
+            className: 'inline-flex items-center gap-1 px-3 py-1.5 bg-white text-primary text-[11px] font-bold rounded-full shadow-lg hover:bg-primary hover:text-white transition-all translate-y-2 group-hover:translate-y-0 duration-300'
+          }, h('span', { className: 'material-symbols-outlined text-sm', 'aria-hidden': 'true' }, 'zoom_in'), 'Ampliar'),
+          h('a', {
+            href: waUrl, target: '_blank', rel: 'noopener noreferrer',
+            onClick: (e) => e.stopPropagation(),
+            className: 'inline-flex items-center gap-1 px-3 py-1.5 bg-[#25D366] text-white text-[11px] font-bold rounded-full shadow-lg hover:bg-[#1eb256] transition-all translate-y-2 group-hover:translate-y-0 duration-300'
+          }, h('span', { className: 'material-symbols-outlined text-sm', 'aria-hidden': 'true' }, 'chat'), 'WhatsApp')
         )
       ),
 
-      // Pie de Tarjeta
-      e('div', { className: 'p-3.5 border-t border-border-subtle bg-surface-bright flex flex-col gap-1' },
-        e('h4', { className: 'text-xs font-bold text-on-surface truncate group-hover:text-primary transition-colors' }, item.title),
-        e('div', { className: 'flex items-center justify-between text-[11px] text-text-muted' },
-          e('span', { className: 'truncate max-w-[120px]' }, item.collection),
-          e('span', { className: 'font-semibold text-on-surface-variant' }, `Pág. ${item.pageNumber}`)
+      /* Footer de tarjeta */
+      h('div', { className: 'px-2.5 sm:px-3 py-2 sm:py-2.5 border-t border-border-subtle bg-surface-bright flex flex-col gap-0.5' },
+        h('p', { className: 'text-[10px] sm:text-xs font-bold text-on-surface truncate group-hover:text-primary transition-colors leading-tight' }, item.title),
+        h('div', { className: 'flex items-center justify-between gap-1' },
+          h('span', { className: 'text-[9px] sm:text-[10px] text-text-muted truncate flex-1' }, item.collection),
+          h('span', { className: 'text-[9px] sm:text-[10px] font-semibold text-on-surface-variant flex-shrink-0' }, 'P.' + item.pageNumber)
         )
       )
     );
   }
 
-  // ── 3. COMPONENTE: Paginador Senior (Con Salto a Página + Configuración) ──────
-  function Pagination({ currentPage, totalPages, onPageChange, itemsPerPage, onItemsPerPageChange, totalItems }) {
-    const [jumpInput, setJumpInput] = useState('');
+  /* ═══════════════════════════════════════════════════════════════════
+     COMPONENTE: PAGINADOR COMPLETO (con salto a página)
+  ════════════════════════════════════════════════════════════════════ */
+  function Pagination({ currentPage, totalPages, totalItems, itemsPerPage, onPageChange, onPerPageChange }) {
+    const [jumpVal, setJumpVal] = useState('');
 
-    const pageNumbers = useMemo(() => {
-      const pages = [];
+    const pages = useMemo(() => {
+      const list = [];
       const delta = 1;
       for (let i = 1; i <= totalPages; i++) {
         if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
-          pages.push(i);
-        } else if (pages[pages.length - 1] !== '...') {
-          pages.push('...');
+          list.push(i);
+        } else if (list[list.length - 1] !== '…') {
+          list.push('…');
         }
       }
-      return pages;
+      return list;
     }, [currentPage, totalPages]);
 
     const startItem = (currentPage - 1) * itemsPerPage + 1;
-    const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+    const endItem   = Math.min(currentPage * itemsPerPage, totalItems);
 
-    const handleJumpSubmit = (evt) => {
-      evt.preventDefault();
-      const pageNum = parseInt(jumpInput, 10);
-      if (pageNum >= 1 && pageNum <= totalPages) {
-        onPageChange(pageNum);
-        setJumpInput('');
-      }
+    const submitJump = (e) => {
+      e.preventDefault();
+      const n = parseInt(jumpVal, 10);
+      if (n >= 1 && n <= totalPages) { onPageChange(n); setJumpVal(''); }
     };
 
-    return e('div', { className: 'w-full flex flex-col md:flex-row items-center justify-between gap-4 mt-10 pt-6 border-t border-border-subtle' },
-      
-      // Resumen de Registros
-      e('div', { className: 'text-xs text-on-surface-variant' },
-        'Mostrando ',
-        e('span', { className: 'font-extrabold text-on-surface' }, startItem),
-        ' - ',
-        e('span', { className: 'font-extrabold text-on-surface' }, endItem),
-        ' de ',
-        e('span', { className: 'font-extrabold text-on-surface' }, totalItems),
-        ' modelos en catálogo'
-      ),
+    return h('div', { className: 'mt-10 pt-6 border-t border-border-subtle flex flex-col gap-4' },
 
-      // Números y Botones de Paginación
-      e('div', { className: 'flex items-center gap-1.5 overflow-x-auto max-w-full pb-2 md:pb-0' },
-        e('button', {
-          onClick: () => onPageChange(currentPage - 1),
-          disabled: currentPage === 1,
-          'aria-label': 'Página anterior',
-          className: 'inline-flex items-center justify-center h-9 px-3 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold hover:bg-surface-container disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm'
-        },
-          e('span', { className: 'material-symbols-outlined text-base' }, 'navigate_before'),
-          e('span', { className: 'hidden sm:inline ml-1' }, 'Anterior')
+      /* Fila 1: Resumen y selector por página */
+      h('div', { className: 'flex flex-wrap items-center justify-between gap-3' },
+        h('p', { className: 'text-xs text-on-surface-variant' },
+          'Mostrando ',
+          h('strong', { className: 'text-on-surface' }, startItem),
+          '–',
+          h('strong', { className: 'text-on-surface' }, endItem),
+          ' de ',
+          h('strong', { className: 'text-on-surface' }, totalItems),
+          ' modelos'
         ),
-
-        pageNumbers.map((page, idx) => {
-          if (page === '...') return e('span', { key: `ell-${idx}`, className: 'px-2 text-text-muted text-xs font-bold' }, '...');
-          const isActive = page === currentPage;
-          return e('button', {
-            key: page,
-            onClick: () => onPageChange(page),
-            className: `h-9 min-w-[36px] px-3 rounded-xl text-xs font-bold transition-all ${isActive ? 'bg-primary text-white shadow-md' : 'bg-surface-pure text-on-surface border border-border-subtle hover:bg-surface-container'}`
-          }, page);
-        }),
-
-        e('button', {
-          onClick: () => onPageChange(currentPage + 1),
-          disabled: currentPage === totalPages,
-          'aria-label': 'Página siguiente',
-          className: 'inline-flex items-center justify-center h-9 px-3 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold hover:bg-surface-container disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm'
-        },
-          e('span', { className: 'hidden sm:inline mr-1' }, 'Siguiente'),
-          e('span', { className: 'material-symbols-outlined text-base' }, 'navigate_next')
+        h('div', { className: 'flex items-center gap-2 text-xs text-on-surface-variant' },
+          h('label', { htmlFor: 'per-page-select', className: 'font-medium' }, 'Mostrar:'),
+          h('select', {
+            id: 'per-page-select',
+            value: itemsPerPage,
+            onChange: (e) => onPerPageChange(+e.target.value),
+            className: 'h-9 px-2 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-primary'
+          },
+            h('option', { value: 12 }, '12'),
+            h('option', { value: 24 }, '24'),
+            h('option', { value: 36 }, '36'),
+            h('option', { value: 48 }, '48')
+          )
         )
       ),
 
-      // Controles Secundarios: Selector por página + Salto rápido
-      e('div', { className: 'flex items-center gap-3 text-xs text-on-surface-variant' },
-        e('form', { onSubmit: handleJumpSubmit, className: 'flex items-center gap-1' },
-          e('span', null, 'Ir a:'),
-          e('input', {
-            type: 'number',
-            min: 1,
-            max: totalPages,
-            placeholder: currentPage,
-            value: jumpInput,
-            onChange: (e) => setJumpInput(e.target.value),
-            className: 'w-12 h-9 px-1 text-center rounded-lg border border-border-subtle bg-surface-pure text-on-surface font-semibold focus:outline-none focus:ring-2 focus:ring-primary'
-          })
-        ),
-        e('div', { className: 'flex items-center gap-1' },
-          e('span', null, 'Por pág:'),
-          e('select', {
-            value: itemsPerPage,
-            onChange: (evt) => onItemsPerPageChange(Number(evt.target.value)),
-            className: 'h-9 px-2 rounded-lg border border-border-subtle bg-surface-pure text-on-surface font-semibold focus:outline-none focus:ring-2 focus:ring-primary'
+      /* Fila 2: Botones de página + Salto */
+      h('div', { className: 'flex flex-wrap items-center justify-between gap-3' },
+        h('div', { className: 'flex items-center gap-1 pagination-row' },
+          /* Anterior */
+          h('button', {
+            onClick: () => onPageChange(currentPage - 1),
+            disabled: currentPage === 1,
+            'aria-label': 'Página anterior',
+            className: 'btn-touch inline-flex items-center justify-center h-9 px-3 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold hover:bg-surface-container disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm flex-shrink-0'
           },
-            e('option', { value: 12 }, '12'),
-            e('option', { value: 24 }, '24'),
-            e('option', { value: 36 }, '36'),
-            e('option', { value: 48 }, '48')
+            h('span', { className: 'material-symbols-outlined text-base', 'aria-hidden': 'true' }, 'navigate_before'),
+            h('span', { className: 'hidden sm:inline ml-0.5' }, 'Anterior')
+          ),
+
+          /* Números */
+          pages.map((p, i) =>
+            p === '…'
+              ? h('span', { key: 'e' + i, className: 'px-1.5 text-text-muted text-xs font-bold select-none' }, '…')
+              : h('button', {
+                  key: p,
+                  onClick: () => onPageChange(p),
+                  'aria-label': 'Ir a página ' + p,
+                  'aria-current': p === currentPage ? 'page' : undefined,
+                  className: cx('btn-touch h-9 min-w-[36px] px-2.5 rounded-xl text-xs font-bold transition-all flex-shrink-0',
+                    p === currentPage
+                      ? 'bg-primary text-white shadow-md'
+                      : 'bg-surface-pure text-on-surface border border-border-subtle hover:bg-surface-container'
+                  )
+                }, p)
+          ),
+
+          /* Siguiente */
+          h('button', {
+            onClick: () => onPageChange(currentPage + 1),
+            disabled: currentPage === totalPages,
+            'aria-label': 'Página siguiente',
+            className: 'btn-touch inline-flex items-center justify-center h-9 px-3 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold hover:bg-surface-container disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm flex-shrink-0'
+          },
+            h('span', { className: 'hidden sm:inline mr-0.5' }, 'Siguiente'),
+            h('span', { className: 'material-symbols-outlined text-base', 'aria-hidden': 'true' }, 'navigate_next')
           )
+        ),
+
+        /* Salto rápido */
+        h('form', { onSubmit: submitJump, className: 'flex items-center gap-2 text-xs text-on-surface-variant' },
+          h('label', { htmlFor: 'page-jump', className: 'font-medium hidden sm:inline' }, 'Ir a pág:'),
+          h('input', {
+            id: 'page-jump', type: 'number', min: 1, max: totalPages,
+            placeholder: currentPage, value: jumpVal,
+            onChange: (e) => setJumpVal(e.target.value),
+            className: 'w-14 h-9 text-center rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-primary'
+          }),
+          h('button', {
+            type: 'submit',
+            className: 'btn-touch h-9 px-3 rounded-xl bg-primary-fixed text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all'
+          }, 'Ir')
         )
       )
     );
   }
 
-  // ── 4. COMPONENTE: Modal Lightbox de Alta Resolución con Navegación tipo Revista ──────
-  function ImageLightboxModal({ item, allItems = [], onClose, onNavigate }) {
-    useEffect(() => {
-      if (item) document.body.style.overflow = 'hidden';
-      return () => { document.body.style.overflow = 'unset'; };
-    }, [item]);
+  /* ═══════════════════════════════════════════════════════════════════
+     COMPONENTE: LIGHTBOX MODAL (Navegación tipo revista + teclado)
+  ════════════════════════════════════════════════════════════════════ */
+  function Lightbox({ item, items, onClose, onNavigate }) {
+    const currentIdx = useMemo(() => items.findIndex(i => i.id === item?.id), [item, items]);
 
-    // Navegación por teclado (Flecha Izquierda / Flecha Derecha / ESC)
     useEffect(() => {
-      if (!item || !allItems.length) return;
+      if (!item) return;
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
 
-      const handleKeyDown = (evt) => {
-        if (evt.key === 'Escape') onClose();
-        if (evt.key === 'ArrowLeft') {
-          const currentIdx = allItems.findIndex(i => i.id === item.id);
-          if (currentIdx > 0) onNavigate(allItems[currentIdx - 1]);
-        }
-        if (evt.key === 'ArrowRight') {
-          const currentIdx = allItems.findIndex(i => i.id === item.id);
-          if (currentIdx < allItems.length - 1) onNavigate(allItems[currentIdx + 1]);
-        }
+      const onKey = (e) => {
+        if (e.key === 'Escape')      onClose();
+        if (e.key === 'ArrowLeft' && currentIdx > 0)                onNavigate(items[currentIdx - 1]);
+        if (e.key === 'ArrowRight' && currentIdx < items.length - 1) onNavigate(items[currentIdx + 1]);
       };
-
-      window.addEventListener('keydown', handleKeyDown);
-      return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [item, allItems, onClose, onNavigate]);
+      window.addEventListener('keydown', onKey);
+      return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+    }, [item, currentIdx, items, onClose, onNavigate]);
 
     if (!item) return null;
 
-    const currentIndex = allItems.findIndex(i => i.id === item.id);
-    const hasPrev = currentIndex > 0;
-    const hasNext = currentIndex < allItems.length - 1;
+    const hasPrev = currentIdx > 0;
+    const hasNext = currentIdx < items.length - 1;
+    const waUrl   = buildWAUrl('Hola Venemedical, me interesa: ' + item.title + ' (Ref: ' + item.refCode + ')');
 
-    const whatsappUrl = `https://wa.me/584241288247?text=${encodeURIComponent('Hola Venemedical, me interesa la montura/hoja del catálogo: ' + item.title + ' (Ref: ' + item.refCode + ')')}`;
-
-    return e('div', {
-      className: 'fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 md:p-6 animate-fade-in',
-      onClick: onClose
+    return h('div', {
+      className: 'modal-overlay fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 md:p-8',
+      onClick: onClose,
+      role: 'dialog',
+      'aria-modal': 'true',
+      'aria-label': 'Vista ampliada: ' + item.title
     },
-      e('div', {
-        className: 'relative max-w-5xl max-h-[92vh] w-full bg-surface-pure rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-border-subtle',
-        onClick: (evt) => evt.stopPropagation()
+      h('div', {
+        className: 'modal-panel relative max-w-4xl w-full max-h-[92vh] bg-surface-pure rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-border-subtle',
+        onClick: (e) => e.stopPropagation()
       },
-        
-        // Header del Modal
-        e('div', { className: 'flex items-center justify-between px-6 py-4 border-b border-border-subtle bg-surface-bright' },
-          e('div', { className: 'flex items-center gap-3' },
-            e('span', { className: 'text-xs font-extrabold text-primary bg-primary-fixed px-3 py-1 rounded-full' }, item.refCode),
-            e('div', null,
-              e('h3', { className: 'text-base font-extrabold text-on-surface' }, item.title),
-              e('p', { className: 'text-xs text-text-muted' }, `${item.collection} • Página ${item.pageNumber}`)
+
+        /* Header */
+        h('div', { className: 'flex items-center justify-between gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-border-subtle bg-surface-bright flex-shrink-0' },
+          h('div', { className: 'flex items-center gap-2 sm:gap-3 min-w-0' },
+            h('span', { className: 'hidden sm:inline-block text-[11px] font-extrabold text-primary bg-primary-fixed px-2.5 py-1 rounded-full flex-shrink-0' }, item.refCode),
+            h('div', { className: 'min-w-0' },
+              h('h3', { className: 'text-sm sm:text-base font-extrabold text-on-surface truncate' }, item.title),
+              h('p', { className: 'text-[11px] sm:text-xs text-text-muted' }, item.collection + ' · Página ' + item.pageNumber)
             )
           ),
-          e('div', { className: 'flex items-center gap-2' },
-            e('span', { className: 'text-xs font-semibold text-text-muted hidden sm:inline mr-2' }, `${currentIndex + 1} de ${allItems.length}`),
-            e('button', {
+          h('div', { className: 'flex items-center gap-2 flex-shrink-0' },
+            h('span', { className: 'text-[11px] font-semibold text-text-muted hidden md:inline' }, (currentIdx + 1) + ' / ' + items.length),
+            h('button', {
               onClick: onClose,
               'aria-label': 'Cerrar visor',
-              className: 'w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-all'
-            }, e('span', { className: 'material-symbols-outlined text-xl' }, 'close'))
+              className: 'btn-touch w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center transition-colors'
+            }, h('span', { className: 'material-symbols-outlined text-lg sm:text-xl', 'aria-hidden': 'true' }, 'close'))
           )
         ),
 
-        // Imagen Central + Botones Flotantes Prev/Next
-        e('div', { className: 'flex-1 overflow-auto p-4 md:p-8 flex items-center justify-center bg-surface-container-low relative min-h-[350px]' },
-          
-          // Botón Anterior
-          hasPrev && e('button', {
-            onClick: () => onNavigate(allItems[currentIndex - 1]),
-            'aria-label': 'Imagen anterior',
-            className: 'absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-surface-pure/90 hover:bg-white text-on-surface shadow-xl flex items-center justify-center border border-border-subtle transition-all hover:scale-110 z-10'
-          }, e('span', { className: 'material-symbols-outlined text-2xl' }, 'chevron_left')),
+        /* Área de imagen */
+        h('div', { className: 'flex-1 overflow-auto relative flex items-center justify-center bg-[#0a0f1a] min-h-[280px] sm:min-h-[380px]' },
 
-          // Imagen Principal
-          e('img', {
+          hasPrev && h('button', {
+            onClick: () => onNavigate(items[currentIdx - 1]),
+            'aria-label': 'Imagen anterior',
+            className: 'btn-touch absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/20 flex items-center justify-center z-10 transition-all hover:scale-110'
+          }, h('span', { className: 'material-symbols-outlined text-xl sm:text-2xl', 'aria-hidden': 'true' }, 'chevron_left')),
+
+          h('img', {
             src: item.highResUrl || item.imageUrl,
             alt: item.title,
-            className: 'max-h-[68vh] w-auto object-contain rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105'
+            className: 'max-h-[58vh] sm:max-h-[64vh] w-auto object-contain rounded-xl p-2 sm:p-4'
           }),
 
-          // Botón Siguiente
-          hasNext && e('button', {
-            onClick: () => onNavigate(allItems[currentIndex + 1]),
+          hasNext && h('button', {
+            onClick: () => onNavigate(items[currentIdx + 1]),
             'aria-label': 'Imagen siguiente',
-            className: 'absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-surface-pure/90 hover:bg-white text-on-surface shadow-xl flex items-center justify-center border border-border-subtle transition-all hover:scale-110 z-10'
-          }, e('span', { className: 'material-symbols-outlined text-2xl' }, 'chevron_right'))
+            className: 'btn-touch absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/20 flex items-center justify-center z-10 transition-all hover:scale-110'
+          }, h('span', { className: 'material-symbols-outlined text-xl sm:text-2xl', 'aria-hidden': 'true' }, 'chevron_right'))
         ),
 
-        // Footer del Modal con Acciones
-        e('div', { className: 'p-4 border-t border-border-subtle bg-surface-bright flex flex-col sm:flex-row items-center justify-between gap-3' },
-          e('div', { className: 'text-xs text-on-surface-variant flex items-center gap-2' },
-            e('span', { className: 'material-symbols-outlined text-base text-primary' }, 'info'),
-            `Categoría: ${item.category} | Tip: Usa las flechas ◄ ► de tu teclado para hojear.`
+        /* Footer del modal */
+        h('div', { className: 'flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 px-4 sm:px-6 py-3 sm:py-4 border-t border-border-subtle bg-surface-bright flex-shrink-0' },
+          h('div', { className: 'text-xs text-on-surface-variant flex items-center gap-2' },
+            h('span', { className: 'material-symbols-outlined text-base text-primary', 'aria-hidden': 'true' }, 'keyboard'),
+            h('span', { className: 'hidden sm:inline' }, 'Navega con teclas ← →. ESC para cerrar.')
           ),
-          e('div', { className: 'flex items-center gap-2 w-full sm:w-auto' },
-            e('a', {
-              href: whatsappUrl,
-              target: '_blank',
-              rel: 'noopener noreferrer',
-              className: 'vm-btn-cta w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#25D366] text-white text-xs font-bold shadow-md hover:bg-[#20ba5a] transition-all'
-            },
-              e('span', { className: 'material-symbols-outlined text-base' }, 'chat'),
-              'Consultar en WhatsApp'
-            )
+          h('a', {
+            href: waUrl, target: '_blank', rel: 'noopener noreferrer',
+            className: 'btn-touch w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1eb256] text-white text-xs font-bold shadow-md transition-all'
+          },
+            h('span', { className: 'material-symbols-outlined text-base', 'aria-hidden': 'true' }, 'chat'),
+            'Consultar disponibilidad en WhatsApp'
           )
         )
       )
     );
   }
 
-  // ── 5. COMPONENTE PRINCIPAL DE APLICACIÓN ─────────────────────────────
+  /* ═══════════════════════════════════════════════════════════════════
+     COMPONENTE PRINCIPAL: VISUAL CATALOG APP
+  ════════════════════════════════════════════════════════════════════ */
   function VisualCatalogApp() {
-    const carouselData = window.VENEMEDICAL_CARROUSEL_LENTES || [];
-    const allPagesData = window.VENEMEDICAL_PAGINAS_CATALOGO || [];
+    const carouselData  = window.VENEMEDICAL_CARROUSEL_LENTES   || [];
+    const allItems      = window.VENEMEDICAL_PAGINAS_CATALOGO   || [];
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(12);
-    const [selectedCategory, setSelectedCategory] = useState('TODOS');
-    const [searchQuery, setSearchQuery] = useState('');
-    const [sortBy, setSortBy] = useState('default'); // 'default', 'page-asc', 'page-desc', 'ref-asc'
-    const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [page,        setPage]        = useState(1);
+    const [perPage,     setPerPage]     = useState(12);
+    const [collection,  setCollection]  = useState('TODOS');
+    const [query,       setQuery]       = useState('');
+    const [sortBy,      setSortBy]      = useState('default');
+    const [viewMode,    setViewMode]    = useState('grid');
+    const [selected,    setSelected]    = useState(null);
 
     const catalogRef = useRef(null);
 
-    // Filtrado y Ordenamiento Avanzado
-    const processedItems = useMemo(() => {
-      let result = allPagesData.filter(item => {
-        const matchesCategory = selectedCategory === 'TODOS' || item.collection === selectedCategory || item.category === selectedCategory;
-        const matchesSearch = searchQuery === '' || 
-          item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-          item.refCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          String(item.pageNumber).includes(searchQuery);
-        return matchesCategory && matchesSearch;
-      });
-
-      if (sortBy === 'page-asc') {
-        result.sort((a, b) => a.pageNumber - b.pageNumber);
-      } else if (sortBy === 'page-desc') {
-        result.sort((a, b) => b.pageNumber - a.pageNumber);
-      } else if (sortBy === 'ref-asc') {
-        result.sort((a, b) => a.refCode.localeCompare(b.refCode));
-      }
-
-      return result;
-    }, [allPagesData, selectedCategory, searchQuery, sortBy]);
-
-    const totalItems = processedItems.length;
-    const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
-
-    const currentPaginatedItems = useMemo(() => {
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      return processedItems.slice(startIndex, startIndex + itemsPerPage);
-    }, [processedItems, currentPage, itemsPerPage]);
-
-    const handlePageChange = (newPage) => {
-      if (newPage >= 1 && newPage <= totalPages) {
-        setCurrentPage(newPage);
-        catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    };
-
-    const handleItemsPerPageChange = (newSize) => {
-      setItemsPerPage(newSize);
-      setCurrentPage(1);
-    };
-
-    const categories = [
+    const COLLECTIONS = [
       'TODOS',
       'Palazzo Dama & Finezza',
       'Palazzo Caballeros',
@@ -553,138 +499,210 @@
       'Cristales Anti-Reflejo Blue-Cut'
     ];
 
-    return e('div', { className: 'w-full min-h-screen flex flex-col' },
-      
-      // SECCIÓN SUPERIOR: Hero Carrusel
-      e(LensesCarousel, {
+    /* Filtrado + Ordenamiento */
+    const processed = useMemo(() => {
+      let r = allItems.filter(i => {
+        const matchCol = collection === 'TODOS' || i.collection === collection || i.category === collection;
+        const q = query.toLowerCase();
+        const matchQ  = !q ||
+          i.title.toLowerCase().includes(q) ||
+          i.refCode.toLowerCase().includes(q) ||
+          String(i.pageNumber).includes(q);
+        return matchCol && matchQ;
+      });
+
+      if      (sortBy === 'page-asc')  r.sort((a, b) => a.pageNumber - b.pageNumber);
+      else if (sortBy === 'page-desc') r.sort((a, b) => b.pageNumber - a.pageNumber);
+      else if (sortBy === 'ref-asc')   r.sort((a, b) => a.refCode.localeCompare(b.refCode));
+
+      return r;
+    }, [allItems, collection, query, sortBy]);
+
+    const totalPages = Math.max(1, Math.ceil(processed.length / perPage));
+
+    const pageItems = useMemo(() => {
+      const s = (page - 1) * perPage;
+      return processed.slice(s, s + perPage);
+    }, [processed, page, perPage]);
+
+    const scrollToCatalog = useCallback(() => {
+      setTimeout(() => catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+    }, []);
+
+    const changePage = (n) => {
+      if (n >= 1 && n <= totalPages) {
+        setPage(n);
+        setTimeout(() => catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+      }
+    };
+
+    const changePerPage = (n) => { setPerPage(n); setPage(1); };
+
+    const filterCollection = (cat) => {
+      if (cat === 'Cristales Especializados') setCollection('TODOS');
+      else setCollection(cat);
+      setPage(1);
+    };
+
+    const resetFilters = () => { setCollection('TODOS'); setQuery(''); setSortBy('default'); setPage(1); };
+
+    return h('div', { className: 'w-full flex-1 flex flex-col' },
+
+      /* ── Hero Carrusel ── */
+      h(HeroCarousel, {
         slides: carouselData,
-        onSelectCollection: (cat) => {
-          setSelectedCategory(cat);
-          setCurrentPage(1);
-          catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        onScrollToCatalog: scrollToCatalog,
+        onFilterCollection: filterCollection
       }),
 
-      // SECCIÓN INFERIOR: Catálogo Principal
-      e('main', { ref: catalogRef, className: 'max-w-[1200px] w-full mx-auto px-4 md:px-8 py-10 flex-1' },
-        
-        // Header & Controles de Filtros
-        e('div', { className: 'mb-8 border-b border-border-subtle pb-6 flex flex-col gap-6' },
-          
-          // Fila Superior: Título + Buscador + Ordenamiento + Vista
-          e('div', { className: 'flex flex-col lg:flex-row lg:items-center justify-between gap-4' },
-            e('div', null,
-              e('span', { className: 'inline-flex items-center gap-1.5 text-xs font-extrabold text-primary uppercase tracking-wider bg-primary-fixed px-3 py-1 rounded-full' },
-                e('span', { className: 'material-symbols-outlined text-base' }, 'auto_stories'),
+      /* ── Sección Catálogo ── */
+      h('section', {
+        ref: catalogRef,
+        'aria-label': 'Catálogo de monturas y lentes',
+        className: 'flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10'
+      },
+
+        /* ── Encabezado + Controles ── */
+        h('div', { className: 'mb-6 sm:mb-8 flex flex-col gap-4 sm:gap-5 pb-5 sm:pb-6 border-b border-border-subtle' },
+
+          /* Título */
+          h('div', { className: 'flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4' },
+            h('div', null,
+              h('span', { className: 'inline-flex items-center gap-1.5 text-[11px] font-extrabold text-primary uppercase tracking-widest bg-primary-fixed px-3 py-1 rounded-full' },
+                h('span', { className: 'material-symbols-outlined text-sm', 'aria-hidden': 'true' }, 'auto_stories'),
                 'Catálogo Visual Interactivo'
               ),
-              e('h1', { className: 'text-2xl md:text-3xl font-extrabold text-on-surface mt-2' }, 'Catálogo de Monturas y Lentes'),
-              e('p', { className: 'text-on-surface-variant text-sm mt-1 max-w-[650px]' },
-                `Explora la colección completa con ${allPagesData.length} imágenes reales de los catálogos Palazzo Dama y Caballeros.`
+              h('h1', { className: 'text-xl sm:text-2xl md:text-3xl font-black text-on-surface mt-2 leading-tight' }, 'Monturas y Lentes Palazzo'),
+              h('p', { className: 'text-on-surface-variant text-xs sm:text-sm mt-1 max-w-xl' },
+                allItems.length + ' imágenes reales de los catálogos Palazzo Dama & Finezza y Palazzo Caballeros.'
               )
             ),
 
-            // Acciones a la derecha
-            e('div', { className: 'flex flex-wrap items-center gap-3' },
-              
-              // Campo de Búsqueda
-              e('div', { className: 'relative flex-1 sm:w-64' },
-                e('span', { className: 'material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted text-lg' }, 'search'),
-                e('input', {
-                  type: 'text',
-                  placeholder: 'Buscar modelo o ref...',
-                  value: searchQuery,
-                  onChange: (evt) => { setSearchQuery(evt.target.value); setCurrentPage(1); },
-                  className: 'w-full pl-10 pr-4 py-2.5 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-primary shadow-sm'
+            /* Acciones: Búsqueda + Sort + Vista */
+            h('div', { className: 'flex flex-col xs:flex-row items-stretch xs:items-center gap-2 w-full sm:w-auto' },
+
+              /* Buscador */
+              h('div', { className: 'relative flex-1 sm:w-60' },
+                h('span', { className: 'material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-lg pointer-events-none', 'aria-hidden': 'true' }, 'search'),
+                h('input', {
+                  type: 'search',
+                  placeholder: 'Buscar modelo, ref...',
+                  value: query,
+                  'aria-label': 'Buscar en el catálogo',
+                  onChange: (e) => { setQuery(e.target.value); setPage(1); },
+                  className: 'w-full h-10 pl-10 pr-3 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-primary shadow-sm'
                 })
               ),
 
-              // Selector de Ordenamiento
-              e('select', {
+              /* Sort */
+              h('select', {
                 value: sortBy,
+                'aria-label': 'Ordenar catálogo',
                 onChange: (e) => setSortBy(e.target.value),
-                className: 'h-10 px-3 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-primary shadow-sm'
+                className: 'h-10 px-2.5 rounded-xl border border-border-subtle bg-surface-pure text-on-surface text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-primary shadow-sm'
               },
-                e('option', { value: 'default' }, 'Orden por Defecto'),
-                e('option', { value: 'page-asc' }, 'Página (Ascendente)'),
-                e('option', { value: 'page-desc' }, 'Página (Descendente)'),
-                e('option', { value: 'ref-asc' }, 'Código Referencia')
+                h('option', { value: 'default'   }, 'Orden estándar'),
+                h('option', { value: 'page-asc'  }, 'Pág. (↑ menor)'),
+                h('option', { value: 'page-desc' }, 'Pág. (↓ mayor)'),
+                h('option', { value: 'ref-asc'   }, 'Ref. (A-Z)')
               ),
 
-              // Toggle Grid / List View
-              e('div', { className: 'flex items-center bg-surface-container-low border border-border-subtle rounded-xl p-1 gap-1' },
-                e('button', {
+              /* Toggle Grid/List */
+              h('div', {
+                className: 'flex items-center bg-surface-container-low border border-border-subtle rounded-xl p-1 gap-1 flex-shrink-0',
+                role: 'group',
+                'aria-label': 'Modo de vista'
+              },
+                h('button', {
                   onClick: () => setViewMode('grid'),
-                  title: 'Vista Cuadrícula',
-                  className: `p-1.5 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-primary text-white shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`
-                }, e('span', { className: 'material-symbols-outlined text-lg' }, 'grid_view')),
-                e('button', {
+                  'aria-pressed': viewMode === 'grid',
+                  title: 'Vista cuadrícula',
+                  className: cx('btn-touch p-2 rounded-lg transition-all', viewMode === 'grid' ? 'bg-primary text-white shadow-sm' : 'text-on-surface-variant hover:text-on-surface')
+                }, h('span', { className: 'material-symbols-outlined text-lg', 'aria-hidden': 'true' }, 'grid_view')),
+                h('button', {
                   onClick: () => setViewMode('list'),
-                  title: 'Vista Lista',
-                  className: `p-1.5 rounded-lg transition-all ${viewMode === 'list' ? 'bg-primary text-white shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`
-                }, e('span', { className: 'material-symbols-outlined text-lg' }, 'format_list_bulleted'))
+                  'aria-pressed': viewMode === 'list',
+                  title: 'Vista lista',
+                  className: cx('btn-touch p-2 rounded-lg transition-all', viewMode === 'list' ? 'bg-primary text-white shadow-sm' : 'text-on-surface-variant hover:text-on-surface')
+                }, h('span', { className: 'material-symbols-outlined text-lg', 'aria-hidden': 'true' }, 'format_list_bulleted'))
               )
             )
           ),
 
-          // Chips de Categorías
-          e('div', { className: 'flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none' },
-            categories.map(cat => {
-              const isActive = selectedCategory === cat;
-              return e('button', {
-                key: cat,
-                onClick: () => { setSelectedCategory(cat); setCurrentPage(1); },
-                className: `px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${isActive ? 'bg-primary text-white border-primary shadow-sm' : 'bg-surface-pure text-on-surface-variant border-border-subtle hover:bg-surface-container hover:text-primary'}`
-              }, cat);
-            })
+          /* Chips de Colecciones */
+          h('div', {
+            className: 'chips-scroll flex items-center gap-2 overflow-x-auto pb-1',
+            role: 'list',
+            'aria-label': 'Filtrar por colección'
+          },
+            COLLECTIONS.map(c =>
+              h('button', {
+                key: c,
+                role: 'listitem',
+                onClick: () => { setCollection(c); setPage(1); },
+                'aria-pressed': collection === c,
+                className: cx('flex-shrink-0 px-3.5 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all border whitespace-nowrap btn-touch',
+                  collection === c
+                    ? 'bg-primary text-white border-primary shadow-sm'
+                    : 'bg-surface-pure text-on-surface-variant border-border-subtle hover:bg-surface-container hover:text-primary'
+                )
+              }, c)
+            )
           )
         ),
 
-        // Grid o Lista del Catálogo
-        currentPaginatedItems.length > 0
-          ? e('div', { className: viewMode === 'grid' ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6' : 'flex flex-col gap-3' },
-              currentPaginatedItems.map(item =>
-                e(CatalogCard, { key: item.id, item: item, viewMode: viewMode, onSelect: setSelectedItem })
-              )
+        /* ── Grid / Lista ── */
+        pageItems.length > 0
+          ? h('div', { className: viewMode === 'grid' ? 'catalog-grid' : 'flex flex-col gap-3' },
+              pageItems.map(item => h(CatalogCard, { key: item.id, item, viewMode, onSelect: setSelected }))
             )
-          : e('div', { className: 'py-16 text-center text-text-muted bg-surface-bright rounded-3xl border border-border-subtle' },
-              e('span', { className: 'material-symbols-outlined text-5xl mb-2 text-primary' }, 'find_in_page'),
-              e('h3', { className: 'text-base font-bold text-on-surface' }, 'No se encontraron resultados'),
-              e('p', { className: 'text-xs text-text-muted mt-1' }, 'Prueba con otro término de búsqueda o selecciona una categoría diferente.'),
-              e('button', {
-                onClick: () => { setSelectedCategory('TODOS'); setSearchQuery(''); setSortBy('default'); setCurrentPage(1); },
-                className: 'mt-4 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold shadow-sm'
-              }, 'Restablecer Todos los Filtros')
+          : h('div', {
+              className: 'py-16 sm:py-20 flex flex-col items-center justify-center text-center bg-surface-bright rounded-2xl border border-border-subtle',
+              role: 'status'
+            },
+              h('span', { className: 'material-symbols-outlined text-5xl sm:text-6xl mb-3 text-primary', 'aria-hidden': 'true' }, 'find_in_page'),
+              h('h3', { className: 'text-sm sm:text-base font-extrabold text-on-surface mb-1' }, 'Sin resultados'),
+              h('p', { className: 'text-xs sm:text-sm text-text-muted max-w-xs' }, 'No hay modelos que coincidan con tu búsqueda o filtros seleccionados.'),
+              h('button', {
+                onClick: resetFilters,
+                className: 'mt-4 px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold shadow-md hover:-translate-y-0.5 transition-all btn-touch'
+              }, 'Limpiar filtros')
             ),
 
-        // Componente de Paginación
-        totalItems > 0 && e(Pagination, {
-          currentPage: currentPage,
-          totalPages: totalPages,
-          onPageChange: handlePageChange,
-          itemsPerPage: itemsPerPage,
-          onItemsPerPageChange: handleItemsPerPageChange,
-          totalItems: totalItems
+        /* ── Paginador ── */
+        processed.length > 0 && h(Pagination, {
+          currentPage: page,
+          totalPages,
+          totalItems: processed.length,
+          itemsPerPage: perPage,
+          onPageChange: changePage,
+          onPerPageChange: changePerPage
         })
       ),
 
-      // Modal Lightbox
-      e(ImageLightboxModal, {
-        item: selectedItem,
-        allItems: processedItems,
-        onClose: () => setSelectedItem(null),
-        onNavigate: setSelectedItem
+      /* ── Lightbox Modal ── */
+      h(Lightbox, {
+        item: selected,
+        items: processed,
+        onClose: () => setSelected(null),
+        onNavigate: setSelected
       })
     );
   }
 
-  // Montar la app React en el DOM
-  document.addEventListener('DOMContentLoaded', function() {
-    const rootEl = document.getElementById('catalogo-visual-root');
-    if (rootEl && window.React && window.ReactDOM) {
-      const root = ReactDOM.createRoot(rootEl);
-      root.render(e(VisualCatalogApp));
-    }
+  /* ═══════════════════════════════════════════════════════════════════
+     PUNTO DE ENTRADA
+  ════════════════════════════════════════════════════════════════════ */
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadingEl = document.getElementById('cv-loading');
+    const rootEl    = document.getElementById('cv-root');
+    if (!rootEl || !window.React || !window.ReactDOM) return;
+
+    const root = ReactDOM.createRoot(rootEl);
+    root.render(h(VisualCatalogApp));
+
+    // Reemplazar el skeleton de carga
+    if (loadingEl) loadingEl.style.display = 'none';
   });
 
 })();
