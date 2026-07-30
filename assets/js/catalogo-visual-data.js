@@ -1,117 +1,1660 @@
 /* ═══════════════════════════════════════════════════════════════════
-   VENEMEDICAL — Dataset del Subportal de Catálogo Visual (Lentes + 117+ Hojas)
+   VENEMEDICAL — Dataset del Subportal de Catálogo Visual
+   Imágenes reales extraídas del Catálogo Palazzo Dama y Caballeros
    ════════════════════════════════════════════════════════════════════ */
 
 window.VENEMEDICAL_CARROUSEL_LENTES = [
   {
     id: 'lens-slide-1',
-    title: 'Lentes Antirreflejos Digitales Blue-Cut',
-    subtitle: 'Protección avanzada contra luz azul de pantallas, fatiga visual y rayos UV. Ideal para uso diario en oficina y dispositivos.',
-    tag: 'Tecnología Óptica 2026',
-    category: 'Protección Digital',
-    image: 'https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=1200&q=80',
-    ctaText: 'Consultar en WhatsApp',
-    badgeColor: 'bg-primary-fixed text-primary'
+    title: 'Colección Palazzo Dama & Finezza 2026',
+    subtitle: 'Diseños de alta gama en acetato italiano, combinaciones metálicas y acabados ultra-livianos con máxima elegancia.',
+    tag: 'Colección Dama Exclusiva',
+    category: 'Palazzo Dama & Finezza',
+    image: '../imagenes_catalogos_palazzo/palazzo_dama_p2_img1.jpg',
+    ctaText: 'Ver Catálogo Dama',
+    badgeColor: 'bg-secondary-fixed text-secondary border border-secondary/20'
   },
   {
     id: 'lens-slide-2',
-    title: 'Colección Palazzo Dama & Finezza',
-    subtitle: 'Diseños exclusivos en acero inoxidable y acetato italiano con acabados de alta gama y ligereza extrema.',
-    tag: 'Colección Exclusiva',
-    category: 'Monturas Dama',
-    image: 'https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=1200&q=80',
-    ctaText: 'Ver Catálogo Dama',
-    badgeColor: 'bg-secondary-fixed text-secondary'
+    title: 'Colección Palazzo Caballeros',
+    subtitle: 'Estilo ejecutivo distintivo, estructura reforzada, flex spring e ingeniería óptica superior para el profesional moderno.',
+    tag: 'Colección Caballero',
+    category: 'Palazzo Caballeros',
+    image: '../imagenes_catalogos_palazzo/palazzo_caballeros_p1_img1.jpg',
+    ctaText: 'Ver Catálogo Caballeros',
+    badgeColor: 'bg-primary-fixed text-primary border border-primary/20'
   },
   {
     id: 'lens-slide-3',
-    title: 'Lentes Progresivos HD FreeForm',
-    subtitle: 'Campos visuales ampliados con transición imperceptible entre visión de cerca, intermedia y lejana.',
-    tag: 'Alta Definición',
-    category: 'Lentes Multifocales',
-    image: 'https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=1200&q=80',
-    ctaText: 'Agendar Examen Visual',
-    badgeColor: 'bg-tertiary-fixed text-tertiary'
-  },
-  {
-    id: 'lens-slide-4',
-    title: 'Fotocromáticos Intelishade SunSens',
-    subtitle: 'Oscurecimiento ultra-rápido bajo el sol y transparencia total en interiores. Máxima adaptabilidad.',
-    tag: 'Adaptación Solar',
-    category: 'Fotocromáticos',
-    image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=80',
+    title: 'Lentes Antirreflejos Digitales Blue-Cut',
+    subtitle: 'Protección avanzada contra la fatiga de pantallas, radiación UV400 y destellos nocturnos. Claridad óptica total.',
+    tag: 'Tecnología Óptica',
+    category: 'Cristales Especializados',
+    image: '../imagenes_catalogos_palazzo/palazzo_dama_p27_img1.jpg',
     ctaText: 'Cotizar Cristales',
-    badgeColor: 'bg-primary-fixed text-primary'
+    badgeColor: 'bg-tertiary-fixed text-tertiary border border-tertiary/20'
   }
 ];
 
-// Función para generar un placeholder SVG visual de alta calidad estilizado por página de catálogo
-function generateCatalogPageSvg(pageNum, category, collection) {
-  const isDama = collection.includes('Dama');
-  const accentColor = isDama ? '#006877' : '#003f87';
-  const secondaryBg = isDama ? '#e6f7fa' : '#eef4fc';
-  
-  const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
-    <rect width="600" height="800" fill="#ffffff" rx="16"/>
-    <rect x="20" y="20" width="560" height="760" fill="${secondaryBg}" rx="12" stroke="#e1e3e4" stroke-width="2"/>
-    <!-- Header band -->
-    <rect x="40" y="40" width="520" height="60" fill="${accentColor}" rx="8"/>
-    <text x="60" y="78" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">VENEMEDICAL — CATÁLOGO</text>
-    <text x="520" y="78" font-family="Inter, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="end">PÁG. ${pageNum}</text>
-    
-    <!-- Decorative Frame Art -->
-    <rect x="60" y="130" width="480" height="520" fill="#ffffff" rx="10" stroke="#d7e2ff" stroke-width="2"/>
-    <circle cx="300" cy="330" r="140" fill="${secondaryBg}" opacity="0.6"/>
-    
-    <!-- Glasses Icon / Frame Mock -->
-    <g transform="translate(160, 270) scale(1.4)">
-      <path d="M20 30 C 20 10, 70 10, 70 30 C 70 50, 20 50, 20 30 Z" fill="none" stroke="${accentColor}" stroke-width="5"/>
-      <path d="M130 30 C 130 10, 180 10, 180 30 C 180 50, 130 50, 130 30 Z" fill="none" stroke="${accentColor}" stroke-width="5"/>
-      <path d="M70 30 Q 100 20 130 30" fill="none" stroke="${accentColor}" stroke-width="4"/>
-      <path d="M20 30 L 2 20" stroke="${accentColor}" stroke-width="3"/>
-      <path d="M180 30 L 198 20" stroke="${accentColor}" stroke-width="3"/>
-    </g>
-
-    <text x="300" y="470" font-family="Inter, sans-serif" font-size="22" font-weight="bold" fill="#191c1d" text-anchor="middle">${collection}</text>
-    <text x="300" y="505" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#003f87" text-anchor="middle">${category}</text>
-    <text x="300" y="535" font-family="Inter, sans-serif" font-size="14" fill="#6C757D" text-anchor="middle">Modelo Ref. VM-2026-${String(pageNum).padStart(3, '0')}</text>
-    
-    <line x1="100" y1="570" x2="500" y2="570" stroke="#e1e3e4" stroke-width="1.5" stroke-dasharray="6 4"/>
-    
-    <!-- Technical Specs Box -->
-    <rect x="80" y="595" width="440" height="40" fill="${secondaryBg}" rx="6"/>
-    <text x="300" y="620" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#424752" text-anchor="middle">Material: Acetato Premium • Calibre: 54-18-140 • Flex Spring</text>
-
-    <!-- Footer info -->
-    <text x="300" y="720" font-family="Inter, sans-serif" font-size="14" font-weight="bold" fill="#003f87" text-anchor="middle">Venemedical Care — Caracas, Venezuela</text>
-    <text x="300" y="745" font-family="Inter, sans-serif" font-size="12" fill="#6C757D" text-anchor="middle">Atención WhatsApp: +58 424-1288247</text>
-  </svg>`;
-  
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svgString);
-}
-
-// Generador de 117+ imágenes de hojas de catálogo
-window.VENEMEDICAL_PAGINAS_CATALOGO = Array.from({ length: 117 }, (_, index) => {
-  const pageNum = index + 1;
-  const isDama = pageNum <= 60;
-  const collection = isDama ? 'Palazzo Dama & Finezza' : 'Palazzo Caballeros';
-  
-  let category = 'Monturas Ejecutivas';
-  if (pageNum % 5 === 1) category = 'Monturas Titán & Ultralivianas';
-  else if (pageNum % 5 === 2) category = 'Lentes de Sol Polarizados';
-  else if (pageNum % 5 === 3) category = 'Cristales Anti-Reflejo Blue-Cut';
-  else if (pageNum % 5 === 4) category = 'Monturas Flexibles Acetato';
-
-  const svgDataUrl = generateCatalogPageSvg(pageNum, category, collection);
-
-  return {
-    id: `cat-sheet-${pageNum}`,
-    pageNumber: pageNum,
-    title: `Página ${pageNum} — ${collection}`,
-    collection: collection,
-    category: category,
-    refCode: `VM-2026-${String(pageNum).padStart(3, '0')}`,
-    imageUrl: svgDataUrl,
-    highResUrl: svgDataUrl
-  };
-});
+window.VENEMEDICAL_PAGINAS_CATALOGO = [
+  {
+    "id": "item-1",
+    "itemNumber": 1,
+    "pageNumber": 2,
+    "title": "Palazzo Dama & Finezza — Modelo P2.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Portada & Colección Principal",
+    "refCode": "PD-P02-1",
+    "imageFileName": "palazzo_dama_p2_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p2_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p2_img1.jpg"
+  },
+  {
+    "id": "item-2",
+    "itemNumber": 2,
+    "pageNumber": 3,
+    "title": "Palazzo Dama & Finezza — Modelo P3.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P03-1",
+    "imageFileName": "palazzo_dama_p3_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img1.jpg"
+  },
+  {
+    "id": "item-3",
+    "itemNumber": 3,
+    "pageNumber": 3,
+    "title": "Palazzo Dama & Finezza — Modelo P3.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P03-2",
+    "imageFileName": "palazzo_dama_p3_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img2.jpg"
+  },
+  {
+    "id": "item-4",
+    "itemNumber": 4,
+    "pageNumber": 3,
+    "title": "Palazzo Dama & Finezza — Modelo P3.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P03-3",
+    "imageFileName": "palazzo_dama_p3_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img3.jpg"
+  },
+  {
+    "id": "item-5",
+    "itemNumber": 5,
+    "pageNumber": 3,
+    "title": "Palazzo Dama & Finezza — Modelo P3.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P03-4",
+    "imageFileName": "palazzo_dama_p3_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img4.jpg"
+  },
+  {
+    "id": "item-6",
+    "itemNumber": 6,
+    "pageNumber": 3,
+    "title": "Palazzo Dama & Finezza — Modelo P3.5",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P03-5",
+    "imageFileName": "palazzo_dama_p3_img5.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img5.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img5.jpg"
+  },
+  {
+    "id": "item-7",
+    "itemNumber": 7,
+    "pageNumber": 3,
+    "title": "Palazzo Dama & Finezza — Modelo P3.6",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P03-6",
+    "imageFileName": "palazzo_dama_p3_img6.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img6.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p3_img6.jpg"
+  },
+  {
+    "id": "item-8",
+    "itemNumber": 8,
+    "pageNumber": 4,
+    "title": "Palazzo Dama & Finezza — Modelo P4.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P04-1",
+    "imageFileName": "palazzo_dama_p4_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img1.jpg"
+  },
+  {
+    "id": "item-9",
+    "itemNumber": 9,
+    "pageNumber": 4,
+    "title": "Palazzo Dama & Finezza — Modelo P4.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P04-2",
+    "imageFileName": "palazzo_dama_p4_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img2.jpg"
+  },
+  {
+    "id": "item-10",
+    "itemNumber": 10,
+    "pageNumber": 4,
+    "title": "Palazzo Dama & Finezza — Modelo P4.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P04-3",
+    "imageFileName": "palazzo_dama_p4_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img3.jpg"
+  },
+  {
+    "id": "item-11",
+    "itemNumber": 11,
+    "pageNumber": 4,
+    "title": "Palazzo Dama & Finezza — Modelo P4.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P04-4",
+    "imageFileName": "palazzo_dama_p4_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img4.jpg"
+  },
+  {
+    "id": "item-12",
+    "itemNumber": 12,
+    "pageNumber": 4,
+    "title": "Palazzo Dama & Finezza — Modelo P4.5",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P04-5",
+    "imageFileName": "palazzo_dama_p4_img5.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img5.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img5.jpg"
+  },
+  {
+    "id": "item-13",
+    "itemNumber": 13,
+    "pageNumber": 4,
+    "title": "Palazzo Dama & Finezza — Modelo P4.6",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P04-6",
+    "imageFileName": "palazzo_dama_p4_img6.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img6.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p4_img6.jpg"
+  },
+  {
+    "id": "item-14",
+    "itemNumber": 14,
+    "pageNumber": 5,
+    "title": "Palazzo Dama & Finezza — Modelo P5.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P05-1",
+    "imageFileName": "palazzo_dama_p5_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img1.jpg"
+  },
+  {
+    "id": "item-15",
+    "itemNumber": 15,
+    "pageNumber": 5,
+    "title": "Palazzo Dama & Finezza — Modelo P5.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P05-2",
+    "imageFileName": "palazzo_dama_p5_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img2.jpg"
+  },
+  {
+    "id": "item-16",
+    "itemNumber": 16,
+    "pageNumber": 5,
+    "title": "Palazzo Dama & Finezza — Modelo P5.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P05-3",
+    "imageFileName": "palazzo_dama_p5_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img3.jpg"
+  },
+  {
+    "id": "item-17",
+    "itemNumber": 17,
+    "pageNumber": 5,
+    "title": "Palazzo Dama & Finezza — Modelo P5.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P05-4",
+    "imageFileName": "palazzo_dama_p5_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img4.jpg"
+  },
+  {
+    "id": "item-18",
+    "itemNumber": 18,
+    "pageNumber": 5,
+    "title": "Palazzo Dama & Finezza — Modelo P5.5",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P05-5",
+    "imageFileName": "palazzo_dama_p5_img5.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img5.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img5.jpg"
+  },
+  {
+    "id": "item-19",
+    "itemNumber": 19,
+    "pageNumber": 5,
+    "title": "Palazzo Dama & Finezza — Modelo P5.6",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P05-6",
+    "imageFileName": "palazzo_dama_p5_img6.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img6.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p5_img6.jpg"
+  },
+  {
+    "id": "item-20",
+    "itemNumber": 20,
+    "pageNumber": 6,
+    "title": "Palazzo Dama & Finezza — Modelo P6.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P06-1",
+    "imageFileName": "palazzo_dama_p6_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p6_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p6_img1.jpg"
+  },
+  {
+    "id": "item-21",
+    "itemNumber": 21,
+    "pageNumber": 6,
+    "title": "Palazzo Dama & Finezza — Modelo P6.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P06-2",
+    "imageFileName": "palazzo_dama_p6_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p6_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p6_img2.jpg"
+  },
+  {
+    "id": "item-22",
+    "itemNumber": 22,
+    "pageNumber": 6,
+    "title": "Palazzo Dama & Finezza — Modelo P6.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P06-3",
+    "imageFileName": "palazzo_dama_p6_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p6_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p6_img3.jpg"
+  },
+  {
+    "id": "item-23",
+    "itemNumber": 23,
+    "pageNumber": 7,
+    "title": "Palazzo Dama & Finezza — Modelo P7.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P07-1",
+    "imageFileName": "palazzo_dama_p7_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img1.jpg"
+  },
+  {
+    "id": "item-24",
+    "itemNumber": 24,
+    "pageNumber": 7,
+    "title": "Palazzo Dama & Finezza — Modelo P7.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P07-2",
+    "imageFileName": "palazzo_dama_p7_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img2.jpg"
+  },
+  {
+    "id": "item-25",
+    "itemNumber": 25,
+    "pageNumber": 7,
+    "title": "Palazzo Dama & Finezza — Modelo P7.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P07-3",
+    "imageFileName": "palazzo_dama_p7_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img3.jpg"
+  },
+  {
+    "id": "item-26",
+    "itemNumber": 26,
+    "pageNumber": 7,
+    "title": "Palazzo Dama & Finezza — Modelo P7.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P07-4",
+    "imageFileName": "palazzo_dama_p7_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p7_img4.jpg"
+  },
+  {
+    "id": "item-27",
+    "itemNumber": 27,
+    "pageNumber": 8,
+    "title": "Palazzo Dama & Finezza — Modelo P8.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P08-1",
+    "imageFileName": "palazzo_dama_p8_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p8_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p8_img1.jpg"
+  },
+  {
+    "id": "item-28",
+    "itemNumber": 28,
+    "pageNumber": 8,
+    "title": "Palazzo Dama & Finezza — Modelo P8.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P08-2",
+    "imageFileName": "palazzo_dama_p8_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p8_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p8_img2.jpg"
+  },
+  {
+    "id": "item-29",
+    "itemNumber": 29,
+    "pageNumber": 9,
+    "title": "Palazzo Dama & Finezza — Modelo P9.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P09-1",
+    "imageFileName": "palazzo_dama_p9_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p9_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p9_img1.jpg"
+  },
+  {
+    "id": "item-30",
+    "itemNumber": 30,
+    "pageNumber": 9,
+    "title": "Palazzo Dama & Finezza — Modelo P9.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P09-3",
+    "imageFileName": "palazzo_dama_p9_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p9_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p9_img3.jpg"
+  },
+  {
+    "id": "item-31",
+    "itemNumber": 31,
+    "pageNumber": 10,
+    "title": "Palazzo Dama & Finezza — Modelo P10.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P10-1",
+    "imageFileName": "palazzo_dama_p10_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img1.jpg"
+  },
+  {
+    "id": "item-32",
+    "itemNumber": 32,
+    "pageNumber": 10,
+    "title": "Palazzo Dama & Finezza — Modelo P10.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P10-2",
+    "imageFileName": "palazzo_dama_p10_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img2.jpg"
+  },
+  {
+    "id": "item-33",
+    "itemNumber": 33,
+    "pageNumber": 10,
+    "title": "Palazzo Dama & Finezza — Modelo P10.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P10-3",
+    "imageFileName": "palazzo_dama_p10_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img3.jpg"
+  },
+  {
+    "id": "item-34",
+    "itemNumber": 34,
+    "pageNumber": 10,
+    "title": "Palazzo Dama & Finezza — Modelo P10.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P10-4",
+    "imageFileName": "palazzo_dama_p10_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img4.jpg"
+  },
+  {
+    "id": "item-35",
+    "itemNumber": 35,
+    "pageNumber": 10,
+    "title": "Palazzo Dama & Finezza — Modelo P10.5",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P10-5",
+    "imageFileName": "palazzo_dama_p10_img5.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img5.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p10_img5.jpg"
+  },
+  {
+    "id": "item-36",
+    "itemNumber": 36,
+    "pageNumber": 11,
+    "title": "Palazzo Dama & Finezza — Modelo P11.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P11-1",
+    "imageFileName": "palazzo_dama_p11_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p11_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p11_img1.jpg"
+  },
+  {
+    "id": "item-37",
+    "itemNumber": 37,
+    "pageNumber": 11,
+    "title": "Palazzo Dama & Finezza — Modelo P11.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P11-2",
+    "imageFileName": "palazzo_dama_p11_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p11_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p11_img2.jpg"
+  },
+  {
+    "id": "item-38",
+    "itemNumber": 38,
+    "pageNumber": 12,
+    "title": "Palazzo Dama & Finezza — Modelo P12.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P12-1",
+    "imageFileName": "palazzo_dama_p12_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p12_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p12_img1.jpg"
+  },
+  {
+    "id": "item-39",
+    "itemNumber": 39,
+    "pageNumber": 12,
+    "title": "Palazzo Dama & Finezza — Modelo P12.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P12-2",
+    "imageFileName": "palazzo_dama_p12_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p12_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p12_img2.jpg"
+  },
+  {
+    "id": "item-40",
+    "itemNumber": 40,
+    "pageNumber": 13,
+    "title": "Palazzo Dama & Finezza — Modelo P13.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P13-1",
+    "imageFileName": "palazzo_dama_p13_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img1.jpg"
+  },
+  {
+    "id": "item-41",
+    "itemNumber": 41,
+    "pageNumber": 13,
+    "title": "Palazzo Dama & Finezza — Modelo P13.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P13-2",
+    "imageFileName": "palazzo_dama_p13_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img2.jpg"
+  },
+  {
+    "id": "item-42",
+    "itemNumber": 42,
+    "pageNumber": 13,
+    "title": "Palazzo Dama & Finezza — Modelo P13.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P13-3",
+    "imageFileName": "palazzo_dama_p13_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img3.jpg"
+  },
+  {
+    "id": "item-43",
+    "itemNumber": 43,
+    "pageNumber": 13,
+    "title": "Palazzo Dama & Finezza — Modelo P13.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P13-4",
+    "imageFileName": "palazzo_dama_p13_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img4.jpg"
+  },
+  {
+    "id": "item-44",
+    "itemNumber": 44,
+    "pageNumber": 13,
+    "title": "Palazzo Dama & Finezza — Modelo P13.5",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P13-5",
+    "imageFileName": "palazzo_dama_p13_img5.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img5.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p13_img5.jpg"
+  },
+  {
+    "id": "item-45",
+    "itemNumber": 45,
+    "pageNumber": 14,
+    "title": "Palazzo Dama & Finezza — Modelo P14.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P14-1",
+    "imageFileName": "palazzo_dama_p14_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p14_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p14_img1.jpg"
+  },
+  {
+    "id": "item-46",
+    "itemNumber": 46,
+    "pageNumber": 14,
+    "title": "Palazzo Dama & Finezza — Modelo P14.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P14-2",
+    "imageFileName": "palazzo_dama_p14_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p14_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p14_img2.jpg"
+  },
+  {
+    "id": "item-47",
+    "itemNumber": 47,
+    "pageNumber": 15,
+    "title": "Palazzo Dama & Finezza — Modelo P15.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P15-1",
+    "imageFileName": "palazzo_dama_p15_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p15_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p15_img1.jpg"
+  },
+  {
+    "id": "item-48",
+    "itemNumber": 48,
+    "pageNumber": 15,
+    "title": "Palazzo Dama & Finezza — Modelo P15.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P15-2",
+    "imageFileName": "palazzo_dama_p15_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p15_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p15_img2.jpg"
+  },
+  {
+    "id": "item-49",
+    "itemNumber": 49,
+    "pageNumber": 15,
+    "title": "Palazzo Dama & Finezza — Modelo P15.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P15-3",
+    "imageFileName": "palazzo_dama_p15_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p15_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p15_img3.jpg"
+  },
+  {
+    "id": "item-50",
+    "itemNumber": 50,
+    "pageNumber": 16,
+    "title": "Palazzo Dama & Finezza — Modelo P16.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P16-1",
+    "imageFileName": "palazzo_dama_p16_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p16_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p16_img1.jpg"
+  },
+  {
+    "id": "item-51",
+    "itemNumber": 51,
+    "pageNumber": 16,
+    "title": "Palazzo Dama & Finezza — Modelo P16.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P16-2",
+    "imageFileName": "palazzo_dama_p16_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p16_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p16_img2.jpg"
+  },
+  {
+    "id": "item-52",
+    "itemNumber": 52,
+    "pageNumber": 17,
+    "title": "Palazzo Dama & Finezza — Modelo P17.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P17-1",
+    "imageFileName": "palazzo_dama_p17_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img1.jpg"
+  },
+  {
+    "id": "item-53",
+    "itemNumber": 53,
+    "pageNumber": 17,
+    "title": "Palazzo Dama & Finezza — Modelo P17.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P17-2",
+    "imageFileName": "palazzo_dama_p17_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img2.jpg"
+  },
+  {
+    "id": "item-54",
+    "itemNumber": 54,
+    "pageNumber": 17,
+    "title": "Palazzo Dama & Finezza — Modelo P17.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P17-3",
+    "imageFileName": "palazzo_dama_p17_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img3.jpg"
+  },
+  {
+    "id": "item-55",
+    "itemNumber": 55,
+    "pageNumber": 17,
+    "title": "Palazzo Dama & Finezza — Modelo P17.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P17-4",
+    "imageFileName": "palazzo_dama_p17_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p17_img4.jpg"
+  },
+  {
+    "id": "item-56",
+    "itemNumber": 56,
+    "pageNumber": 18,
+    "title": "Palazzo Dama & Finezza — Modelo P18.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P18-1",
+    "imageFileName": "palazzo_dama_p18_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p18_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p18_img1.jpg"
+  },
+  {
+    "id": "item-57",
+    "itemNumber": 57,
+    "pageNumber": 18,
+    "title": "Palazzo Dama & Finezza — Modelo P18.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P18-2",
+    "imageFileName": "palazzo_dama_p18_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p18_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p18_img2.jpg"
+  },
+  {
+    "id": "item-58",
+    "itemNumber": 58,
+    "pageNumber": 18,
+    "title": "Palazzo Dama & Finezza — Modelo P18.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P18-3",
+    "imageFileName": "palazzo_dama_p18_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p18_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p18_img3.jpg"
+  },
+  {
+    "id": "item-59",
+    "itemNumber": 59,
+    "pageNumber": 19,
+    "title": "Palazzo Dama & Finezza — Modelo P19.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P19-1",
+    "imageFileName": "palazzo_dama_p19_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img1.jpg"
+  },
+  {
+    "id": "item-60",
+    "itemNumber": 60,
+    "pageNumber": 19,
+    "title": "Palazzo Dama & Finezza — Modelo P19.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P19-2",
+    "imageFileName": "palazzo_dama_p19_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img2.jpg"
+  },
+  {
+    "id": "item-61",
+    "itemNumber": 61,
+    "pageNumber": 19,
+    "title": "Palazzo Dama & Finezza — Modelo P19.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P19-3",
+    "imageFileName": "palazzo_dama_p19_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img3.jpg"
+  },
+  {
+    "id": "item-62",
+    "itemNumber": 62,
+    "pageNumber": 19,
+    "title": "Palazzo Dama & Finezza — Modelo P19.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P19-4",
+    "imageFileName": "palazzo_dama_p19_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p19_img4.jpg"
+  },
+  {
+    "id": "item-63",
+    "itemNumber": 63,
+    "pageNumber": 20,
+    "title": "Palazzo Dama & Finezza — Modelo P20.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P20-1",
+    "imageFileName": "palazzo_dama_p20_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p20_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p20_img1.jpg"
+  },
+  {
+    "id": "item-64",
+    "itemNumber": 64,
+    "pageNumber": 20,
+    "title": "Palazzo Dama & Finezza — Modelo P20.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P20-2",
+    "imageFileName": "palazzo_dama_p20_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p20_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p20_img2.jpg"
+  },
+  {
+    "id": "item-65",
+    "itemNumber": 65,
+    "pageNumber": 20,
+    "title": "Palazzo Dama & Finezza — Modelo P20.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P20-3",
+    "imageFileName": "palazzo_dama_p20_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p20_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p20_img3.jpg"
+  },
+  {
+    "id": "item-66",
+    "itemNumber": 66,
+    "pageNumber": 21,
+    "title": "Palazzo Dama & Finezza — Modelo P21.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P21-1",
+    "imageFileName": "palazzo_dama_p21_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p21_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p21_img1.jpg"
+  },
+  {
+    "id": "item-67",
+    "itemNumber": 67,
+    "pageNumber": 21,
+    "title": "Palazzo Dama & Finezza — Modelo P21.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P21-2",
+    "imageFileName": "palazzo_dama_p21_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p21_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p21_img2.jpg"
+  },
+  {
+    "id": "item-68",
+    "itemNumber": 68,
+    "pageNumber": 21,
+    "title": "Palazzo Dama & Finezza — Modelo P21.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P21-3",
+    "imageFileName": "palazzo_dama_p21_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p21_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p21_img3.jpg"
+  },
+  {
+    "id": "item-69",
+    "itemNumber": 69,
+    "pageNumber": 22,
+    "title": "Palazzo Dama & Finezza — Modelo P22.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P22-1",
+    "imageFileName": "palazzo_dama_p22_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img1.jpg"
+  },
+  {
+    "id": "item-70",
+    "itemNumber": 70,
+    "pageNumber": 22,
+    "title": "Palazzo Dama & Finezza — Modelo P22.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P22-2",
+    "imageFileName": "palazzo_dama_p22_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img2.jpg"
+  },
+  {
+    "id": "item-71",
+    "itemNumber": 71,
+    "pageNumber": 22,
+    "title": "Palazzo Dama & Finezza — Modelo P22.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P22-3",
+    "imageFileName": "palazzo_dama_p22_img3.png",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img3.png",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img3.png"
+  },
+  {
+    "id": "item-72",
+    "itemNumber": 72,
+    "pageNumber": 22,
+    "title": "Palazzo Dama & Finezza — Modelo P22.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P22-4",
+    "imageFileName": "palazzo_dama_p22_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p22_img4.jpg"
+  },
+  {
+    "id": "item-73",
+    "itemNumber": 73,
+    "pageNumber": 23,
+    "title": "Palazzo Dama & Finezza — Modelo P23.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P23-1",
+    "imageFileName": "palazzo_dama_p23_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p23_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p23_img1.jpg"
+  },
+  {
+    "id": "item-74",
+    "itemNumber": 74,
+    "pageNumber": 23,
+    "title": "Palazzo Dama & Finezza — Modelo P23.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PD-P23-2",
+    "imageFileName": "palazzo_dama_p23_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p23_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p23_img2.jpg"
+  },
+  {
+    "id": "item-75",
+    "itemNumber": 75,
+    "pageNumber": 24,
+    "title": "Palazzo Dama & Finezza — Modelo P24.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P24-1",
+    "imageFileName": "palazzo_dama_p24_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p24_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p24_img1.jpg"
+  },
+  {
+    "id": "item-76",
+    "itemNumber": 76,
+    "pageNumber": 24,
+    "title": "Palazzo Dama & Finezza — Modelo P24.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PD-P24-2",
+    "imageFileName": "palazzo_dama_p24_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p24_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p24_img2.jpg"
+  },
+  {
+    "id": "item-77",
+    "itemNumber": 77,
+    "pageNumber": 25,
+    "title": "Palazzo Dama & Finezza — Modelo P25.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P25-1",
+    "imageFileName": "palazzo_dama_p25_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img1.jpg"
+  },
+  {
+    "id": "item-78",
+    "itemNumber": 78,
+    "pageNumber": 25,
+    "title": "Palazzo Dama & Finezza — Modelo P25.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P25-2",
+    "imageFileName": "palazzo_dama_p25_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img2.jpg"
+  },
+  {
+    "id": "item-79",
+    "itemNumber": 79,
+    "pageNumber": 25,
+    "title": "Palazzo Dama & Finezza — Modelo P25.3",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P25-3",
+    "imageFileName": "palazzo_dama_p25_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img3.jpg"
+  },
+  {
+    "id": "item-80",
+    "itemNumber": 80,
+    "pageNumber": 25,
+    "title": "Palazzo Dama & Finezza — Modelo P25.4",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P25-4",
+    "imageFileName": "palazzo_dama_p25_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img4.jpg"
+  },
+  {
+    "id": "item-81",
+    "itemNumber": 81,
+    "pageNumber": 25,
+    "title": "Palazzo Dama & Finezza — Modelo P25.5",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PD-P25-5",
+    "imageFileName": "palazzo_dama_p25_img5.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img5.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p25_img5.jpg"
+  },
+  {
+    "id": "item-82",
+    "itemNumber": 82,
+    "pageNumber": 26,
+    "title": "Palazzo Dama & Finezza — Modelo P26.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P26-1",
+    "imageFileName": "palazzo_dama_p26_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p26_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p26_img1.jpg"
+  },
+  {
+    "id": "item-83",
+    "itemNumber": 83,
+    "pageNumber": 26,
+    "title": "Palazzo Dama & Finezza — Modelo P26.2",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PD-P26-2",
+    "imageFileName": "palazzo_dama_p26_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p26_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p26_img2.jpg"
+  },
+  {
+    "id": "item-84",
+    "itemNumber": 84,
+    "pageNumber": 27,
+    "title": "Palazzo Dama & Finezza — Modelo P27.1",
+    "collection": "Palazzo Dama & Finezza",
+    "category": "Portada & Colección Principal",
+    "refCode": "PD-P27-1",
+    "imageFileName": "palazzo_dama_p27_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p27_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_dama_p27_img1.jpg"
+  },
+  {
+    "id": "item-85",
+    "itemNumber": 85,
+    "pageNumber": 1,
+    "title": "Palazzo Caballeros — Modelo P1.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Portada & Colección Principal",
+    "refCode": "PC-P01-1",
+    "imageFileName": "palazzo_caballeros_p1_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p1_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p1_img1.jpg"
+  },
+  {
+    "id": "item-86",
+    "itemNumber": 86,
+    "pageNumber": 2,
+    "title": "Palazzo Caballeros — Modelo P2.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Portada & Colección Principal",
+    "refCode": "PC-P02-1",
+    "imageFileName": "palazzo_caballeros_p2_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p2_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p2_img1.jpg"
+  },
+  {
+    "id": "item-87",
+    "itemNumber": 87,
+    "pageNumber": 2,
+    "title": "Palazzo Caballeros — Modelo P2.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Portada & Colección Principal",
+    "refCode": "PC-P02-2",
+    "imageFileName": "palazzo_caballeros_p2_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p2_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p2_img2.jpg"
+  },
+  {
+    "id": "item-88",
+    "itemNumber": 88,
+    "pageNumber": 3,
+    "title": "Palazzo Caballeros — Modelo P3.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P03-1",
+    "imageFileName": "palazzo_caballeros_p3_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p3_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p3_img1.jpg"
+  },
+  {
+    "id": "item-89",
+    "itemNumber": 89,
+    "pageNumber": 3,
+    "title": "Palazzo Caballeros — Modelo P3.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P03-2",
+    "imageFileName": "palazzo_caballeros_p3_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p3_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p3_img2.jpg"
+  },
+  {
+    "id": "item-90",
+    "itemNumber": 90,
+    "pageNumber": 4,
+    "title": "Palazzo Caballeros — Modelo P4.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P04-1",
+    "imageFileName": "palazzo_caballeros_p4_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p4_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p4_img1.jpg"
+  },
+  {
+    "id": "item-91",
+    "itemNumber": 91,
+    "pageNumber": 4,
+    "title": "Palazzo Caballeros — Modelo P4.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P04-2",
+    "imageFileName": "palazzo_caballeros_p4_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p4_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p4_img2.jpg"
+  },
+  {
+    "id": "item-92",
+    "itemNumber": 92,
+    "pageNumber": 5,
+    "title": "Palazzo Caballeros — Modelo P5.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P05-1",
+    "imageFileName": "palazzo_caballeros_p5_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p5_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p5_img1.jpg"
+  },
+  {
+    "id": "item-93",
+    "itemNumber": 93,
+    "pageNumber": 5,
+    "title": "Palazzo Caballeros — Modelo P5.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P05-2",
+    "imageFileName": "palazzo_caballeros_p5_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p5_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p5_img2.jpg"
+  },
+  {
+    "id": "item-94",
+    "itemNumber": 94,
+    "pageNumber": 5,
+    "title": "Palazzo Caballeros — Modelo P5.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P05-3",
+    "imageFileName": "palazzo_caballeros_p5_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p5_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p5_img3.jpg"
+  },
+  {
+    "id": "item-95",
+    "itemNumber": 95,
+    "pageNumber": 6,
+    "title": "Palazzo Caballeros — Modelo P6.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P06-1",
+    "imageFileName": "palazzo_caballeros_p6_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p6_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p6_img1.jpg"
+  },
+  {
+    "id": "item-96",
+    "itemNumber": 96,
+    "pageNumber": 6,
+    "title": "Palazzo Caballeros — Modelo P6.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P06-2",
+    "imageFileName": "palazzo_caballeros_p6_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p6_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p6_img2.jpg"
+  },
+  {
+    "id": "item-97",
+    "itemNumber": 97,
+    "pageNumber": 7,
+    "title": "Palazzo Caballeros — Modelo P7.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P07-1",
+    "imageFileName": "palazzo_caballeros_p7_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img1.jpg"
+  },
+  {
+    "id": "item-98",
+    "itemNumber": 98,
+    "pageNumber": 7,
+    "title": "Palazzo Caballeros — Modelo P7.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P07-2",
+    "imageFileName": "palazzo_caballeros_p7_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img2.jpg"
+  },
+  {
+    "id": "item-99",
+    "itemNumber": 99,
+    "pageNumber": 7,
+    "title": "Palazzo Caballeros — Modelo P7.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P07-3",
+    "imageFileName": "palazzo_caballeros_p7_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img3.jpg"
+  },
+  {
+    "id": "item-100",
+    "itemNumber": 100,
+    "pageNumber": 7,
+    "title": "Palazzo Caballeros — Modelo P7.4",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P07-4",
+    "imageFileName": "palazzo_caballeros_p7_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p7_img4.jpg"
+  },
+  {
+    "id": "item-101",
+    "itemNumber": 101,
+    "pageNumber": 8,
+    "title": "Palazzo Caballeros — Modelo P8.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P08-1",
+    "imageFileName": "palazzo_caballeros_p8_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p8_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p8_img1.jpg"
+  },
+  {
+    "id": "item-102",
+    "itemNumber": 102,
+    "pageNumber": 8,
+    "title": "Palazzo Caballeros — Modelo P8.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P08-3",
+    "imageFileName": "palazzo_caballeros_p8_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p8_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p8_img3.jpg"
+  },
+  {
+    "id": "item-103",
+    "itemNumber": 103,
+    "pageNumber": 9,
+    "title": "Palazzo Caballeros — Modelo P9.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P09-1",
+    "imageFileName": "palazzo_caballeros_p9_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p9_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p9_img1.jpg"
+  },
+  {
+    "id": "item-104",
+    "itemNumber": 104,
+    "pageNumber": 9,
+    "title": "Palazzo Caballeros — Modelo P9.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P09-2",
+    "imageFileName": "palazzo_caballeros_p9_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p9_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p9_img2.jpg"
+  },
+  {
+    "id": "item-105",
+    "itemNumber": 105,
+    "pageNumber": 10,
+    "title": "Palazzo Caballeros — Modelo P10.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P10-1",
+    "imageFileName": "palazzo_caballeros_p10_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p10_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p10_img1.jpg"
+  },
+  {
+    "id": "item-106",
+    "itemNumber": 106,
+    "pageNumber": 10,
+    "title": "Palazzo Caballeros — Modelo P10.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P10-2",
+    "imageFileName": "palazzo_caballeros_p10_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p10_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p10_img2.jpg"
+  },
+  {
+    "id": "item-107",
+    "itemNumber": 107,
+    "pageNumber": 10,
+    "title": "Palazzo Caballeros — Modelo P10.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P10-3",
+    "imageFileName": "palazzo_caballeros_p10_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p10_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p10_img3.jpg"
+  },
+  {
+    "id": "item-108",
+    "itemNumber": 108,
+    "pageNumber": 11,
+    "title": "Palazzo Caballeros — Modelo P11.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P11-1",
+    "imageFileName": "palazzo_caballeros_p11_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p11_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p11_img1.jpg"
+  },
+  {
+    "id": "item-109",
+    "itemNumber": 109,
+    "pageNumber": 11,
+    "title": "Palazzo Caballeros — Modelo P11.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P11-2",
+    "imageFileName": "palazzo_caballeros_p11_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p11_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p11_img2.jpg"
+  },
+  {
+    "id": "item-110",
+    "itemNumber": 110,
+    "pageNumber": 12,
+    "title": "Palazzo Caballeros — Modelo P12.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P12-1",
+    "imageFileName": "palazzo_caballeros_p12_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p12_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p12_img1.jpg"
+  },
+  {
+    "id": "item-111",
+    "itemNumber": 111,
+    "pageNumber": 12,
+    "title": "Palazzo Caballeros — Modelo P12.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P12-3",
+    "imageFileName": "palazzo_caballeros_p12_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p12_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p12_img3.jpg"
+  },
+  {
+    "id": "item-112",
+    "itemNumber": 112,
+    "pageNumber": 12,
+    "title": "Palazzo Caballeros — Modelo P12.4",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P12-4",
+    "imageFileName": "palazzo_caballeros_p12_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p12_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p12_img4.jpg"
+  },
+  {
+    "id": "item-113",
+    "itemNumber": 113,
+    "pageNumber": 13,
+    "title": "Palazzo Caballeros — Modelo P13.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P13-1",
+    "imageFileName": "palazzo_caballeros_p13_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p13_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p13_img1.jpg"
+  },
+  {
+    "id": "item-114",
+    "itemNumber": 114,
+    "pageNumber": 13,
+    "title": "Palazzo Caballeros — Modelo P13.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P13-2",
+    "imageFileName": "palazzo_caballeros_p13_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p13_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p13_img2.jpg"
+  },
+  {
+    "id": "item-115",
+    "itemNumber": 115,
+    "pageNumber": 13,
+    "title": "Palazzo Caballeros — Modelo P13.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P13-3",
+    "imageFileName": "palazzo_caballeros_p13_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p13_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p13_img3.jpg"
+  },
+  {
+    "id": "item-116",
+    "itemNumber": 116,
+    "pageNumber": 14,
+    "title": "Palazzo Caballeros — Modelo P14.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P14-1",
+    "imageFileName": "palazzo_caballeros_p14_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p14_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p14_img1.jpg"
+  },
+  {
+    "id": "item-117",
+    "itemNumber": 117,
+    "pageNumber": 14,
+    "title": "Palazzo Caballeros — Modelo P14.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P14-2",
+    "imageFileName": "palazzo_caballeros_p14_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p14_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p14_img2.jpg"
+  },
+  {
+    "id": "item-118",
+    "itemNumber": 118,
+    "pageNumber": 14,
+    "title": "Palazzo Caballeros — Modelo P14.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P14-3",
+    "imageFileName": "palazzo_caballeros_p14_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p14_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p14_img3.jpg"
+  },
+  {
+    "id": "item-119",
+    "itemNumber": 119,
+    "pageNumber": 15,
+    "title": "Palazzo Caballeros — Modelo P15.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P15-1",
+    "imageFileName": "palazzo_caballeros_p15_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p15_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p15_img1.jpg"
+  },
+  {
+    "id": "item-120",
+    "itemNumber": 120,
+    "pageNumber": 15,
+    "title": "Palazzo Caballeros — Modelo P15.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P15-2",
+    "imageFileName": "palazzo_caballeros_p15_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p15_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p15_img2.jpg"
+  },
+  {
+    "id": "item-121",
+    "itemNumber": 121,
+    "pageNumber": 15,
+    "title": "Palazzo Caballeros — Modelo P15.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P15-3",
+    "imageFileName": "palazzo_caballeros_p15_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p15_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p15_img3.jpg"
+  },
+  {
+    "id": "item-122",
+    "itemNumber": 122,
+    "pageNumber": 16,
+    "title": "Palazzo Caballeros — Modelo P16.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P16-1",
+    "imageFileName": "palazzo_caballeros_p16_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img1.jpg"
+  },
+  {
+    "id": "item-123",
+    "itemNumber": 123,
+    "pageNumber": 16,
+    "title": "Palazzo Caballeros — Modelo P16.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P16-2",
+    "imageFileName": "palazzo_caballeros_p16_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img2.jpg"
+  },
+  {
+    "id": "item-124",
+    "itemNumber": 124,
+    "pageNumber": 16,
+    "title": "Palazzo Caballeros — Modelo P16.3",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P16-3",
+    "imageFileName": "palazzo_caballeros_p16_img3.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img3.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img3.jpg"
+  },
+  {
+    "id": "item-125",
+    "itemNumber": 125,
+    "pageNumber": 16,
+    "title": "Palazzo Caballeros — Modelo P16.4",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P16-4",
+    "imageFileName": "palazzo_caballeros_p16_img4.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img4.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img4.jpg"
+  },
+  {
+    "id": "item-126",
+    "itemNumber": 126,
+    "pageNumber": 16,
+    "title": "Palazzo Caballeros — Modelo P16.7",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P16-7",
+    "imageFileName": "palazzo_caballeros_p16_img7.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img7.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img7.jpg"
+  },
+  {
+    "id": "item-127",
+    "itemNumber": 127,
+    "pageNumber": 16,
+    "title": "Palazzo Caballeros — Modelo P16.8",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P16-8",
+    "imageFileName": "palazzo_caballeros_p16_img8.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img8.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p16_img8.jpg"
+  },
+  {
+    "id": "item-128",
+    "itemNumber": 128,
+    "pageNumber": 17,
+    "title": "Palazzo Caballeros — Modelo P17.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P17-1",
+    "imageFileName": "palazzo_caballeros_p17_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p17_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p17_img1.jpg"
+  },
+  {
+    "id": "item-129",
+    "itemNumber": 129,
+    "pageNumber": 17,
+    "title": "Palazzo Caballeros — Modelo P17.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Titán & Ultralivianas",
+    "refCode": "PC-P17-2",
+    "imageFileName": "palazzo_caballeros_p17_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p17_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p17_img2.jpg"
+  },
+  {
+    "id": "item-130",
+    "itemNumber": 130,
+    "pageNumber": 18,
+    "title": "Palazzo Caballeros — Modelo P18.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P18-1",
+    "imageFileName": "palazzo_caballeros_p18_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p18_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p18_img1.jpg"
+  },
+  {
+    "id": "item-131",
+    "itemNumber": 131,
+    "pageNumber": 18,
+    "title": "Palazzo Caballeros — Modelo P18.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Lentes de Sol & Acetato Italia",
+    "refCode": "PC-P18-2",
+    "imageFileName": "palazzo_caballeros_p18_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p18_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p18_img2.jpg"
+  },
+  {
+    "id": "item-132",
+    "itemNumber": 132,
+    "pageNumber": 19,
+    "title": "Palazzo Caballeros — Modelo P19.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P19-1",
+    "imageFileName": "palazzo_caballeros_p19_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p19_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p19_img1.jpg"
+  },
+  {
+    "id": "item-133",
+    "itemNumber": 133,
+    "pageNumber": 19,
+    "title": "Palazzo Caballeros — Modelo P19.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Cristales Anti-Reflejo Blue-Cut",
+    "refCode": "PC-P19-2",
+    "imageFileName": "palazzo_caballeros_p19_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p19_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p19_img2.jpg"
+  },
+  {
+    "id": "item-134",
+    "itemNumber": 134,
+    "pageNumber": 20,
+    "title": "Palazzo Caballeros — Modelo P20.1",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P20-1",
+    "imageFileName": "palazzo_caballeros_p20_img1.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p20_img1.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p20_img1.jpg"
+  },
+  {
+    "id": "item-135",
+    "itemNumber": 135,
+    "pageNumber": 20,
+    "title": "Palazzo Caballeros — Modelo P20.2",
+    "collection": "Palazzo Caballeros",
+    "category": "Monturas Ejecutivas",
+    "refCode": "PC-P20-2",
+    "imageFileName": "palazzo_caballeros_p20_img2.jpg",
+    "imageUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p20_img2.jpg",
+    "highResUrl": "../imagenes_catalogos_palazzo/palazzo_caballeros_p20_img2.jpg"
+  }
+];
