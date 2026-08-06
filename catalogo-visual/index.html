@@ -1,329 +1,868 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Visual de Lentes y Monturas — Venemedical</title>
-  <meta name="description" content="Catálogo visual interactivo de lentes, monturas y óptica Palazzo Dama & Finezza y Palazzo Caballeros. Más de 135 modelos disponibles en Venemedical, Caracas.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Catálogo Visual de Lentes — Venemedical</title>
+  <meta name="description" content="Catálogo visual de monturas y lentes Palazzo Dama & Finezza y Palazzo Caballeros. 135 modelos disponibles en Venemedical Caracas.">
   <link rel="canonical" href="https://venemedical.com/catalogo-visual/">
+  <meta name="theme-color" content="#003f87">
   <meta property="og:title" content="Catálogo Visual de Lentes — Venemedical">
-  <meta property="og:description" content="Explora los catálogos Palazzo Dama & Finezza y Palazzo Caballeros: más de 135 monturas y cristales de alta gama disponibles en Venemedical Caracas.">
+  <meta property="og:description" content="Explora 135 modelos del catálogo Palazzo Dama & Caballeros en Venemedical Caracas.">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_VE">
-  <meta property="og:url" content="https://venemedical.com/catalogo-visual/">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalClinic",
-    "name": "Venemedical — Catálogo Visual de Óptica",
-    "description": "Catálogo visual de monturas y lentes de alta gama en Caracas, Venezuela.",
-    "telephone": "+58-424-1288247",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Local 11, Primer local a mano izquierda",
-      "addressLocality": "Sucre, Caracas",
-      "addressRegion": "Estado Miranda",
-      "postalCode": "1080",
-      "addressCountry": "VE"
-    }
-  }
-  </script>
-
-  <!-- Preconnects -->
+  <!-- Preconnects críticos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://unpkg.com">
 
-  <!-- Fuentes e Iconos -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-  <script src="../assets/js/tailwind-config.js"></script>
-
-  <!-- React 18 -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-
-  <!-- Sistema de Diseño Venemedical -->
-  <link rel="stylesheet" href="../assets/css/venemedical.css">
-
+  <!-- CSS crítico inline primero, luego el sistema de diseño -->
   <style>
-    /* ── Tipografía global ── */
-    body { font-family: 'Inter', system-ui, sans-serif; }
-
-    /* ── Scrollbar personalizada ── */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: #f3f4f5; }
-    ::-webkit-scrollbar-thumb { background: #c2c6d4; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #727784; }
-
-    /* ── Ocultar scrollbar horizontal en chips ── */
-    .chips-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-    .chips-scroll::-webkit-scrollbar { display: none; }
-
-    /* ── Carrusel: prevenir overflow al transladar ── */
-    .carousel-track { will-change: transform; }
-
-    /* ── Animación de entrada fade-up ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* ── Reset base ── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:16px}
+    body{
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      background:#f8f9fa;color:#191c1d;
+      display:flex;flex-direction:column;min-height:100vh;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
     }
-    .anim-fade-up { animation: fadeUp 0.45s ease both; }
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none}
+    button{cursor:pointer;border:none;background:transparent;font-family:inherit}
 
-    /* ── Skeleton shimmer ── */
-    @keyframes shimmer {
-      0%   { background-position: -800px 0; }
-      100% { background-position: 800px 0; }
-    }
-    .skeleton {
-      background: linear-gradient(90deg, #edeeef 25%, #e1e3e4 50%, #edeeef 75%);
-      background-size: 800px 100%;
-      animation: shimmer 1.5s infinite linear;
-    }
-
-    /* ── Overlay modal anim ── */
-    @keyframes modalIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes panelIn {
-      from { opacity: 0; transform: scale(0.96) translateY(8px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .modal-overlay { animation: modalIn 0.2s ease both; }
-    .modal-panel   { animation: panelIn 0.25s ease both; }
-
-    /* ── Línea de progreso del carrusel ── */
-    .progress-bar {
-      transition: width 0.06s linear;
+    /* ── Variables de color (desde Venemedical Design System) ── */
+    :root{
+      --primary:#003f87;
+      --primary-dark:#004491;
+      --primary-light:#d7e2ff;
+      --secondary:#006877;
+      --surface:#f8f9fa;
+      --surface-pure:#fff;
+      --surface-container:#edeeef;
+      --surface-container-low:#f3f4f5;
+      --on-surface:#191c1d;
+      --on-surface-var:#424752;
+      --text-muted:#6c757d;
+      --border:#E9ECEF;
+      --outline-var:#c2c6d4;
+      --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.08);
+      --shadow-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.06);
+      --shadow-lg:0 10px 30px rgba(0,0,0,.10),0 4px 10px rgba(0,0,0,.06);
+      --r-sm:.25rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-2xl:1.25rem;--r-full:9999px;
+      --navbar-h:64px;
+      --transition:.22s ease;
     }
 
-    /* ── Tarjeta hover state ── */
-    .catalog-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .catalog-card:hover { transform: translateY(-4px); }
-
-    /* ── Grid responsive: 2 cols mínimo en mobile pequeño, 6 en desktop ── */
-    .catalog-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    /* ── Navbar ── */
+    .vm-navbar{
+      position:sticky;top:0;z-index:50;height:var(--navbar-h);
+      background:rgba(255,255,255,.97);backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+      box-shadow:var(--shadow-sm);
     }
-    @media (min-width: 480px)  { .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; } }
-    @media (min-width: 640px)  { .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
-    @media (min-width: 768px)  { .catalog-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; } }
-    @media (min-width: 1024px) { .catalog-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; } }
-    @media (min-width: 1280px) { .catalog-grid { grid-template-columns: repeat(6, 1fr); gap: 20px; } }
-
-    /* ── Carrusel: altura fija responsive ── */
-    .carousel-slide-img {
-      height: 220px;
+    .vm-navbar-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      max-width:1200px;margin:0 auto;padding:0 16px;height:100%;gap:12px;
     }
-    @media (min-width: 640px) { .carousel-slide-img { height: 280px; } }
-    @media (min-width: 768px) { .carousel-slide-img { height: 420px; } }
+    .vm-logo{height:42px;width:auto;display:block}
+    .vm-nav{display:none;align-items:center;gap:2px;list-style:none}
+    .vm-nav a{
+      display:inline-flex;align-items:center;padding:8px 12px;border-radius:var(--r-md);
+      font-size:13px;font-weight:500;color:var(--on-surface-var);
+      transition:color var(--transition),background var(--transition);white-space:nowrap;
+    }
+    .vm-nav a:hover,.vm-nav a.active{color:var(--primary);background:var(--surface-container-low)}
+    .vm-cta{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--primary);color:#fff;padding:9px 16px;
+      border-radius:var(--r-lg);font-size:13px;font-weight:600;
+      transition:background var(--transition),transform var(--transition);box-shadow:var(--shadow-sm);
+    }
+    .vm-cta:hover{background:var(--primary-dark);transform:translateY(-1px)}
+    .vm-burger{
+      display:flex;align-items:center;justify-content:center;
+      width:42px;height:42px;border-radius:var(--r-md);
+      color:var(--on-surface);transition:background var(--transition);
+    }
+    .vm-burger:hover{background:var(--surface-container-low)}
+    @media(min-width:768px){
+      .vm-nav{display:flex}
+      .vm-burger{display:none}
+      .vm-logo{height:46px}
+    }
 
-    /* ── Fuente peso ── */
-    .font-black { font-weight: 900; }
+    /* ── Mobile Drawer ── */
+    .vm-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:98;
+      opacity:0;visibility:hidden;transition:opacity var(--transition),visibility var(--transition);
+    }
+    .vm-backdrop.open{opacity:1;visibility:visible}
+    .vm-drawer{
+      position:fixed;top:0;right:0;height:100%;width:min(300px,85vw);
+      background:var(--surface-pure);z-index:99;box-shadow:var(--shadow-lg);
+      transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+      display:flex;flex-direction:column;
+    }
+    .vm-drawer.open{transform:translateX(0)}
+    .vm-drawer-head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 16px;border-bottom:1px solid var(--border);height:var(--navbar-h);flex-shrink:0;
+    }
+    .vm-drawer-logo{height:34px;width:auto}
+    .vm-drawer-close{
+      width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+      border-radius:var(--r-full);color:var(--on-surface);transition:background var(--transition);
+    }
+    .vm-drawer-close:hover{background:var(--surface-container-low)}
+    .vm-drawer-nav{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:3px}
+    .vm-drawer-nav a{
+      display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;
+      font-size:14px;font-weight:500;color:var(--on-surface);
+      transition:background var(--transition),color var(--transition);
+    }
+    .vm-drawer-nav a:hover{background:var(--surface-container-low)}
+    .vm-drawer-nav a.active{background:var(--primary-light);color:var(--primary);font-weight:600}
+    .vm-drawer-nav a .mi{font-size:20px}
+    .vm-drawer-foot{padding:14px;border-top:1px solid var(--border);flex-shrink:0}
+    .vm-drawer-cta{
+      display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+      background:var(--primary);color:#fff;padding:13px;border-radius:12px;
+      font-size:14px;font-weight:600;transition:background var(--transition);box-shadow:var(--shadow-sm);
+    }
+    .vm-drawer-cta:hover{background:var(--primary-dark)}
 
-    /* ── Botón acción touch target (44px min) ── */
-    .btn-touch { min-height: 44px; min-width: 44px; }
+    /* ── Breadcrumb ── */
+    .breadcrumb{
+      background:var(--surface-container-low);border-bottom:1px solid var(--border);
+      padding:8px 16px;font-size:12px;color:var(--on-surface-var);
+    }
+    .breadcrumb a{color:var(--on-surface-var);font-weight:500;transition:color var(--transition)}
+    .breadcrumb a:hover{color:var(--primary)}
+    .breadcrumb .sep{color:var(--outline-var);margin:0 6px}
 
-    /* ── Paginación overflow ── */
-    .pagination-row { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
-    .pagination-row::-webkit-scrollbar { display: none; }
+    /* ══════════════════════════════════════════════
+       CARRUSEL
+    ══════════════════════════════════════════════ */
+    .carousel-section{padding:12px 16px;background:var(--surface-container-low)}
+    @media(min-width:640px){.carousel-section{padding:16px 24px}}
+    .carousel-wrap{
+      max-width:1200px;margin:0 auto;border-radius:20px;overflow:hidden;
+      box-shadow:var(--shadow-lg);border:1px solid var(--border);background:var(--surface-pure);
+      position:relative;
+    }
+    /* Barra de progreso */
+    .carousel-progress{height:3px;background:var(--surface-container);overflow:hidden}
+    .carousel-progress-bar{
+      height:100%;background:var(--primary);width:0%;
+      transition:width .06s linear;
+    }
+    /* Track */
+    .carousel-track{
+      display:flex;will-change:transform;
+      transition:transform .6s cubic-bezier(.4,0,.2,1);
+    }
+    .carousel-slide{
+      min-width:100%;display:flex;flex-direction:column;
+    }
+    @media(min-width:768px){.carousel-slide{flex-direction:row}}
+    /* Imagen del slide */
+    .slide-img-wrap{
+      flex-shrink:0;width:100%;height:200px;
+      background:#0a0f1a;overflow:hidden;position:relative;
+      display:flex;align-items:center;justify-content:center;
+    }
+    @media(min-width:480px){.slide-img-wrap{height:240px}}
+    @media(min-width:640px){.slide-img-wrap{height:300px}}
+    @media(min-width:768px){.slide-img-wrap{width:60%;height:420px}}
+    .slide-img-wrap img{
+      width:100%;height:100%;object-fit:contain;padding:12px;
+      transition:transform 1.2s ease;
+    }
+    .carousel-slide:hover .slide-img-wrap img{transform:scale(1.04)}
+    /* Contenido del slide */
+    .slide-content{
+      flex:1;padding:20px 18px;display:flex;flex-direction:column;justify-content:center;gap:12px;
+      background:var(--surface-pure);
+    }
+    @media(min-width:640px){.slide-content{padding:28px 24px;gap:16px}}
+    @media(min-width:768px){.slide-content{padding:36px 40px}}
+    .slide-badge{
+      display:inline-flex;align-items:center;gap:5px;
+      padding:4px 12px;border-radius:var(--r-full);font-size:10px;font-weight:800;
+      letter-spacing:.06em;text-transform:uppercase;width:fit-content;
+    }
+    .badge-dama    {background:#a4eeff;color:#004e5a;border:1px solid #62d6ed}
+    .badge-cabal   {background:var(--primary-light);color:var(--primary);border:1px solid #acc7ff}
+    .badge-cristal {background:#83fc8e30;color:#004c17;border:1px solid #66df75}
+    .slide-title{font-size:clamp(1.1rem,3vw,1.75rem);font-weight:900;color:var(--on-surface);line-height:1.25}
+    .slide-sub{font-size:clamp(.8rem,2vw,1rem);color:var(--on-surface-var);line-height:1.55}
+    .slide-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+    .btn-primary{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:10px 18px;border-radius:var(--r-xl);font-size:13px;font-weight:700;
+      background:var(--primary);color:#fff;box-shadow:var(--shadow-sm);
+      transition:background var(--transition),transform var(--transition);min-height:44px;
+    }
+    .btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px)}
+    .btn-wa{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:10px 16px;border-radius:var(--r-xl);font-size:13px;font-weight:600;
+      background:#25D366;color:#fff;box-shadow:var(--shadow-sm);
+      transition:filter var(--transition);min-height:44px;
+    }
+    .btn-wa:hover{filter:brightness(1.08)}
+    .btn-outline{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:10px 16px;border-radius:var(--r-xl);font-size:13px;font-weight:600;
+      border:1.5px solid var(--border);color:var(--on-surface);
+      transition:background var(--transition);min-height:44px;
+    }
+    .btn-outline:hover{background:var(--surface-container-low)}
+    /* Flechas del carrusel */
+    .carousel-btn{
+      position:absolute;top:50%;transform:translateY(-50%);z-index:10;
+      width:40px;height:40px;border-radius:var(--r-full);
+      background:rgba(255,255,255,.9);backdrop-filter:blur(8px);
+      border:1px solid var(--border);box-shadow:var(--shadow-md);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--on-surface);transition:transform var(--transition),background var(--transition);
+    }
+    .carousel-btn:hover{transform:translateY(-50%) scale(1.1);background:#fff}
+    .carousel-btn.prev{left:10px}
+    .carousel-btn.next{right:10px}
+    @media(min-width:640px){.carousel-btn{width:44px;height:44px}.carousel-btn.prev{left:16px}.carousel-btn.next{right:16px}}
+    /* Dots */
+    .carousel-dots{
+      display:flex;align-items:center;justify-content:center;gap:7px;
+      padding:10px 0;background:var(--surface-container-low);border-top:1px solid var(--border);
+    }
+    .carousel-dot{
+      height:8px;border-radius:var(--r-full);background:var(--outline-var);
+      transition:width var(--transition),background var(--transition);width:8px;
+    }
+    .carousel-dot.active{background:var(--primary);width:28px}
+
+    /* ══════════════════════════════════════════════
+       SECCIÓN CATÁLOGO
+    ══════════════════════════════════════════════ */
+    .catalog-section{
+      flex:1;max-width:1200px;width:100%;margin:0 auto;
+      padding:24px 14px 48px;
+    }
+    @media(min-width:640px){.catalog-section{padding:32px 20px 60px}}
+    @media(min-width:1024px){.catalog-section{padding:40px 32px 80px}}
+
+    /* Header */
+    .catalog-header{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+    .catalog-label{
+      display:inline-flex;align-items:center;gap:5px;
+      font-size:10px;font-weight:800;color:var(--primary);text-transform:uppercase;
+      letter-spacing:.08em;background:var(--primary-light);
+      padding:4px 10px;border-radius:var(--r-full);margin-bottom:8px;
+    }
+    .catalog-title{font-size:clamp(1.25rem,4vw,1.9rem);font-weight:900;color:var(--on-surface);line-height:1.2}
+    .catalog-subtitle{font-size:13px;color:var(--on-surface-var);margin-top:4px}
+
+    /* Controles */
+    .catalog-controls{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+    .controls-row1{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    /* Búsqueda */
+    .search-wrap{
+      position:relative;flex:1;min-width:180px;
+    }
+    .search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:19px;color:var(--text-muted);pointer-events:none}
+    .search-input{
+      width:100%;height:42px;padding:0 12px 0 38px;border-radius:var(--r-xl);
+      border:1.5px solid var(--border);background:var(--surface-pure);
+      font-size:13px;font-weight:600;color:var(--on-surface);font-family:inherit;
+      transition:border-color var(--transition),box-shadow var(--transition);
+    }
+    .search-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,63,135,.12)}
+    /* Sort */
+    .sort-sel{
+      height:42px;padding:0 10px;border-radius:var(--r-xl);
+      border:1.5px solid var(--border);background:var(--surface-pure);
+      font-size:12px;font-weight:600;color:var(--on-surface);font-family:inherit;
+      transition:border-color var(--transition);
+    }
+    .sort-sel:focus{outline:none;border-color:var(--primary)}
+    /* Vista Toggle */
+    .view-toggle{
+      display:flex;align-items:center;gap:3px;
+      background:var(--surface-container-low);border:1.5px solid var(--border);
+      border-radius:var(--r-xl);padding:4px;flex-shrink:0;
+    }
+    .view-btn{
+      width:34px;height:34px;border-radius:var(--r-lg);display:flex;
+      align-items:center;justify-content:center;font-size:18px;
+      color:var(--on-surface-var);transition:background var(--transition),color var(--transition);
+    }
+    .view-btn.active{background:var(--primary);color:#fff;box-shadow:var(--shadow-sm)}
+
+    /* Chips de colección */
+    .chips-row{
+      display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;
+      -ms-overflow-style:none;scrollbar-width:none;
+    }
+    .chips-row::-webkit-scrollbar{display:none}
+    .chip{
+      flex-shrink:0;padding:7px 14px;border-radius:var(--r-full);font-size:11px;font-weight:700;
+      border:1.5px solid var(--border);background:var(--surface-pure);color:var(--on-surface-var);
+      transition:background var(--transition),color var(--transition),border-color var(--transition);
+      min-height:36px;white-space:nowrap;
+    }
+    .chip:hover,.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+    /* Stats bar */
+    .stats-bar{
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
+      font-size:12px;color:var(--on-surface-var);margin-bottom:16px;
+    }
+    .stats-bar strong{color:var(--on-surface)}
+
+    /* ── GRID (CSS puro, sin Tailwind) ── */
+    .catalog-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    @media(min-width:400px){.catalog-grid{gap:12px}}
+    @media(min-width:520px){.catalog-grid{grid-template-columns:repeat(3,1fr);gap:14px}}
+    @media(min-width:768px){.catalog-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+    @media(min-width:1024px){.catalog-grid{grid-template-columns:repeat(5,1fr);gap:18px}}
+    @media(min-width:1200px){.catalog-grid{grid-template-columns:repeat(6,1fr);gap:20px}}
+
+    /* Tarjeta cuadrícula */
+    .card{
+      background:var(--surface-pure);border:1px solid var(--border);
+      border-radius:var(--r-xl);overflow:hidden;
+      box-shadow:var(--shadow-sm);display:flex;flex-direction:column;
+      cursor:pointer;position:relative;
+      transition:transform .28s ease,box-shadow .28s ease;
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .card-img-wrap{
+      position:relative;width:100%;overflow:hidden;
+      background:var(--surface-container-low);aspect-ratio:3/4;
+    }
+    .card img{
+      width:100%;height:100%;object-fit:contain;padding:6px;
+      transition:transform .4s ease, opacity .4s ease;
+      opacity:0;
+    }
+    .card img.loaded{opacity:1}
+    .card:hover img.loaded{transform:scale(1.07)}
+    /* Skeleton shimmer */
+    @keyframes shimmer{
+      0%{background-position:-800px 0}
+      100%{background-position:800px 0}
+    }
+    .skeleton{
+      position:absolute;inset:0;
+      background:linear-gradient(90deg,#edeeef 25%,#e1e3e4 50%,#edeeef 75%);
+      background-size:800px 100%;animation:shimmer 1.4s linear infinite;
+    }
+    .skeleton.done{display:none}
+    /* Badge ref */
+    .card-ref{
+      position:absolute;top:6px;left:6px;z-index:2;
+      font-size:9px;font-weight:800;color:var(--primary);
+      background:rgba(255,255,255,.95);border:1px solid #acc7ff;
+      padding:2px 7px;border-radius:var(--r-full);
+      backdrop-filter:blur(4px);
+    }
+    /* Overlay hover */
+    .card-overlay{
+      position:absolute;inset:0;background:rgba(0,63,135,.22);
+      opacity:0;transition:opacity .25s ease;
+      display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;gap:6px;
+    }
+    .card:hover .card-overlay{opacity:1}
+    .card-overlay-btn{
+      display:inline-flex;align-items:center;gap:4px;
+      padding:6px 12px;border-radius:var(--r-full);font-size:10px;font-weight:700;
+      white-space:nowrap;
+      transition:transform .2s ease;transform:translateY(6px);
+    }
+    .card:hover .card-overlay-btn{transform:translateY(0)}
+    .cob-zoom{background:#fff;color:var(--primary)}
+    .cob-wa{background:#25D366;color:#fff}
+    /* Footer tarjeta */
+    .card-foot{
+      padding:7px 8px 8px;border-top:1px solid var(--border);
+      background:var(--surface-container-low);
+    }
+    .card-name{
+      font-size:10px;font-weight:700;color:var(--on-surface);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;
+    }
+    .card-meta{
+      display:flex;justify-content:space-between;
+      font-size:9px;color:var(--text-muted);margin-top:2px;
+    }
+
+    /* ── LISTA ── */
+    .catalog-list{display:flex;flex-direction:column;gap:8px}
+    .list-card{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      background:var(--surface-pure);border:1px solid var(--border);border-radius:var(--r-xl);
+      padding:10px 12px;box-shadow:var(--shadow-sm);cursor:pointer;
+      transition:box-shadow var(--transition),background var(--transition);
+    }
+    .list-card:hover{box-shadow:var(--shadow-md);background:var(--surface-container-low)}
+    .list-thumb{
+      width:60px;height:60px;flex-shrink:0;
+      background:var(--surface-container-low);border-radius:var(--r-lg);overflow:hidden;
+      position:relative;
+    }
+    @media(min-width:480px){.list-thumb{width:72px;height:72px}}
+    .list-thumb img{width:100%;height:100%;object-fit:contain;padding:4px;opacity:0;transition:opacity .3s}
+    .list-thumb img.loaded{opacity:1}
+    .list-thumb .skeleton{border-radius:var(--r-lg)}
+    .list-info{flex:1;min-width:0}
+    .list-ref{
+      display:inline-block;font-size:10px;font-weight:800;
+      color:var(--primary);background:var(--primary-light);
+      padding:2px 8px;border-radius:var(--r-full);margin-bottom:4px;
+    }
+    .list-name{font-size:12px;font-weight:700;color:var(--on-surface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .list-sub{font-size:11px;color:var(--text-muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .list-actions{display:flex;gap:6px;flex-shrink:0}
+    .list-btn{
+      display:inline-flex;align-items:center;gap:3px;
+      padding:7px 10px;border-radius:var(--r-lg);font-size:11px;font-weight:700;
+      min-height:36px;transition:filter var(--transition);
+    }
+    .list-btn.view{background:var(--surface-container);color:var(--on-surface)}
+    .list-btn.view:hover{background:var(--surface-container-low)}
+    .list-btn.wa{background:#25D366;color:#fff}
+    .list-btn.wa:hover{filter:brightness(1.08)}
+
+    /* ── Empty State ── */
+    .empty{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:60px 20px;background:var(--surface-container-low);
+      border-radius:var(--r-2xl);border:1px solid var(--border);
+    }
+    .empty .mi{font-size:56px;color:var(--primary);opacity:.5;margin-bottom:12px}
+    .empty h3{font-size:15px;font-weight:800;color:var(--on-surface)}
+    .empty p{font-size:13px;color:var(--text-muted);margin-top:4px;max-width:300px}
+    .empty button{margin-top:16px}
+
+    /* ══════════════════════════════════════════════
+       PAGINADOR
+    ══════════════════════════════════════════════ */
+    .pagination{margin-top:32px;padding-top:20px;border-top:1px solid var(--border)}
+    .pag-info-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+    .pag-info{font-size:12px;color:var(--on-surface-var)}
+    .pag-info strong{color:var(--on-surface)}
+    .per-page-sel{
+      height:36px;padding:0 8px;border-radius:var(--r-xl);border:1.5px solid var(--border);
+      background:var(--surface-pure);font-size:12px;font-weight:600;color:var(--on-surface);font-family:inherit;
+    }
+    .pag-btns-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .pag-btns{
+      display:flex;align-items:center;gap:4px;overflow-x:auto;
+      -ms-overflow-style:none;scrollbar-width:none;
+    }
+    .pag-btns::-webkit-scrollbar{display:none}
+    .pag-btn{
+      height:38px;min-width:38px;padding:0 10px;border-radius:var(--r-xl);
+      font-size:12px;font-weight:700;border:1.5px solid var(--border);
+      background:var(--surface-pure);color:var(--on-surface);
+      transition:background var(--transition),color var(--transition);
+      display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0;
+    }
+    .pag-btn:hover:not(:disabled){background:var(--surface-container-low)}
+    .pag-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:var(--shadow-sm)}
+    .pag-btn:disabled{opacity:.4;cursor:not-allowed}
+    .pag-ellipsis{padding:0 6px;color:var(--text-muted);font-weight:700;font-size:13px;flex-shrink:0}
+    .pag-jump{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--on-surface-var)}
+    .pag-jump input{
+      width:52px;height:36px;text-align:center;border-radius:var(--r-xl);
+      border:1.5px solid var(--border);font-size:12px;font-weight:600;font-family:inherit;
+      background:var(--surface-pure);color:var(--on-surface);
+    }
+    .pag-jump input:focus{outline:none;border-color:var(--primary)}
+    .pag-jump button{
+      height:36px;padding:0 12px;border-radius:var(--r-xl);font-size:12px;font-weight:700;
+      background:var(--primary-light);color:var(--primary);
+      transition:background var(--transition),color var(--transition);
+    }
+    .pag-jump button:hover{background:var(--primary);color:#fff}
+
+    /* ══════════════════════════════════════════════
+       LIGHTBOX MODAL
+    ══════════════════════════════════════════════ */
+    .modal-overlay{
+      position:fixed;inset:0;z-index:200;
+      background:rgba(0,0,0,.88);backdrop-filter:blur(10px);
+      display:none;align-items:center;justify-content:center;
+      padding:12px;animation:modalIn .2s ease both;
+    }
+    @keyframes modalIn{from{opacity:0}to{opacity:1}}
+    .modal-overlay.open{display:flex}
+    .modal-panel{
+      max-width:900px;width:100%;max-height:94vh;
+      background:var(--surface-pure);border-radius:20px;
+      overflow:hidden;display:flex;flex-direction:column;
+      box-shadow:0 24px 80px rgba(0,0,0,.35);border:1px solid var(--border);
+      animation:panelIn .25s cubic-bezier(.4,0,.2,1) both;
+    }
+    @keyframes panelIn{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .modal-head{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:12px 16px;border-bottom:1px solid var(--border);background:var(--surface-container-low);
+      flex-shrink:0;
+    }
+    @media(min-width:640px){.modal-head{padding:14px 22px}}
+    .modal-ref{font-size:11px;font-weight:800;color:var(--primary);background:var(--primary-light);padding:3px 10px;border-radius:var(--r-full)}
+    .modal-title{font-size:13px;font-weight:800;color:var(--on-surface)}
+    .modal-sub{font-size:11px;color:var(--text-muted)}
+    .modal-close{
+      width:38px;height:38px;border-radius:var(--r-full);display:flex;
+      align-items:center;justify-content:center;flex-shrink:0;
+      background:var(--surface-container);color:var(--on-surface);font-size:20px;
+      transition:background var(--transition);
+    }
+    .modal-close:hover{background:var(--surface-container-low)}
+    .modal-body{
+      flex:1;overflow:auto;display:flex;align-items:center;justify-content:center;
+      background:#0a0f1a;position:relative;min-height:260px;
+    }
+    @media(min-width:640px){.modal-body{min-height:360px}}
+    .modal-body img{
+      max-height:65vh;max-width:100%;object-fit:contain;
+      padding:12px;border-radius:12px;
+    }
+    .modal-nav-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:40px;height:40px;border-radius:var(--r-full);
+      background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.2);color:#fff;font-size:22px;
+      display:flex;align-items:center;justify-content:center;
+      transition:background var(--transition);z-index:5;
+    }
+    .modal-nav-btn:hover{background:rgba(255,255,255,.22)}
+    .modal-nav-btn.prev{left:8px}
+    .modal-nav-btn.next{right:8px}
+    .modal-foot{
+      display:flex;flex-direction:column;gap:8px;padding:12px 16px;
+      border-top:1px solid var(--border);background:var(--surface-container-low);flex-shrink:0;
+    }
+    @media(min-width:480px){.modal-foot{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}}
+    .modal-hint{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:5px}
+    .modal-hint .mi{font-size:14px;color:var(--primary)}
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    .site-footer{
+      background:var(--surface-container);padding:48px 16px 24px;
+      border-top:1px solid var(--border);margin-top:auto;
+    }
+    @media(min-width:640px){.site-footer{padding:60px 24px 32px}}
+    .footer-grid{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:1fr;gap:28px;
+    }
+    @media(min-width:640px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.footer-grid{grid-template-columns:repeat(4,1fr)}}
+    .footer-logo{height:44px;width:auto;margin-bottom:10px}
+    .footer-desc{font-size:13px;color:var(--on-surface-var);line-height:1.6;max-width:220px}
+    .footer-heading{
+      font-size:11px;font-weight:800;color:var(--on-surface);
+      text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;
+    }
+    .footer-nav{display:flex;flex-direction:column;gap:9px}
+    .footer-link{font-size:13px;color:var(--on-surface-var);transition:color var(--transition)}
+    .footer-link:hover,.footer-link.active{color:var(--primary)}
+    .footer-contact p{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--on-surface-var);margin-bottom:8px}
+    .footer-contact .mi{font-size:16px;color:var(--primary);flex-shrink:0;margin-top:1px}
+    .footer-bottom{
+      max-width:1200px;margin:28px auto 0;padding-top:20px;
+      border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--text-muted);
+    }
+    .footer-bottom a{color:var(--text-muted);text-decoration:underline;transition:color var(--transition)}
+    .footer-bottom a:hover{color:var(--primary)}
+
+    /* ── WhatsApp FAB ── */
+    .wa-fab{position:fixed;bottom:22px;right:18px;z-index:100;display:flex;align-items:center;gap:8px}
+    @media(min-width:640px){.wa-fab{bottom:26px;right:24px}}
+    .wa-tooltip{
+      background:#001f25;color:#fff;padding:7px 12px;
+      border-radius:var(--r-full);font-size:12px;font-weight:600;
+      box-shadow:var(--shadow-md);opacity:0;transform:translateX(8px);
+      transition:all var(--transition);pointer-events:none;white-space:nowrap;
+    }
+    .wa-fab:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+    .wa-btn{
+      width:54px;height:54px;background:#25D366;color:#fff;border-radius:var(--r-full);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 20px rgba(37,211,102,.4);
+      animation:waPulse 2.5s infinite;transition:transform var(--transition);
+    }
+    .wa-btn:hover{transform:scale(1.1);animation-play-state:paused}
+    @keyframes waPulse{
+      0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}
+      70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}
+      100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+    }
+    .wa-btn svg{width:26px;height:26px}
+
+    /* ── Material Symbols ── */
+    .mi{
+      font-family:'Material Symbols Outlined';font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+      font-style:normal;user-select:none;line-height:1;display:inline-flex;align-items:center;
+    }
   </style>
+
+  <!-- Cargar fuentes e iconos de forma diferida -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"></noscript>
 </head>
 
-<body class="antialiased flex flex-col min-h-screen bg-background text-on-surface overflow-x-hidden">
+<body>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     MOBILE DRAWER
-════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════ MOBILE DRAWER ═══════════ -->
 <div id="mobile-backdrop" class="vm-backdrop" aria-hidden="true"></div>
-<aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación" role="navigation">
-  <div class="vm-drawer-header">
-    <a href="../index.html" aria-label="Venemedical Inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical" class="vm-drawer-logo" width="160" height="48">
-    </a>
-    <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
-      <span class="material-symbols-outlined">close</span>
-    </button>
+<aside id="mobile-drawer" class="vm-drawer" aria-label="Menú" role="navigation">
+  <div class="vm-drawer-head">
+    <a href="../index.html" aria-label="Inicio"><img src="../assets/images/logo.png" alt="Venemedical" class="vm-drawer-logo"></a>
+    <button id="drawer-close" class="vm-drawer-close" aria-label="Cerrar"><span class="mi">close</span></button>
   </div>
   <nav class="vm-drawer-nav">
-    <a href="../index.html" class="vm-drawer-link">
-      <span class="material-symbols-outlined" aria-hidden="true">home</span>Inicio
-    </a>
-    <a href="../nosotros/index.html" class="vm-drawer-link">
-      <span class="material-symbols-outlined" aria-hidden="true">info</span>Nosotros
-    </a>
-    <a href="../laboratorio/index.html" class="vm-drawer-link">
-      <span class="material-symbols-outlined" aria-hidden="true">science</span>Laboratorio
-    </a>
-    <a href="../catalogo-visual/index.html" class="vm-drawer-link active" aria-current="page">
-      <span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>Catálogo Visual
-    </a>
-    <a href="../especialistas/index.html" class="vm-drawer-link">
-      <span class="material-symbols-outlined" aria-hidden="true">stethoscope</span>Especialistas
-    </a>
-    <a href="../citas/index.html" class="vm-drawer-link">
-      <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>Citas
-    </a>
-    <a href="../ubicacion/index.html" class="vm-drawer-link">
-      <span class="material-symbols-outlined" aria-hidden="true">location_on</span>Ubicación
-    </a>
+    <a href="../index.html"><span class="mi">home</span>Inicio</a>
+    <a href="../nosotros/index.html"><span class="mi">info</span>Nosotros</a>
+    <a href="../laboratorio/index.html"><span class="mi">science</span>Laboratorio</a>
+    <a href="../catalogo-visual/index.html" class="active" aria-current="page"><span class="mi">auto_stories</span>Catálogo Visual</a>
+    <a href="../especialistas/index.html"><span class="mi">stethoscope</span>Especialistas</a>
+    <a href="../citas/index.html"><span class="mi">calendar_month</span>Citas</a>
+    <a href="../ubicacion/index.html"><span class="mi">location_on</span>Ubicación</a>
   </nav>
-  <div class="vm-drawer-footer">
-    <a href="https://wa.me/584241288247?text=Hola%20Venemedical,%20quiero%20consultar%20el%20cat%C3%A1logo%20visual" target="_blank" rel="noopener noreferrer" class="vm-drawer-cta">
-      <span class="material-symbols-outlined" aria-hidden="true">chat</span>
-      Consultar por WhatsApp
+  <div class="vm-drawer-foot">
+    <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer" class="vm-drawer-cta">
+      <span class="mi">chat</span>Consultar por WhatsApp
     </a>
   </div>
 </aside>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     NAVBAR PRINCIPAL
-════════════════════════════════════════════════════════════════ -->
-<header class="vm-navbar" role="banner">
+<!-- ═══════════ NAVBAR ═══════════ -->
+<header class="vm-navbar">
   <div class="vm-navbar-inner">
-    <a href="../index.html" aria-label="Venemedical — Ir al inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical" class="vm-navbar-logo" width="180" height="48">
+    <a href="../index.html" aria-label="Venemedical Inicio">
+      <img src="../assets/images/logo.png" alt="Venemedical" class="vm-logo">
     </a>
-    <nav class="vm-nav-links" aria-label="Navegación principal">
-      <a href="../index.html"                   class="vm-nav-link">Inicio</a>
-      <a href="../nosotros/index.html"          class="vm-nav-link">Nosotros</a>
-      <a href="../laboratorio/index.html"       class="vm-nav-link">Laboratorio</a>
-      <a href="../catalogo-visual/index.html"   class="vm-nav-link active" aria-current="page">Catálogo Visual</a>
-      <a href="../especialistas/index.html"     class="vm-nav-link">Especialistas</a>
-      <a href="../citas/index.html"             class="vm-nav-link">Citas</a>
-      <a href="../ubicacion/index.html"         class="vm-nav-link">Ubicación</a>
-    </nav>
-    <div class="flex items-center gap-2">
-      <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer"
-         class="vm-btn-cta hidden sm:inline-flex text-sm">
-        <span class="material-symbols-outlined text-base" aria-hidden="true">chat</span>
-        Contactar
+    <ul class="vm-nav" role="list">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../nosotros/index.html">Nosotros</a></li>
+      <li><a href="../laboratorio/index.html">Laboratorio</a></li>
+      <li><a href="../catalogo-visual/index.html" class="active" aria-current="page">Catálogo Visual</a></li>
+      <li><a href="../especialistas/index.html">Especialistas</a></li>
+      <li><a href="../citas/index.html">Citas</a></li>
+      <li><a href="../ubicacion/index.html">Ubicación</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer" class="vm-cta" id="nav-wa" style="display:none">
+        <span class="mi" style="font-size:16px">chat</span>Contactar
       </a>
-      <button onclick="openMobileMenu()" class="vm-menu-toggle btn-touch" aria-label="Abrir menú de navegación">
-        <span class="material-symbols-outlined" style="font-size:26px" aria-hidden="true">menu</span>
+      <button id="burger-btn" class="vm-burger" aria-label="Abrir menú">
+        <span class="mi" style="font-size:24px">menu</span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     HERO BREADCRUMB (Barra de contexto de sección)
-════════════════════════════════════════════════════════════════ -->
-<div class="w-full bg-surface-container-low border-b border-border-subtle">
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-2 text-xs text-on-surface-variant">
-    <a href="../index.html" class="hover:text-primary transition-colors font-medium">Inicio</a>
-    <span class="material-symbols-outlined text-sm text-outline" aria-hidden="true">chevron_right</span>
-    <span class="font-semibold text-on-surface">Catálogo Visual</span>
+<!-- ═══════════ BREADCRUMB ═══════════ -->
+<div class="breadcrumb">
+  <a href="../index.html">Inicio</a>
+  <span class="sep" aria-hidden="true">›</span>
+  <span aria-current="page">Catálogo Visual</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     CARRUSEL HERO
+════════════════════════════════════════════════ -->
+<div class="carousel-section" id="carousel-section">
+  <div class="carousel-wrap" id="carousel-wrap">
+    <div class="carousel-progress"><div class="carousel-progress-bar" id="cpbar"></div></div>
+    <div style="position:relative;overflow:hidden">
+      <div class="carousel-track" id="ctrack"></div>
+      <button class="carousel-btn prev" id="c-prev" aria-label="Slide anterior"><span class="mi">chevron_left</span></button>
+      <button class="carousel-btn next" id="c-next" aria-label="Slide siguiente"><span class="mi">chevron_right</span></button>
+    </div>
+    <div class="carousel-dots" id="cdots" role="tablist" aria-label="Slides del carrusel"></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     APP REACT — PUNTO DE MONTAJE
-════════════════════════════════════════════════════════════════ -->
-<div id="cv-root" class="flex-1 w-full">
-  <!-- Skeleton de carga inicial -->
-  <div id="cv-loading" class="w-full">
-    <!-- Skeleton Carrusel -->
-    <div class="w-full py-4 px-4 sm:px-6 lg:px-8 bg-surface-container-low">
-      <div class="max-w-[1200px] mx-auto rounded-2xl overflow-hidden skeleton" style="height:260px"></div>
-    </div>
-    <!-- Skeleton Grid -->
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="skeleton h-8 w-64 rounded-xl mb-2"></div>
-      <div class="skeleton h-4 w-40 rounded-lg mb-6"></div>
-      <div class="catalog-grid">
-        <div class="skeleton rounded-xl" style="aspect-ratio:3/4"></div>
-        <div class="skeleton rounded-xl" style="aspect-ratio:3/4"></div>
-        <div class="skeleton rounded-xl" style="aspect-ratio:3/4"></div>
-        <div class="skeleton rounded-xl" style="aspect-ratio:3/4"></div>
-        <div class="skeleton rounded-xl" style="aspect-ratio:3/4"></div>
-        <div class="skeleton rounded-xl" style="aspect-ratio:3/4"></div>
+<!-- ═══════════════════════════════════════════════
+     CATÁLOGO
+════════════════════════════════════════════════ -->
+<section class="catalog-section" id="catalog-section" aria-label="Catálogo de monturas">
+
+  <!-- Header -->
+  <div class="catalog-header">
+    <div class="catalog-label"><span class="mi" style="font-size:11px">auto_stories</span>Catálogo Visual Interactivo</div>
+    <h1 class="catalog-title">Monturas y Lentes Palazzo</h1>
+    <p class="catalog-subtitle" id="catalog-subtitle"></p>
+  </div>
+
+  <!-- Controles -->
+  <div class="catalog-controls">
+    <div class="controls-row1">
+      <div class="search-wrap">
+        <span class="mi search-icon" aria-hidden="true">search</span>
+        <input type="search" class="search-input" id="cat-search" placeholder="Buscar modelo, ref..." aria-label="Buscar en el catálogo">
+      </div>
+      <select class="sort-sel" id="cat-sort" aria-label="Ordenar catálogo">
+        <option value="default">Orden estándar</option>
+        <option value="page-asc">Pág. ↑</option>
+        <option value="page-desc">Pág. ↓</option>
+        <option value="ref-asc">Ref. A-Z</option>
+      </select>
+      <div class="view-toggle" role="group" aria-label="Modo de vista">
+        <button class="view-btn active" id="view-grid" aria-pressed="true" title="Cuadrícula"><span class="mi">grid_view</span></button>
+        <button class="view-btn" id="view-list" aria-pressed="false" title="Lista"><span class="mi">format_list_bulleted</span></button>
       </div>
     </div>
+    <div class="chips-row" id="chips-row" role="list" aria-label="Filtrar colección"></div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar" id="stats-bar"></div>
+
+  <!-- Contenedor de ítems -->
+  <div id="items-container"></div>
+
+  <!-- Paginador -->
+  <div class="pagination" id="pagination"></div>
+
+</section>
+
+<!-- ═══════════ LIGHTBOX MODAL ═══════════ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Visor de imagen">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0">
+        <span class="modal-ref" id="modal-ref"></span>
+        <div style="min-width:0">
+          <div class="modal-title" id="modal-title"></div>
+          <div class="modal-sub" id="modal-sub"></div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span id="modal-counter" style="font-size:11px;color:var(--text-muted)"></span>
+        <button class="modal-close" id="modal-close" aria-label="Cerrar"><span class="mi">close</span></button>
+      </div>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <button class="modal-nav-btn prev" id="modal-prev" aria-label="Anterior"><span class="mi">chevron_left</span></button>
+      <img id="modal-img" src="" alt="" style="max-height:65vh;max-width:100%;object-fit:contain;padding:12px">
+      <button class="modal-nav-btn next" id="modal-next" aria-label="Siguiente"><span class="mi">chevron_right</span></button>
+    </div>
+    <div class="modal-foot">
+      <div class="modal-hint">
+        <span class="mi">keyboard</span>
+        <span>Teclas ← → para navegar. ESC para cerrar.</span>
+      </div>
+      <a id="modal-wa" href="#" target="_blank" rel="noopener noreferrer" class="btn-wa" style="font-size:13px;font-weight:700;padding:10px 18px;border-radius:var(--r-xl);justify-content:center">
+        <span class="mi" style="font-size:16px">chat</span>Consultar en WhatsApp
+      </a>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════════════════════ -->
-<footer class="vm-footer" role="contentinfo">
-  <div class="vm-footer-inner">
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <div class="footer-grid">
     <div>
-      <img src="../assets/images/logo.png" alt="Venemedical" class="vm-footer-logo" width="180" height="48">
-      <p class="vm-footer-desc">Centro Médico y Laboratorio Clínico de alta precisión en Caracas. Diagnósticos confiables y atención especializada.</p>
+      <img src="../assets/images/logo.png" alt="Venemedical" class="footer-logo">
+      <p class="footer-desc">Centro Médico y Laboratorio Clínico de alta precisión en Caracas. Diagnósticos confiables y atención especializada.</p>
     </div>
     <div>
-      <h4 class="vm-footer-heading">Navegación</h4>
-      <nav class="vm-footer-nav" aria-label="Navegación de pie de página">
-        <a href="../index.html"                 class="vm-footer-link">Inicio</a>
-        <a href="../nosotros/index.html"        class="vm-footer-link">Nosotros</a>
-        <a href="../laboratorio/index.html"     class="vm-footer-link">Laboratorio</a>
-        <a href="../catalogo-visual/index.html" class="vm-footer-link active" aria-current="page">Catálogo Visual</a>
-        <a href="../especialistas/index.html"   class="vm-footer-link">Especialistas</a>
-        <a href="../citas/index.html"           class="vm-footer-link">Citas</a>
+      <h4 class="footer-heading">Navegación</h4>
+      <nav class="footer-nav">
+        <a href="../index.html" class="footer-link">Inicio</a>
+        <a href="../nosotros/index.html" class="footer-link">Nosotros</a>
+        <a href="../laboratorio/index.html" class="footer-link">Laboratorio</a>
+        <a href="../catalogo-visual/index.html" class="footer-link active">Catálogo Visual</a>
+        <a href="../especialistas/index.html" class="footer-link">Especialistas</a>
+        <a href="../citas/index.html" class="footer-link">Citas</a>
       </nav>
     </div>
     <div>
-      <h4 class="vm-footer-heading">Servicios</h4>
-      <nav class="vm-footer-nav" aria-label="Servicios">
-        <a href="../laboratorio/index.html"     class="vm-footer-link">Exámenes Clínicos</a>
-        <a href="../catalogo-visual/index.html" class="vm-footer-link">Catálogo de Lentes</a>
-        <a href="../citas/index.html"           class="vm-footer-link">Agendar una Cita</a>
-        <a href="../resultados/index.html"      class="vm-footer-link">Consultar Resultados</a>
+      <h4 class="footer-heading">Servicios</h4>
+      <nav class="footer-nav">
+        <a href="../laboratorio/index.html" class="footer-link">Exámenes Clínicos</a>
+        <a href="../catalogo-visual/index.html" class="footer-link">Catálogo de Lentes</a>
+        <a href="../citas/index.html" class="footer-link">Agendar una Cita</a>
+        <a href="../resultados/index.html" class="footer-link">Consultar Resultados</a>
       </nav>
     </div>
     <div>
-      <h4 class="vm-footer-heading">Contacto</h4>
-      <address class="not-italic vm-footer-nav text-xs text-on-surface-variant space-y-2">
-        <p class="flex items-start gap-2">
-          <span class="material-symbols-outlined text-primary text-base mt-px flex-shrink-0" aria-hidden="true">location_on</span>
-          Local 11, Primer local a mano izquierda, Sucre, Caracas
-        </p>
-        <p class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-base flex-shrink-0" aria-hidden="true">call</span>
-          +58 424-1296288
-        </p>
-        <p class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-base flex-shrink-0" aria-hidden="true">chat</span>
-          +58 424-1288247 (WhatsApp)
-        </p>
+      <h4 class="footer-heading">Contacto</h4>
+      <address class="footer-contact not-italic">
+        <p><span class="mi">location_on</span>Local 11, Sucre, Caracas, Estado Miranda</p>
+        <p><span class="mi">call</span>+58 424-1296288</p>
+        <p><span class="mi">chat</span>+58 424-1288247 (WhatsApp)</p>
       </address>
     </div>
   </div>
-  <div class="vm-footer-bottom">
+  <div class="footer-bottom">
     <p>&copy; 2026 Venemedical. Todos los derechos reservados.
-      | <a href="../aviso-de-privacidad/index.html" class="underline hover:text-primary">Aviso de Privacidad</a>
-      | <a href="../terminos-y-condiciones/index.html" class="underline hover:text-primary">Términos y Condiciones</a>
+      | <a href="../aviso-de-privacidad/index.html">Aviso de Privacidad</a>
+      | <a href="../terminos-y-condiciones/index.html">Términos y Condiciones</a>
     </p>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     BOTÓN FLOTANTE WHATSAPP
-════════════════════════════════════════════════════════════════ -->
-<div class="vm-whatsapp-widget" aria-label="Contactar por WhatsApp">
-  <span class="vm-whatsapp-tooltip">¿Preguntas sobre el catálogo?</span>
-  <a href="https://wa.me/584241288247?text=Hola%20Venemedical,%20me%20interesa%20el%20Cat%C3%A1logo%20Visual%20de%20lentes."
-     target="_blank" rel="noopener noreferrer" class="vm-whatsapp-btn" aria-label="Abrir WhatsApp">
-    <svg class="vm-whatsapp-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<!-- ═══════════ WHATSAPP FAB ═══════════ -->
+<div class="wa-fab">
+  <span class="wa-tooltip">¿Dudas sobre el catálogo?</span>
+  <a href="https://wa.me/584241288247?text=Hola%20Venemedical,%20quiero%20consultar%20el%20cat%C3%A1logo%20visual%20de%20lentes." target="_blank" rel="noopener noreferrer" class="wa-btn" aria-label="Contactar por WhatsApp">
+    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
     </svg>
   </a>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     SCRIPTS
-════════════════════════════════════════════════════════════════ -->
-<script src="../assets/js/venemedical.js"></script>
-<script src="../assets/js/catalogo-visual-data.js"></script>
-<script src="../assets/js/catalogo-visual-app.js"></script>
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS — cargados como defer para máximo rendimiento
+════════════════════════════════════════════════ -->
+<script src="../assets/js/catalogo-visual-data.js" defer></script>
+<script src="../assets/js/catalogo-visual-app.js" defer></script>
+<script defer>
+  // ── Navbar scroll effect + mobile drawer ──
+  const navbar = document.querySelector('.vm-navbar');
+  const navWa  = document.getElementById('nav-wa');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar && navbar.classList.add('scrolled');
+      if (navWa) navWa.style.display = 'inline-flex';
+    } else {
+      navbar && navbar.classList.remove('scrolled');
+      if (navWa) navWa.style.display = 'none';
+    }
+  }, { passive: true });
+
+  const backdrop = document.getElementById('mobile-backdrop');
+  const drawer   = document.getElementById('mobile-drawer');
+  const burger   = document.getElementById('burger-btn');
+  const drawerClose = document.getElementById('drawer-close');
+
+  function openMenu()  { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+  if (burger)      burger.addEventListener('click', openMenu);
+  if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+  if (backdrop)    backdrop.addEventListener('click', closeMenu);
+
+  // Compatibilidad con venemedical.js si existe
+  window.openMobileMenu  = openMenu;
+  window.closeMobileMenu = closeMenu;
+</script>
 
 </body>
 </html>
