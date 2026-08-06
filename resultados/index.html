@@ -204,7 +204,7 @@
       <p class="vm-footer-heading">Legal</p>
       <nav class="vm-footer-nav">
         <a href="../aviso-de-privacidad/index.html" class="vm-footer-link">Aviso de Privacidad</a>
-        <a href="../terminos-y-condiciones/index.html" class="vm-footer-link">Términos de Servicio</a>
+        <a href="../terminos-y-condiciones/index.html" class="vm-footer-link">Términos y Condiciones</a>
       </nav>
     </div>
 
@@ -233,17 +233,22 @@
   </div>
 </footer>
 
-<!-- COOKIE BANNER -->
-<div id="vm-cookie-banner" class="vm-cookie-banner" role="region" aria-label="Aviso de cookies">
+<!-- COOKIE BANNER / MODAL -->
+<div id="vm-cookie-banner" class="vm-cookie-banner" role="dialog" aria-modal="true" aria-label="Aviso de cookies y términos">
   <div class="vm-cookie-inner">
-    <p class="vm-cookie-text">
-      Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra
-      <a href="../aviso-de-privacidad/index.html" style="color:var(--color-primary);text-decoration:underline">política de privacidad</a>.
-    </p>
+    <div style="font-size:36px;line-height:1">🍪</div>
+    <div>
+      <h3 style="margin:0 0 8px 0;font-size:18px;font-weight:700;color:var(--color-on-surface)">Aviso de Cookies y Términos Legal</h3>
+      <p class="vm-cookie-text">
+        Para acceder y utilizar los servicios de nuestro portal, debe aceptar nuestra
+        <a href="../aviso-de-privacidad/index.html" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Política de Privacidad</a>
+        y nuestros
+        <a href="../terminos-y-condiciones/index.html" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Términos y Condiciones</a>.
+      </p>
+    </div>
     <div class="vm-cookie-actions">
-      <a href="../aviso-de-privacidad/index.html" style="font-size:14px;color:var(--color-primary);text-decoration:underline">Ver más</a>
-      <button id="vm-cookie-accept" class="vm-btn vm-btn-primary" style="padding:8px 20px">
-        Aceptar
+      <button id="vm-cookie-accept" class="vm-btn vm-btn-primary" style="padding:12px 28px;width:100%;font-size:15px;font-weight:600">
+        Aceptar y Continuar
       </button>
     </div>
   </div>
