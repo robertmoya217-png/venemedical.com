@@ -99,17 +99,59 @@
     </a>
   </nav>
 
-  <div class="vm-drawer-footer">
-    <a href="../citas/index.html" class="vm-drawer-cta">
-      <span class="material-symbols-outlined" style="font-size:20px">calendar_month</span>
-      Agendar Cita
-    </a>
-  </div>
-</aside>
-<!-- ══════════════════════════════════════════════════════════════ -->
+    <div class="vm-drawer-footer flex flex-col gap-3 p-4 border-t border-border-subtle bg-surface-container-low">
+      <div class="flex flex-col gap-2 text-xs font-medium text-text-muted">
+        <a href="https://wa.me/584241288247?text=Hola,%20deseo%20atenci%C3%B3n%20en%20Venemedical." target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 p-2 rounded-lg bg-emerald-500/10 text-emerald-700 font-bold hover:bg-emerald-500/20">
+          <span class="material-symbols-outlined" style="font-size:18px">chat</span>
+          WhatsApp: +58 424 1288247
+        </a>
+        <a href="tel:+584241296288" class="flex items-center gap-2 p-2 rounded-lg bg-primary/10 text-primary font-semibold hover:bg-primary/20">
+          <span class="material-symbols-outlined" style="font-size:18px">call</span>
+          Llamar: +58 424 1296288
+        </a>
+        <a href="https://www.instagram.com/venemedicalcare" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 p-2 rounded-lg bg-surface-pure text-text-muted hover:text-primary">
+          <span class="material-symbols-outlined" style="font-size:18px">photo_camera</span>
+          Instagram: @venemedicalcare
+        </a>
+      </div>
 
-<!-- NAVBAR -->
-<header class="vm-navbar" role="banner">
+      <a href="../citas/index.html" class="vm-drawer-cta mt-1">
+        <span class="material-symbols-outlined" style="font-size:20px">calendar_month</span>
+        Agendar Cita Médica
+      </a>
+    </div>
+  </aside>
+  <!-- ══════════════════════════════════════════════════════════════ -->
+
+  <!-- TOP CONTACT BAR (FUERA DEL FOOTER) -->
+  <div class="bg-primary text-white text-xs py-2 px-gutter border-b border-primary/20 relative z-40">
+    <div class="max-w-container-max mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+      <!-- Horario -->
+      <div class="flex items-center gap-1.5 opacity-90">
+        <span class="material-symbols-outlined text-sm" style="font-size:16px">schedule</span>
+        <span>Lun–Vie 7am–4:30pm · Sáb 8am–1pm y Feriados</span>
+      </div>
+
+      <!-- Quick Contact Channels -->
+      <div class="flex items-center gap-4 sm:gap-6 flex-wrap font-medium ml-auto">
+        <a href="tel:+584241296288" class="flex items-center gap-1 hover:underline">
+          <span class="material-symbols-outlined text-sm" style="font-size:16px">call</span>
+          +58 424 1296288
+        </a>
+        <a href="https://wa.me/584241288247?text=Hola,%20deseo%20atenci%C3%B3n%20en%20Venemedical." target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-emerald-300 font-bold hover:underline">
+          <span class="material-symbols-outlined text-sm" style="font-size:16px">chat</span>
+          +58 424 1288247 (WhatsApp)
+        </a>
+        <a href="https://www.instagram.com/venemedicalcare" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 opacity-90 hover:opacity-100 hover:underline">
+          <span class="material-symbols-outlined text-sm" style="font-size:16px">photo_camera</span>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="vm-navbar" role="banner">
   <div class="vm-navbar-inner">
     <!-- Logo -->
     <a href="../index.html" aria-label="Venemedical - Página de inicio">
