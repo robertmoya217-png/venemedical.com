@@ -797,9 +797,45 @@ body.legal-page .vm-cookie-banner .vm-cookie-inner {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-outline-variant);
-  border-radius: var(--radius-full);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-outline);
+  background: var(--color-primary);
+}
+
+/* ── 19. Pasarela & Sales Conversion Utilities ───────────────────── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sales-alert-badge {
+  background: #ef4444;
+  color: #ffffff;
+  animation: vm-badge-pulse 2s infinite;
+}
+
+@keyframes vm-badge-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.pasarela-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pasarela-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
