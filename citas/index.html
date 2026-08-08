@@ -829,8 +829,24 @@
     window.open(waUrl, '_blank');
   };
 
-  // Autocompletar si viene del catálogo
+  // Autocompletar si viene del catálogo e inicializar fechas por defecto
   document.addEventListener('DOMContentLoaded', function() {
+    // Establecer fecha por defecto (hoy, año 2026 y mes vigente)
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    var todayStr = yyyy + '-' + mm + '-' + dd;
+
+    var dateIds = ['cita-fecha-lab', 'cita-fecha-med', 'cita-fecha-dom'];
+    dateIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.value = todayStr;
+        el.min = todayStr; // Evita seleccionar fechas pasadas
+      }
+    });
+
     var params = new URLSearchParams(window.location.search);
     var examen = params.get('examen');
     
