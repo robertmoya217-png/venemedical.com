@@ -272,25 +272,207 @@
           </div>
         </div>
 
-        <!-- Image -->
+        <!-- Interactive Booking Widget -->
         <div class="w-full lg:w-1/2 relative">
-          <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-surface-container h-[280px] xs:h-[320px] sm:h-[380px] md:h-[440px] lg:h-[480px] w-full">
-            <img
-              src="./assets/images/hero.jpg"
-              alt="Centro Médico y Laboratorio Clínico Venemedical"
-              class="object-cover object-center w-full h-full" loading="eager" fetchpriority="high" width="600" height="480">
+          <!-- Main Card Container -->
+          <div class="w-full bg-white rounded-3xl border border-border-subtle shadow-xl overflow-hidden p-6 sm:p-8 flex flex-col justify-between min-h-[460px] relative z-10">
+            
+            <!-- Widget Header -->
+            <div class="mb-5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Reserva Activa
+                </span>
+                <span class="text-[11px] text-text-muted font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs" style="font-size:14px">bolt</span> COTIZACIÓN AL INSTANTE
+                </span>
+              </div>
+              <h2 class="text-2xl font-extrabold text-on-surface tracking-tight">
+                ¿Qué servicio deseas hoy?
+              </h2>
+              <p class="text-xs text-text-muted mt-1">
+                Cotiza exámenes o agenda con especialistas. Sin colas ni esperas.
+              </p>
+            </div>
+
+            <!-- Tabs Nav -->
+            <div class="flex bg-surface-container-low p-1 rounded-xl gap-1 mb-5 border border-border-subtle">
+              <button onclick="setActiveWidgetTab('tab-lab')" id="tab-btn-lab" class="widget-tab-btn flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold transition-all text-primary bg-white shadow-sm" aria-label="Pestaña Exámenes de Laboratorio">
+                <span class="material-symbols-outlined text-[16px]">science</span>
+                <span>Laboratorio</span>
+              </button>
+              <button onclick="setActiveWidgetTab('tab-med')" id="tab-btn-med" class="widget-tab-btn flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-medium transition-all text-text-muted hover:text-primary" aria-label="Pestaña Consultas Médicas">
+                <span class="material-symbols-outlined text-[16px]">stethoscope</span>
+                <span>Consultas</span>
+              </button>
+              <button onclick="setActiveWidgetTab('tab-dom')" id="tab-btn-dom" class="widget-tab-btn flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-medium transition-all text-text-muted hover:text-primary" aria-label="Pestaña Toma a Domicilio">
+                <span class="material-symbols-outlined text-[16px]">home_health</span>
+                <span>Domicilio</span>
+              </button>
+            </div>
+
+            <!-- Tab Content: Laboratorio -->
+            <div id="widget-tab-lab" class="widget-tab-content space-y-3.5">
+              <p class="text-[10px] text-text-muted font-bold uppercase tracking-wider">1. Selecciona tus exámenes o perfiles:</p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <!-- Checkbox 1 -->
+                <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 hover:border-primary/20 cursor-pointer transition-all">
+                  <input type="checkbox" name="lab_exams" value="Perfil 20" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary" onchange="updateLabExamsQuote()">
+                  <div>
+                    <p class="text-xs font-bold text-on-surface">Perfil 20 (Rutina)</p>
+                    <p class="text-[9px] text-text-muted leading-none">Examen general básico</p>
+                  </div>
+                </label>
+                
+                <!-- Checkbox 2 -->
+                <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 hover:border-primary/20 cursor-pointer transition-all">
+                  <input type="checkbox" name="lab_exams" value="Perfil Tiroideo" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary" onchange="updateLabExamsQuote()">
+                  <div>
+                    <p class="text-xs font-bold text-on-surface">Perfil Tiroideo</p>
+                    <p class="text-[9px] text-text-muted leading-none">T3, T4 y TSH libre</p>
+                  </div>
+                </label>
+
+                <!-- Checkbox 3 -->
+                <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 hover:border-primary/20 cursor-pointer transition-all">
+                  <input type="checkbox" name="lab_exams" value="Perfil Pre-Operatorio" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary" onchange="updateLabExamsQuote()">
+                  <div>
+                    <p class="text-xs font-bold text-on-surface">Pre-Operatorio</p>
+                    <p class="text-[9px] text-text-muted leading-none">Coagulación y rutina</p>
+                  </div>
+                </label>
+
+                <!-- Checkbox 4 -->
+                <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 hover:border-primary/20 cursor-pointer transition-all">
+                  <input type="checkbox" name="lab_exams" value="Perfil Lipídico" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary" onchange="updateLabExamsQuote()">
+                  <div>
+                    <p class="text-xs font-bold text-on-surface">Perfil Lipídico</p>
+                    <p class="text-[9px] text-text-muted leading-none">Colesterol y triglicéridos</p>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Otro examen -->
+              <div>
+                <label for="custom_exams" class="block text-[10px] font-bold text-text-muted uppercase mb-1">2. ¿Otro examen en particular?</label>
+                <div class="relative">
+                  <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-base" style="font-size:18px">search</span>
+                  <input type="text" id="custom_exams" placeholder="Escribe aquí el nombre del examen..." class="w-full pl-9 pr-3 py-2 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low" oninput="updateLabExamsQuote()">
+                </div>
+              </div>
+
+              <!-- Quote Footer -->
+              <div class="bg-surface-container-low p-3 rounded-xl border border-border-subtle flex items-center justify-between">
+                <div>
+                  <p class="text-[10px] text-text-muted">Total Seleccionado</p>
+                  <p id="selected-exams-count" class="text-sm font-extrabold text-primary">0 exámenes</p>
+                </div>
+                <div class="text-right">
+                  <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded-full">
+                    <span class="material-symbols-outlined text-[12px]">done</span> Resultados en 24h
+                  </span>
+                </div>
+              </div>
+
+              <!-- Button -->
+              <a href="https://wa.me/584241288247?text=Hola,%20deseo%20cotizar%20ex%C3%A1menes%20en%20Venemedical." target="_blank" rel="noopener noreferrer" id="btn-quote-lab" class="vm-btn w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-0.5 transition-all text-sm">
+                <span class="material-symbols-outlined text-base">chat</span>
+                COTIZAR EXÁMENES POR WHATSAPP
+              </a>
+            </div>
+
+            <!-- Tab Content: Consultas Médicas -->
+            <div id="widget-tab-med" class="widget-tab-content space-y-3.5 hidden">
+              <p class="text-[10px] text-text-muted font-bold uppercase tracking-wider">1. Selecciona la especialidad de consulta:</p>
+              
+              <div class="space-y-3">
+                <div>
+                  <label for="med_specialty" class="block text-[10px] font-bold text-text-muted mb-1">Especialidad</label>
+                  <select id="med_specialty" class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low" onchange="updateMedQuote()">
+                    <option value="" disabled selected>-- Selecciona una Especialidad --</option>
+                    <option value="Medicina Interna">Medicina Interna</option>
+                    <option value="Cardiología">Cardiología (Eco & Electro)</option>
+                    <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
+                    <option value="Pediatría">Pediatría y Puericultura</option>
+                    <option value="Traumatología">Traumatología</option>
+                    <option value="Oftalmología">Oftalmología (Consulta Visual)</option>
+                    <option value="Otra Especialidad">Otra Especialidad...</option>
+                  </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label for="appointment_date" class="block text-[10px] font-bold text-text-muted mb-1">Fecha de Interés</label>
+                    <input type="date" id="appointment_date" class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" onchange="updateMedQuote()">
+                  </div>
+                  <div>
+                    <label for="appointment_time" class="block text-[10px] font-bold text-text-muted mb-1">Preferencia Horaria</label>
+                    <select id="appointment_time" class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" onchange="updateMedQuote()">
+                      <option value="Mañana (7:00 AM - 12:00 PM)">Mañana (AM)</option>
+                      <option value="Tarde (12:00 PM - 4:30 PM)">Tarde (PM)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Specialty Info Box -->
+              <div class="p-3 rounded-xl border border-primary/10 bg-primary/5 flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-primary text-base" style="font-size:18px">info</span>
+                <p class="text-[10px] text-text-main leading-relaxed">
+                  Todas nuestras consultas médicas son atendidas por especialistas certificados e incluyen un reporte e informe médico completo.
+                </p>
+              </div>
+
+              <!-- Button -->
+              <a href="https://wa.me/584241288247?text=Hola,%20deseo%20agendar%20una%20consulta%20m%C3%A9dica%20en%20Venemedical." target="_blank" rel="noopener noreferrer" id="btn-quote-med" class="vm-btn w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-0.5 transition-all text-sm">
+                <span class="material-symbols-outlined text-base">chat</span>
+                AGENDAR CONSULTA POR WHATSAPP
+              </a>
+            </div>
+
+            <!-- Tab Content: Toma a Domicilio -->
+            <div id="widget-tab-dom" class="widget-tab-content space-y-3.5 hidden">
+              <p class="text-[10px] text-text-muted font-bold uppercase tracking-wider">1. Solicita la toma de muestras en casa/oficina:</p>
+              
+              <div class="space-y-3">
+                <div>
+                  <label for="domicilio_zone" class="block text-[10px] font-bold text-text-muted mb-1">Zona / Sector de Caracas</label>
+                  <input type="text" id="domicilio_zone" placeholder="Ej: Chacao, Altamira, Las Mercedes..." class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low" oninput="updateDomQuote()">
+                </div>
+
+                <div>
+                  <label for="domicilio_date" class="block text-[10px] font-bold text-text-muted mb-1">Fecha Estimada de Toma</label>
+                  <input type="date" id="domicilio_date" class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" onchange="updateDomQuote()">
+                </div>
+              </div>
+
+              <!-- Promo Box -->
+              <div class="p-3 rounded-xl border border-emerald-100 bg-emerald-50/85 flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-emerald-600 text-base" style="font-size:18px">home_health</span>
+                <p class="text-[10px] text-emerald-900 leading-relaxed font-semibold">
+                  Servicio ideal para pacientes con movilidad limitada. Llevamos nuestro personal capacitado y equipos hasta tu puerta.
+                </p>
+              </div>
+
+              <!-- Button -->
+              <a href="https://wa.me/584241288247?text=Hola,%20deseo%20solicitar%20el%20servicio%20de%20toma%20de%20muestras%20a%20domicilio%20en%20Venemedical." target="_blank" rel="noopener noreferrer" id="btn-quote-dom" class="vm-btn w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-0.5 transition-all text-sm">
+                <span class="material-symbols-outlined text-base">chat</span>
+                SOLICITAR TOMA A DOMICILIO
+              </a>
+            </div>
+
           </div>
-          <!-- Floating Badge -->
-          <div
-            class="absolute -bottom-5 -left-5 bg-surface-pure p-4 rounded-xl shadow-lg border border-border-subtle flex items-center gap-3"
-            style="display:none" id="hero-badge">
-            <div
-              class="bg-secondary-fixed w-12 h-12 rounded-full flex items-center justify-center text-primary flex-shrink-0">
-              <span class="material-symbols-outlined">verified</span>
+
+          <!-- Floating Badge - Re-adjusted for the widget -->
+          <div class="absolute -bottom-5 -right-5 bg-surface-pure p-3.5 rounded-xl shadow-lg border border-border-subtle flex items-center gap-3 hidden sm:flex" id="hero-badge">
+            <div class="bg-emerald-100 w-10 h-10 rounded-full flex items-center justify-center text-emerald-700 flex-shrink-0">
+              <span class="material-symbols-outlined" style="font-size:22px">verified</span>
             </div>
             <div>
-              <p class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Certificación</p>
-              <p class="font-label-md text-label-md text-on-surface font-bold">Calidad Garantizada</p>
+              <p class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider text-[10px]">Certificación</p>
+              <p class="font-label-md text-label-md text-on-surface font-extrabold text-xs">Calidad Garantizada</p>
             </div>
           </div>
         </div>
@@ -554,6 +736,122 @@
     // Mostrar badge hero
     var badge = document.getElementById('hero-badge');
     if (badge && window.innerWidth > 480) badge.style.display = 'flex';
+
+    // Lógica del Widget de Cotización y Reserva Hero
+    function setActiveWidgetTab(tabId) {
+      document.querySelectorAll('.widget-tab-content').forEach(function(content) {
+        content.classList.add('hidden');
+      });
+      document.getElementById('widget-' + tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.widget-tab-btn').forEach(function(btn) {
+        btn.classList.remove('text-primary', 'bg-white', 'shadow-sm');
+        btn.classList.add('text-text-muted', 'hover:text-primary');
+      });
+
+      var tabSuffix = tabId.replace('tab-', '');
+      var activeBtn = document.getElementById('tab-btn-' + tabSuffix);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-text-muted', 'hover:text-primary');
+        activeBtn.classList.add('text-primary', 'bg-white', 'shadow-sm');
+      }
+    }
+
+    function updateLabExamsQuote() {
+      var checkboxes = document.querySelectorAll('input[name="lab_exams"]:checked');
+      var customExamsInput = document.getElementById('custom_exams');
+      var customExamsValue = customExamsInput ? customExamsInput.value.trim() : '';
+      
+      var selectedList = [];
+      checkboxes.forEach(function(cb) {
+        selectedList.push(cb.value);
+      });
+      
+      var count = selectedList.length;
+      if (customExamsValue !== '') {
+        count += 1;
+      }
+      
+      var countText = count === 1 ? '1 examen' : count + ' exámenes';
+      var countEl = document.getElementById('selected-exams-count');
+      if (countEl) {
+        countEl.textContent = countText;
+      }
+      
+      // Construir mensaje de WhatsApp
+      var textMessage = 'Hola, deseo cotizar y agendar los siguientes exámenes en Venemedical:\n';
+      if (selectedList.length > 0) {
+        selectedList.forEach(function(item) {
+          textMessage += '- ' + item + '\n';
+        });
+      }
+      if (customExamsValue !== '') {
+        textMessage += '- Otros: ' + customExamsValue + '\n';
+      }
+      
+      if (selectedList.length === 0 && customExamsValue === '') {
+        textMessage = 'Hola, deseo cotizar exámenes de laboratorio en Venemedical.';
+      } else {
+        textMessage += '\nPor favor, indíquenme precio y disponibilidad. ¡Muchas gracias!';
+      }
+      
+      var encodedMessage = encodeURIComponent(textMessage);
+      var waBtn = document.getElementById('btn-quote-lab');
+      if (waBtn) {
+        waBtn.href = 'https://wa.me/584241288247?text=' + encodedMessage;
+      }
+    }
+
+    function updateMedQuote() {
+      var specialtyEl = document.getElementById('med_specialty');
+      var specialty = specialtyEl ? specialtyEl.value : '';
+      var dateEl = document.getElementById('appointment_date');
+      var date = dateEl ? dateEl.value : '';
+      var timeEl = document.getElementById('appointment_time');
+      var time = timeEl ? timeEl.value : '';
+      
+      var textMessage = 'Hola, deseo agendar una consulta médica en Venemedical:\n';
+      if (specialty) {
+        textMessage += '- Especialidad: ' + specialty + '\n';
+      } else {
+        textMessage += '- Especialidad: Por definir\n';
+      }
+      if (date) {
+        textMessage += '- Fecha tentativa: ' + date + '\n';
+      }
+      if (time) {
+        textMessage += '- Preferencia horaria: ' + time + '\n';
+      }
+      textMessage += '\nPor favor, confírmenme la disponibilidad de los doctores. ¡Gracias!';
+      
+      var encodedMessage = encodeURIComponent(textMessage);
+      var waBtn = document.getElementById('btn-quote-med');
+      if (waBtn) {
+        waBtn.href = 'https://wa.me/584241288247?text=' + encodedMessage;
+      }
+    }
+
+    function updateDomQuote() {
+      var zoneEl = document.getElementById('domicilio_zone');
+      var zone = zoneEl ? zoneEl.value.trim() : '';
+      var dateEl = document.getElementById('domicilio_date');
+      var date = dateEl ? dateEl.value : '';
+      
+      var textMessage = 'Hola, deseo solicitar el servicio de toma de muestras a domicilio de Venemedical:\n';
+      if (zone) {
+        textMessage += '- Zona/Sector: ' + zone + '\n';
+      }
+      if (date) {
+        textMessage += '- Fecha planificada: ' + date + '\n';
+      }
+      textMessage += '\nPor favor, indíquenme disponibilidad y costos. ¡Gracias!';
+      
+      var encodedMessage = encodeURIComponent(textMessage);
+      var waBtn = document.getElementById('btn-quote-dom');
+      if (waBtn) {
+        waBtn.href = 'https://wa.me/584241288247?text=' + encodedMessage;
+      }
+    }
   </script>
 </body>
 
