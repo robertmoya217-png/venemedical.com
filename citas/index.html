@@ -12,6 +12,10 @@
   <meta property="og:description" content="Centro Médico y Laboratorio Clínico de alta precisión en Caracas, Sucre. Atención inmediata y resultados confiables.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_VE">
+  <meta property="og:image" content="https://venemedical.com/assets/images/unnamed.png">
+  <meta property="og:image:alt" content="Venemedical Care Movil">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://venemedical.com/assets/images/unnamed.png">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -184,120 +188,274 @@
 </header>
 
 <main class="flex-grow">
-  <div class="max-w-container-max mx-auto space-y-12">
+  <div class="max-w-container-max mx-auto space-y-12 py-10 px-gutter">
     <div class="text-center max-w-2xl mx-auto space-y-4">
-      <span class="inline-block bg-primary-fixed-dim text-on-primary-fixed-variant font-label-md px-4 py-1.5 rounded-full uppercase tracking-wider font-semibold">Reserva tu Espacio</span>
+      <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant font-label-md px-4 py-1.5 rounded-full uppercase tracking-wider font-semibold">Reserva tu Espacio</span>
       <h1 class="font-headline-xl text-headline-xl text-on-surface font-bold">Agendar Cita</h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant">Completa el formulario a continuación para solicitar tu cita médica o de laboratorio. Nuestro equipo te contactará vía WhatsApp para confirmar disponibilidad.</p>
+      <p class="font-body-lg text-body-lg text-text-muted">Asistente rápido de citas y laboratorio. Completa los pasos y confirma al instante vía WhatsApp.</p>
     </div>
 
-    <div class="max-w-2xl mx-auto bg-surface p-6 md:p-10 rounded-2xl border border-border-subtle shadow-md">
-      <form id="appointment-form" class="space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Nombre Completo *</label>
-            <input type="text" id="cita-nombre" placeholder="Ej: Juan Pérez" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
-          </div>
-          <div>
-            <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Cédula de Identidad *</label>
-            <input type="text" id="cita-cedula" placeholder="Ej: V-12345678" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
-          </div>
+    <!-- Wizard Progress Bar -->
+    <div class="max-w-md mx-auto relative mb-12">
+      <div class="flex items-center justify-between relative">
+        <!-- Connector line -->
+        <div class="absolute left-4 right-4 top-[20px] -translate-y-1/2 h-1 bg-surface-container-high z-0 rounded-full">
+          <div id="step-progress-bar" class="h-full bg-emerald-600 transition-all duration-300 w-0"></div>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Teléfono (WhatsApp) *</label>
-            <input type="tel" id="cita-telefono" placeholder="Ej: 0424-1234567" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
-          </div>
-          <div>
-            <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Servicio / Especialidad *</label>
-            <select id="cita-servicio" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md">
-              <option value="" disabled selected>Selecciona un servicio</option>
-              <option value="Laboratorio Clínico">Laboratorio Clínico</option>
-              <option value="Medicina General">Medicina General</option>
-              <option value="Cardiología">Cardiología</option>
-              <option value="Pediatría">Pediatría</option>
-              <option value="Ginecología">Ginecología</option>
-              <option value="Odontología">Odontología</option>
-              <option value="Otro Servicio">Otro Servicio</option>
-            </select>
-          </div>
+        <!-- Step 1 Dot -->
+        <div class="flex flex-col items-center relative z-10">
+          <button onclick="goToStep(1)" id="step-dot-1" class="w-10 h-10 rounded-full bg-primary text-white border-2 border-primary flex items-center justify-center font-bold text-sm shadow transition-all focus:outline-none">1</button>
+          <span id="step-label-1" class="text-xs text-primary font-bold mt-2">Servicio</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Fecha Preferida *</label>
-            <input type="date" id="cita-fecha" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
+        <!-- Step 2 Dot -->
+        <div class="flex flex-col items-center relative z-10">
+          <button onclick="goToStep(2)" id="step-dot-2" class="w-10 h-10 rounded-full bg-surface-container-high text-text-muted border-2 border-border-subtle flex items-center justify-center font-bold text-sm shadow transition-all focus:outline-none">2</button>
+          <span id="step-label-2" class="text-xs text-text-muted font-normal mt-2">Detalles</span>
+        </div>
+
+        <!-- Step 3 Dot -->
+        <div class="flex flex-col items-center relative z-10">
+          <button onclick="goToStep(3)" id="step-dot-3" class="w-10 h-10 rounded-full bg-surface-container-high text-text-muted border-2 border-border-subtle flex items-center justify-center font-bold text-sm shadow transition-all focus:outline-none">3</button>
+          <span id="step-label-3" class="text-xs text-text-muted font-normal mt-2">Confirmación</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto bg-white p-6 md:p-10 rounded-3xl border border-border-subtle shadow-xl overflow-hidden min-h-[480px]">
+      
+      <!-- STEP 1 CONTENT: Seleccionar Servicio -->
+      <div id="step-1-content" class="space-y-6">
+        <div class="text-center md:text-left">
+          <h2 class="text-xl font-extrabold text-on-surface">Paso 1: Elige el tipo de servicio</h2>
+          <p class="text-sm text-text-muted mt-1">Selecciona una de las siguientes opciones para iniciar tu reserva.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <!-- Card Laboratorio -->
+          <div onclick="selectService('laboratorio')" id="card-laboratorio" class="service-card group cursor-pointer p-6 rounded-2xl border-2 border-border-subtle bg-surface-pure hover:border-primary hover:bg-primary/5 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center justify-between min-h-[220px]">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="material-symbols-outlined text-[32px]">science</span>
+            </div>
+            <div class="mt-4">
+              <h3 class="text-base font-bold text-on-surface">Laboratorio</h3>
+              <p class="text-[11px] text-text-muted mt-1.5 leading-relaxed">Exámenes de sangre, perfiles completos y resultados en 24h.</p>
+            </div>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              Elegir <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
           </div>
-          <div>
-            <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Horario Preferido *</label>
-            <select id="cita-hora" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md">
-              <option value="" disabled selected>Selecciona un horario</option>
-              <option value="Mañana (8:00 AM - 12:00 PM)">Mañana (8:00 AM - 12:00 PM)</option>
-              <option value="Tarde (1:00 PM - 5:00 PM)">Tarde (1:00 PM - 5:00 PM)</option>
-            </select>
+
+          <!-- Card Consulta -->
+          <div onclick="selectService('consulta')" id="card-consulta" class="service-card group cursor-pointer p-6 rounded-2xl border-2 border-border-subtle bg-surface-pure hover:border-primary hover:bg-primary/5 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center justify-between min-h-[220px]">
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="material-symbols-outlined text-[32px]">stethoscope</span>
+            </div>
+            <div class="mt-4">
+              <h3 class="text-base font-bold text-on-surface">Consulta Médica</h3>
+              <p class="text-[11px] text-text-muted mt-1.5 leading-relaxed">Cardiología, Ginecología, Pediatría y más con especialistas.</p>
+            </div>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+              Elegir <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
+          </div>
+
+          <!-- Card Domicilio -->
+          <div onclick="selectService('domicilio')" id="card-domicilio" class="service-card group cursor-pointer p-6 rounded-2xl border-2 border-border-subtle bg-surface-pure hover:border-primary hover:bg-primary/5 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center justify-between min-h-[220px]">
+            <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="material-symbols-outlined text-[32px]">home_health</span>
+            </div>
+            <div class="mt-4">
+              <h3 class="text-base font-bold text-on-surface">Toma a Domicilio</h3>
+              <p class="text-[11px] text-text-muted mt-1.5 leading-relaxed">Tomamos tus muestras en tu casa u oficina cómodamente.</p>
+            </div>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-rose-600 opacity-0 group-hover:opacity-100 transition-opacity">
+              Elegir <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
           </div>
         </div>
-        
+      </div>
+
+      <!-- STEP 2 CONTENT: Detalles de la Reserva -->
+      <div id="step-2-content" class="space-y-6 hidden">
         <div>
-           <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Comentarios Adicionales</label>
-           <textarea id="cita-comentarios" rows="3" placeholder="Información relevante para tu cita..." class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md"></textarea>
+          <h2 class="text-xl font-extrabold text-on-surface">Paso 2: Detalles de tu solicitud</h2>
+          <p class="text-sm text-text-muted mt-1">Completa la información requerida para tu fecha y tipo de atención.</p>
         </div>
 
-        <button type="submit" class="w-full bg-primary-container text-white py-4 rounded-lg font-label-md text-label-md font-bold hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex justify-center items-center gap-2">
-          <span class="material-symbols-outlined">send</span> Enviar Solicitud por WhatsApp
-        </button>
-      </form>
+        <!-- Dynamic Section: Laboratorio -->
+        <div id="step2-lab-section" class="space-y-5 hidden">
+          <div>
+            <label class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Exámenes requeridos (opcional):</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 cursor-pointer transition-all">
+                <input type="checkbox" name="cita_exams" value="Perfil 20" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary">
+                <div>
+                  <p class="text-xs font-bold text-on-surface">Perfil 20 (Rutina)</p>
+                  <p class="text-[9px] text-text-muted leading-none">Bioanálisis básico completo</p>
+                </div>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 cursor-pointer transition-all">
+                <input type="checkbox" name="cita_exams" value="Perfil Tiroideo" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary">
+                <div>
+                  <p class="text-xs font-bold text-on-surface">Perfil Tiroideo</p>
+                  <p class="text-[9px] text-text-muted leading-none">Evaluación de glándula tiroides</p>
+                </div>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 cursor-pointer transition-all">
+                <input type="checkbox" name="cita_exams" value="Perfil Pre-Operatorio" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary">
+                <div>
+                  <p class="text-xs font-bold text-on-surface">Pre-Operatorio</p>
+                  <p class="text-[9px] text-text-muted leading-none">Exámenes previos a cirugías</p>
+                </div>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-border-subtle bg-surface-pure hover:bg-primary/5 cursor-pointer transition-all">
+                <input type="checkbox" name="cita_exams" value="Perfil Lipídico" class="w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary">
+                <div>
+                  <p class="text-xs font-bold text-on-surface">Perfil Lipídico</p>
+                  <p class="text-[9px] text-text-muted leading-none">Colesterol y triglicéridos</p>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label for="cita-custom-exams" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">¿Otros exámenes específicos?</label>
+            <input type="text" id="cita-custom-exams" placeholder="Ej: Glicemia pre y post, Perfil 20 + TSH..." class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="cita-fecha-lab" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Fecha Preferida *</label>
+              <input type="date" id="cita-fecha-lab" class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" />
+            </div>
+            <div>
+              <label for="cita-hora-lab" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Horario Preferido *</label>
+              <select id="cita-hora-lab" class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low">
+                <option value="Mañana (7:00 AM - 12:00 PM)">Mañana (7:00 AM - 12:00 PM)</option>
+                <option value="Tarde (12:00 PM - 4:30 PM)">Tarde (12:00 PM - 4:30 PM)</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-      <script>
-        // Autocompletar datos si vienen desde el catálogo
-        document.addEventListener('DOMContentLoaded', function() {
-          const params = new URLSearchParams(window.location.search);
-          const examen = params.get('examen');
+        <!-- Dynamic Section: Consulta Médica -->
+        <div id="step2-med-section" class="space-y-5 hidden">
+          <div>
+            <label for="cita-servicio-med" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Especialidad de Interés *</label>
+            <select id="cita-servicio-med" class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low">
+              <option value="" disabled selected>-- Elige una especialidad --</option>
+              <option value="Medicina Interna">Medicina Interna</option>
+              <option value="Cardiología">Cardiología (Eco & Electro)</option>
+              <option value="Ginecología y Obstetricia">Ginecología y Obstetricia</option>
+              <option value="Pediatría">Pediatría y Puericultura</option>
+              <option value="Traumatología">Traumatología</option>
+              <option value="Oftalmología">Oftalmología (Consulta Visual)</option>
+              <option value="Odontología">Odontología General</option>
+              <option value="Otra Especialidad">Otra Especialidad...</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="cita-fecha-med" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Fecha Preferida *</label>
+              <input type="date" id="cita-fecha-med" class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" />
+            </div>
+            <div>
+              <label for="cita-hora-med" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Horario Preferido *</label>
+              <select id="cita-hora-med" class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low">
+                <option value="Mañana (8:00 AM - 12:00 PM)">Mañana (8:00 AM - 12:00 PM)</option>
+                <option value="Tarde (1:00 PM - 4:30 PM)">Tarde (1:00 PM - 4:30 PM)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Section: Domicilio -->
+        <div id="step2-dom-section" class="space-y-5 hidden">
+          <div>
+            <label for="cita-zona-dom" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Zona / Sector de Caracas *</label>
+            <input type="text" id="cita-zona-dom" placeholder="Ej: Chacao, Altamira, Las Mercedes, etc." class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-low" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="cita-fecha-dom" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Fecha Planificada *</label>
+              <input type="date" id="cita-fecha-dom" class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" />
+            </div>
+            <div>
+              <label for="cita-hora-dom" class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Preferencia Horaria *</label>
+              <select id="cita-hora-dom" class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low">
+                <option value="Mañana (7:00 AM - 12:00 PM)">Mañana (7:00 AM - 12:00 PM)</option>
+                <option value="Tarde (12:00 PM - 4:00 PM)">Tarde (12:00 PM - 4:00 PM)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Step 2 Buttons -->
+        <div class="flex items-center justify-between pt-4 border-t border-border-subtle">
+          <button onclick="goToStep(1)" class="px-5 py-3 rounded-xl border border-border-subtle text-text-muted font-bold text-xs hover:bg-surface-container-low transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-base">arrow_back</span> Atrás
+          </button>
+          <button onclick="goToStep(3)" class="px-6 py-3 rounded-xl bg-primary text-white font-bold text-xs hover:bg-primary-container transition-all flex items-center gap-1 shadow-md">
+            Siguiente <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3 CONTENT: Información de Contacto y Confirmación -->
+      <div id="step-3-content" class="space-y-6 hidden">
+        <div>
+          <h2 class="text-xl font-extrabold text-on-surface">Paso 3: Datos de contacto y verificación</h2>
+          <p class="text-sm text-text-muted mt-1">Ingresa tus datos personales y revisa el resumen antes de agendar.</p>
+        </div>
+
+        <form id="appointment-form" onsubmit="handleBookingSubmit(event)" class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Nombre Completo *</label>
+              <input type="text" id="cita-nombre" placeholder="Ej: Juan Pérez" required class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Cédula de Identidad *</label>
+              <input type="text" id="cita-cedula" placeholder="Ej: V-12345678" required class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" />
+            </div>
+          </div>
           
-          if (examen) {
-            // Seleccionar "Laboratorio Clínico" automáticamente
-            const servicioSelect = document.getElementById('cita-servicio');
-            if (servicioSelect) {
-              servicioSelect.value = 'Laboratorio Clínico';
-            }
-            // Llenar los comentarios con el examen deseado
-            const comentariosArea = document.getElementById('cita-comentarios');
-            if (comentariosArea) {
-              comentariosArea.value = 'Deseo agendar el siguiente examen:\n' + examen;
-            }
-          }
-        });
+          <div>
+            <label class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Teléfono (WhatsApp) *</label>
+            <input type="tel" id="cita-telefono" placeholder="Ej: 0424-1234567" required class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" />
+          </div>
 
-        document.getElementById('appointment-form').addEventListener('submit', function(e) {
-          e.preventDefault();
-          const nombre = document.getElementById('cita-nombre').value.trim();
-          const cedula = document.getElementById('cita-cedula').value.trim();
-          const telefono = document.getElementById('cita-telefono').value.trim();
-          const servicio = document.getElementById('cita-servicio').value;
-          const fecha = document.getElementById('cita-fecha').value;
-          const hora = document.getElementById('cita-hora').value;
-          const comentarios = document.getElementById('cita-comentarios').value.trim();
+          <div>
+            <label class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1.5">Comentarios Adicionales</label>
+            <textarea id="cita-comentarios" rows="2" placeholder="Síntomas, requerimientos especiales o indicaciones de acceso..." class="w-full px-4 py-3 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low"></textarea>
+          </div>
 
-          let mensaje = '¡Hola Venemebot! 🤖 Me gustaría solicitar una cita.\n\n';
-          mensaje += '*Datos del Paciente:*\n';
-          mensaje += '- Nombre: ' + nombre + '\n';
-          mensaje += '- Cédula: ' + cedula + '\n';
-          mensaje += '- Teléfono: ' + telefono + '\n\n';
-          mensaje += '*Detalles de la Cita:*\n';
-          mensaje += '- Servicio: ' + servicio + '\n';
-          mensaje += '- Fecha Preferida: ' + fecha + '\n';
-          mensaje += '- Horario Preferido: ' + hora + '\n';
-          if (comentarios) {
-             mensaje += '\n*Comentarios:*\n' + comentarios;
-          }
+          <!-- Summary Receipt Card -->
+          <div class="p-5 rounded-2xl border border-primary/20 bg-primary/[0.02] shadow-inner space-y-3 relative overflow-hidden">
+            <div class="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
+            <h3 class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">receipt_long</span> Resumen de tu solicitud
+            </h3>
+            
+            <div id="booking-summary-receipt" class="space-y-2 bg-white p-4 rounded-xl border border-border-subtle">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
 
-          const encodedMessage = encodeURIComponent(mensaje);
-          const whatsappUrl = 'https://wa.me/584241288247?text=' + encodedMessage;
-          
-          window.open(whatsappUrl, '_blank');
-        });
-      </script>
+          <!-- Navigation Step 3 Buttons -->
+          <div class="flex items-center justify-between pt-4 border-t border-border-subtle gap-4">
+            <button type="button" onclick="goToStep(2)" class="px-5 py-3.5 rounded-xl border border-border-subtle text-text-muted font-bold text-xs hover:bg-surface-container-low transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-base">arrow_back</span> Atrás
+            </button>
+            
+            <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2.5 shadow-lg transform hover:-translate-y-0.5 transition-all text-sm">
+              <span class="material-symbols-outlined text-lg">chat</span>
+              AGENDAR POR WHATSAPP
+            </button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
 </main>
@@ -406,6 +564,295 @@
   // Mostrar badge hero
   var badge = document.getElementById('hero-badge');
   if (badge && window.innerWidth > 480) badge.style.display = 'flex';
+
+  // Lógica del Booking Wizard
+  var currentStep = 1;
+  var selectedService = '';
+
+  window.selectService = function(serviceType) {
+    selectedService = serviceType;
+    
+    document.querySelectorAll('.service-card').forEach(function(card) {
+      card.classList.remove('border-primary', 'bg-primary/5', 'ring-2', 'ring-primary');
+      card.classList.add('border-border-subtle', 'bg-surface-pure');
+    });
+    
+    var activeCard = document.getElementById('card-' + serviceType);
+    if (activeCard) {
+      activeCard.classList.remove('border-border-subtle', 'bg-surface-pure');
+      activeCard.classList.add('border-primary', 'bg-primary/5', 'ring-2', 'ring-primary');
+    }
+    
+    document.getElementById('step2-lab-section').classList.add('hidden');
+    document.getElementById('step2-med-section').classList.add('hidden');
+    document.getElementById('step2-dom-section').classList.add('hidden');
+    
+    if (serviceType === 'laboratorio') {
+      document.getElementById('step2-lab-section').classList.remove('hidden');
+    } else if (serviceType === 'consulta') {
+      document.getElementById('step2-med-section').classList.remove('hidden');
+    } else if (serviceType === 'domicilio') {
+      document.getElementById('step2-dom-section').classList.remove('hidden');
+    }
+    
+    goToStep(2);
+  };
+
+  window.goToStep = function(step) {
+    if (step === 2 && !selectedService) {
+      alert('Por favor, selecciona un servicio primero.');
+      return;
+    }
+    
+    if (step === 3) {
+      if (selectedService === 'consulta') {
+        var specialty = document.getElementById('cita-servicio-med').value;
+        var date = document.getElementById('cita-fecha-med').value;
+        if (!specialty || !date) {
+          alert('Por favor, selecciona la especialidad y fecha de consulta.');
+          return;
+        }
+      } else if (selectedService === 'domicilio') {
+        var zone = document.getElementById('cita-zona-dom').value.trim();
+        var date = document.getElementById('cita-fecha-dom').value;
+        if (!zone || !date) {
+          alert('Por favor, ingresa tu zona de residencia y la fecha para la toma a domicilio.');
+          return;
+        }
+      } else if (selectedService === 'laboratorio') {
+        var date = document.getElementById('cita-fecha-lab').value;
+        if (!date) {
+          alert('Por favor, selecciona una fecha para realizar los exámenes.');
+          return;
+        }
+      }
+      
+      generateSummaryReceipt();
+    }
+
+    currentStep = step;
+    
+    document.getElementById('step-1-content').classList.add('hidden');
+    document.getElementById('step-2-content').classList.add('hidden');
+    document.getElementById('step-3-content').classList.add('hidden');
+    
+    document.getElementById('step-' + step + '-content').classList.remove('hidden');
+    
+    updateProgressBar();
+  };
+
+  function updateProgressBar() {
+    var progressLine = document.getElementById('step-progress-bar');
+    if (progressLine) {
+      if (currentStep === 1) progressLine.style.width = '0%';
+      else if (currentStep === 2) progressLine.style.width = '50%';
+      else if (currentStep === 3) progressLine.style.width = '100%';
+    }
+
+    for (var i = 1; i <= 3; i++) {
+      var targetIndicator = document.getElementById('step-dot-' + i);
+      var label = document.getElementById('step-label-' + i);
+      
+      if (!targetIndicator || !label) continue;
+
+      if (i < currentStep) {
+        targetIndicator.classList.remove('bg-surface-container-high', 'border-border-subtle', 'text-text-muted', 'bg-primary', 'text-white', 'border-primary');
+        targetIndicator.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        targetIndicator.innerHTML = '<span class="material-symbols-outlined text-sm font-bold" style="font-size:16px">done</span>';
+        label.classList.remove('text-primary', 'font-bold', 'text-text-muted');
+        label.classList.add('text-emerald-700', 'font-semibold');
+      } else if (i === currentStep) {
+        targetIndicator.classList.remove('bg-surface-container-high', 'border-border-subtle', 'text-text-muted', 'bg-emerald-600', 'border-emerald-600');
+        targetIndicator.classList.add('bg-primary', 'text-white', 'border-primary');
+        targetIndicator.innerHTML = i;
+        label.classList.remove('text-emerald-700', 'text-text-muted');
+        label.classList.add('text-primary', 'font-bold');
+      } else {
+        targetIndicator.classList.remove('bg-primary', 'text-white', 'border-primary', 'bg-emerald-600', 'border-emerald-600');
+        targetIndicator.classList.add('bg-surface-container-high', 'border-border-subtle', 'text-text-muted');
+        targetIndicator.innerHTML = i;
+        label.classList.remove('text-primary', 'font-bold', 'text-emerald-700');
+        label.classList.add('text-text-muted', 'font-normal');
+      }
+    }
+  }
+
+  function generateSummaryReceipt() {
+    var summaryEl = document.getElementById('booking-summary-receipt');
+    if (!summaryEl) return;
+    
+    var serviceName = '';
+    var detailsHtml = '';
+    var dateVal = '';
+    var timeVal = '';
+    
+    if (selectedService === 'laboratorio') {
+      serviceName = '🧪 Exámenes de Laboratorio';
+      dateVal = document.getElementById('cita-fecha-lab').value;
+      timeVal = document.getElementById('cita-hora-lab').value;
+      
+      var selectedExams = [];
+      document.querySelectorAll('input[name="cita_exams"]:checked').forEach(function(cb) {
+        selectedExams.push(cb.value);
+      });
+      var customEx = document.getElementById('cita-custom-exams').value.trim();
+      if (customEx) {
+        selectedExams.push('Otros: ' + customEx);
+      }
+      
+      if (selectedExams.length > 0) {
+        detailsHtml = '<ul class="list-disc list-inside text-[11px] text-text-main mt-1 space-y-0.5">';
+        selectedExams.forEach(function(ex) {
+          detailsHtml += '<li>' + ex + '</li>';
+        });
+        detailsHtml += '</ul>';
+      } else {
+        detailsHtml = '<p class="text-[11px] text-text-muted italic mt-1">Ningún examen seleccionado (se definirá con soporte).</p>';
+      }
+      
+    } else if (selectedService === 'consulta') {
+      serviceName = '🩺 Consulta Médica Especializada';
+      var specialty = document.getElementById('cita-servicio-med').value;
+      dateVal = document.getElementById('cita-fecha-med').value;
+      timeVal = document.getElementById('cita-hora-med').value;
+      detailsHtml = '<p class="text-[11px] font-bold text-text-main mt-1">Especialidad: ' + specialty + '</p>';
+      
+    } else if (selectedService === 'domicilio') {
+      serviceName = '🚗 Toma de Muestras a Domicilio';
+      var zone = document.getElementById('cita-zona-dom').value.trim();
+      dateVal = document.getElementById('cita-fecha-dom').value;
+      timeVal = document.getElementById('cita-hora-dom').value;
+      detailsHtml = '<p class="text-[11px] font-bold text-text-main mt-1">Zona de Toma: ' + zone + '</p>';
+    }
+    
+    var dateText = 'No especificada';
+    if (dateVal) {
+      var parts = dateVal.split('-');
+      if (parts.length === 3) {
+        dateText = parts[2] + '/' + parts[1] + '/' + parts[0];
+      } else {
+        dateText = dateVal;
+      }
+    }
+    
+    summaryEl.innerHTML = [
+      '<div class="space-y-2">',
+        '<div class="flex justify-between border-b border-border-subtle pb-1">',
+          '<span class="text-[10px] text-text-muted font-semibold">Servicio:</span>',
+          '<span class="text-[10px] font-bold text-primary">' + serviceName + '</span>',
+        '</div>',
+        '<div class="border-b border-border-subtle pb-1">',
+          '<span class="text-[10px] text-text-muted font-semibold">Detalles:</span>',
+          detailsHtml,
+        '</div>',
+        '<div class="flex justify-between border-b border-border-subtle pb-1">',
+          '<span class="text-[10px] text-text-muted font-semibold">Fecha:</span>',
+          '<span class="text-[10px] font-bold text-text-main">' + dateText + '</span>',
+        '</div>',
+        '<div class="flex justify-between">',
+          '<span class="text-[10px] text-text-muted font-semibold">Horario:</span>',
+          '<span class="text-[10px] font-bold text-text-main">' + (timeVal || 'Cualquiera') + '</span>',
+        '</div>',
+      '</div>'
+    ].join('');
+  }
+
+  window.handleBookingSubmit = function(e) {
+    e.preventDefault();
+    
+    var nombre = document.getElementById('cita-nombre').value.trim();
+    var cedula = document.getElementById('cita-cedula').value.trim();
+    var telefono = document.getElementById('cita-telefono').value.trim();
+    var comentarios = document.getElementById('cita-comentarios').value.trim();
+    
+    if (!nombre || !cedula || !telefono) {
+      alert('Por favor, rellena tu Nombre, Cédula y Teléfono de contacto.');
+      return;
+    }
+    
+    var message = '¡Hola Venemebot! 🤖 Me gustaría solicitar una cita.\n\n';
+    message += '*Datos del Paciente:*\n';
+    message += '- Nombre: ' + nombre + '\n';
+    message += '- Cédula: ' + cedula + '\n';
+    message += '- Teléfono: ' + telefono + '\n\n';
+    
+    message += '*Detalles de la Solicitud:*\n';
+    if (selectedService === 'laboratorio') {
+      message += '- Servicio: Laboratorio Clínico 🧪\n';
+      var dateVal = document.getElementById('cita-fecha-lab').value;
+      var timeVal = document.getElementById('cita-hora-lab').value;
+      message += '- Fecha: ' + dateVal + '\n';
+      message += '- Horario: ' + timeVal + '\n';
+      
+      var selectedExams = [];
+      document.querySelectorAll('input[name="cita_exams"]:checked').forEach(function(cb) {
+        selectedExams.push(cb.value);
+      });
+      var customEx = document.getElementById('cita-custom-exams').value.trim();
+      if (customEx) {
+        selectedExams.push(customEx);
+      }
+      
+      if (selectedExams.length > 0) {
+        message += '- Exámenes solicitados:\n';
+        selectedExams.forEach(function(ex) {
+          message += '  • ' + ex + '\n';
+        });
+      }
+    } else if (selectedService === 'consulta') {
+      message += '- Servicio: Consulta Especializada 🩺\n';
+      var specialty = document.getElementById('cita-servicio-med').value;
+      var dateVal = document.getElementById('cita-fecha-med').value;
+      var timeVal = document.getElementById('cita-hora-med').value;
+      message += '- Especialidad: ' + specialty + '\n';
+      message += '- Fecha: ' + dateVal + '\n';
+      message += '- Horario: ' + timeVal + '\n';
+    } else if (selectedService === 'domicilio') {
+      message += '- Servicio: Toma a Domicilio 🚗\n';
+      var zone = document.getElementById('cita-zona-dom').value.trim();
+      var dateVal = document.getElementById('cita-fecha-dom').value;
+      var timeVal = document.getElementById('cita-hora-dom').value;
+      message += '- Zona: ' + zone + '\n';
+      message += '- Fecha: ' + dateVal + '\n';
+      message += '- Horario: ' + timeVal + '\n';
+    }
+    
+    if (comentarios) {
+      message += '\n*Comentarios Adicionales:*\n' + comentarios + '\n';
+    }
+    
+    message += '\nPor favor, indíquenme precio y confirmación. ¡Muchas gracias!';
+    
+    var encoded = encodeURIComponent(message);
+    var waUrl = 'https://wa.me/584241288247?text=' + encoded;
+    
+    window.open(waUrl, '_blank');
+  };
+
+  // Autocompletar si viene del catálogo
+  document.addEventListener('DOMContentLoaded', function() {
+    var params = new URLSearchParams(window.location.search);
+    var examen = params.get('examen');
+    
+    if (examen) {
+      selectedService = 'laboratorio';
+      
+      var activeCard = document.getElementById('card-laboratorio');
+      if (activeCard) {
+        activeCard.classList.remove('border-border-subtle', 'bg-surface-pure');
+        activeCard.classList.add('border-primary', 'bg-primary/5', 'ring-2', 'ring-primary');
+      }
+      
+      document.getElementById('step2-lab-section').classList.remove('hidden');
+      
+      var customExamsInput = document.getElementById('cita-custom-exams');
+      if (customExamsInput) {
+        customExamsInput.value = examen;
+      }
+      
+      goToStep(2);
+    }
+  });
 </script>
 </body>
 </html>
