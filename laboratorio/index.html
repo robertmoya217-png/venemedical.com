@@ -3,41 +3,114 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio Clínico - Venemedical</title>
-  <meta name="description" content="Venemedical - Centro Médico y Laboratorio Clínico de alta precisión en Caracas, Sucre, Estado Miranda. Exámenes de laboratorio, especialistas y agendamiento de citas.">
+  <title>Laboratorio Clínico en Caracas y Petare | Exámenes de Sangre y Perfil 20 - Venemedical</title>
+  <meta name="description" content="Laboratorio clínico en Caracas (Palo Verde / Petare). Perfil 20, hematología completa, química sanguínea, pruebas especiales y toma de muestras a domicilio. ¡Resultados en 24h!">
   <link rel="canonical" href="https://venemedical.com/laboratorio/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Venemedical - Centro Médico y Laboratorio Clínico">
-  <meta property="og:description" content="Centro Médico y Laboratorio Clínico de alta precisión en Caracas, Sucre. Atención inmediata y resultados confiables.">
+    <meta name="keywords" content="laboratorio petare, laboratorio palo verde, perfil 20 caracas, examenes de sangre caracas, laboratorio clinico sucre miranda, pruebas especiales caracas, venemedical laboratorio">
+  <meta name="author" content="Venemedical Care">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="geo.region" content="VE-M">
+  <meta name="geo.placename" content="Caracas, Sucre, Palo Verde, Petare">
+  <meta name="geo.position" content="10.4806;-66.8150">
+  <meta name="ICBM" content="10.4806, -66.8150">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_VE">
+  <meta property="og:site_name" content="Venemedical">
+  <meta property="og:title" content="Laboratorio Clínico en Caracas y Petare | Venemedical">
+  <meta property="og:description" content="Más de 500 pruebas de laboratorio: Perfil 20, hematología, pruebas especiales y toma a domicilio en Caracas. Cotiza por WhatsApp.">
+  <meta property="og:url" content="https://venemedical.com/laboratorio/">
+  <meta property="og:image" content="https://venemedical.com/assets/images/unnamed.png">
+  <meta property="og:image:alt" content="Venemedical Care">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Laboratorio Clínico en Caracas y Petare | Venemedical">
+  <meta name="twitter:description" content="Más de 500 pruebas de laboratorio: Perfil 20, hematología, pruebas especiales y toma a domicilio en Caracas. Cotiza por WhatsApp.">
+  <meta name="twitter:image" content="https://venemedical.com/assets/images/unnamed.png">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["MedicalClinic", "MedicalLaboratory"],
-    "name": "Venemedical Care",
-    "alternateName": "Venemedical Centro Médico y Laboratorio Clínico",
-    "description": "Centro médico y laboratorio clínico de alta precisión en Caracas, Sucre, Estado Miranda.",
-    "telephone": "+58-424-1296288",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Primer local a mano izquierda, Local 11",
-      "addressLocality": "Sucre, Caracas",
-      "addressRegion": "Estado Miranda",
-      "postalCode": "1080",
-      "addressCountry": "VE"
-    },
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "16:30" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "13:00" }
-    ],
-    "medicalSpecialty": ["MedicalLaboratory","PrimaryCare","GeneralPractice"],
-    "contactPoint": [
-      { "@type": "ContactPoint", "telephone": "+58-424-1296288", "contactType": "Recepción Central" },
-      { "@type": "ContactPoint", "telephone": "+58-424-1288247", "contactType": "Atención al Cliente / WhatsApp" }
+    "@graph": [
+      {
+        "@type": [
+          "MedicalWebPage",
+          "MedicalLaboratory"
+        ],
+        "@id": "https://venemedical.com/laboratorio/#webpage",
+        "name": "Laboratorio Clínico Venemedical",
+        "url": "https://venemedical.com/laboratorio/",
+        "description": "Servicio de laboratorio clínico de alta precisión en Caracas, Sucre, Palo Verde y Petare.",
+        "medicalSpecialty": "MedicalLaboratory",
+        "areaServed": [
+          "Caracas",
+          "Petare",
+          "Palo Verde",
+          "Municipio Sucre",
+          "Estado Miranda"
+        ],
+        "availableService": [
+          {
+            "@type": "MedicalTest",
+            "name": "Perfil 20 y Química Sanguínea"
+          },
+          {
+            "@type": "MedicalTest",
+            "name": "Hematología Completa"
+          },
+          {
+            "@type": "MedicalTest",
+            "name": "Perfil Tiroideo (TSH, T3, T4)"
+          },
+          {
+            "@type": "MedicalTest",
+            "name": "Perfil Lipídico"
+          },
+          {
+            "@type": "MedicalTest",
+            "name": "Examen General de Orina y Heces"
+          },
+          {
+            "@type": "MedicalProcedure",
+            "name": "Toma de Muestra a Domicilio en Caracas"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://venemedical.com/laboratorio/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿En cuánto tiempo entregan los resultados de los exámenes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La mayoría de los exámenes de rutina como Hematología, Perfil 20 y Química se entregan el mismo día o en 24 horas vía digital (WhatsApp o correo)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se requiere cita previa para los exámenes de laboratorio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No es indispensable para la toma en sede (atendemos por orden de llegada a partir de las 7:00 AM). Para toma a domicilio sí se recomienda agendar previamente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo solicito una toma de muestras a domicilio en Caracas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Escríbenos directamente al WhatsApp +58 424-1288247 indicando tu zona de Caracas y los exámenes solicitados en tu orden médica."
+            }
+          }
+        ]
+      }
     ]
   }
   </script>

@@ -1,27 +1,54 @@
-# robots.txt for venemedical.com
+# robots.txt para https://venemedical.com/
+# Optimizado para buscadores globales, SEO local y motores de Inteligencia Artificial (LLMs)
 
 User-agent: *
 Allow: /
 
-# Disallow private directories
+# Proteger carpetas internas y de configuración
 Disallow: /configuracion_seo_ia/
 Disallow: /private/
 Disallow: /tmp/
 
-# Allow AI crawlers
+# Motores de Búsqueda Tradicionales
 User-agent: Googlebot
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+# Rastreadores de Inteligencia Artificial (Indexación Semántica y Respuestas Generativas)
 User-agent: Google-Extended
 Allow: /
 
 User-agent: GPTBot
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Mapa del Sitio Canónico
 Sitemap: https://venemedical.com/sitemap.xml
