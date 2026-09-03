@@ -129,6 +129,13 @@
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="../assets/css/venemedical.css">
+  <!-- Clean URL normalizer for SEO -->
+  <script id="canonical-url-cleaner">
+    if (window.location.pathname.endsWith('/index.html')) {
+      var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
+      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
 </head>
 <body class="antialiased">
 
@@ -137,7 +144,7 @@
 
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
   <div class="vm-drawer-header">
-    <a href="../index.html">
+    <a href="/">
       <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
     </a>
     <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
@@ -146,31 +153,31 @@
   </div>
 
   <nav class="vm-drawer-nav">
-    <a href="../index.html" class="vm-drawer-link active" aria-current="page">
+    <a href="/" class="vm-drawer-link active" aria-current="page">
       <span class="material-symbols-outlined" style="font-size:22px">home</span>
       Inicio
     </a>
-    <a href="../nosotros/index.html" class="vm-drawer-link">
+    <a href="/nosotros/" class="vm-drawer-link">
       <span class="material-symbols-outlined" style="font-size:22px">info</span>
       Nosotros
     </a>
-    <a href="../laboratorio/index.html" class="vm-drawer-link">
+    <a href="/laboratorio/" class="vm-drawer-link">
       <span class="material-symbols-outlined" style="font-size:22px">science</span>
       Laboratorio
     </a>
-    <a href="../catalogo-visual/index.html" class="vm-drawer-link">
+    <a href="/catalogo-visual/" class="vm-drawer-link">
       <span class="material-symbols-outlined" style="font-size:22px">auto_stories</span>
       Catálogo Visual
     </a>
-    <a href="../especialistas/index.html" class="vm-drawer-link">
+    <a href="/especialistas/" class="vm-drawer-link">
       <span class="material-symbols-outlined" style="font-size:22px">stethoscope</span>
       Especialistas
     </a>
-    <a href="../citas/index.html" class="vm-drawer-link">
+    <a href="/citas/" class="vm-drawer-link">
       <span class="material-symbols-outlined" style="font-size:22px">calendar_month</span>
       Citas
     </a>
-    <a href="../ubicacion/index.html" class="vm-drawer-link">
+    <a href="/ubicacion/" class="vm-drawer-link">
       <span class="material-symbols-outlined" style="font-size:22px">location_on</span>
       Ubicación
     </a>
@@ -191,7 +198,7 @@
           Instagram: @venemedicalcare
         </a>
       </div>
-      <a href="../citas/index.html" class="vm-drawer-cta mt-1">
+      <a href="/citas/" class="vm-drawer-cta mt-1">
         <span class="material-symbols-outlined" style="font-size:20px">calendar_month</span>
         Agendar Cita Médica
       </a>
@@ -227,26 +234,26 @@
   <header class="vm-navbar" role="banner">
   <div class="vm-navbar-inner">
     <!-- Logo -->
-    <a href="../index.html" aria-label="Venemedical - Página de inicio">
+    <a href="/" aria-label="Venemedical - Página de inicio">
       <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
     </a>
 
     <!-- Nav Desktop -->
     <nav aria-label="Navegación principal">
       <ul class="vm-nav-links">
-        <li><a href="../index.html" class="vm-nav-link">Inicio</a></li>
-        <li><a href="../nosotros/index.html" class="vm-nav-link">Nosotros</a></li>
-        <li><a href="../laboratorio/index.html" class="vm-nav-link active" aria-current="page">Laboratorio</a></li>
-        <li><a href="../catalogo-visual/index.html" class="vm-nav-link">Catálogo Visual</a></li>
-        <li><a href="../especialistas/index.html" class="vm-nav-link">Especialistas</a></li>
-        <li><a href="../citas/index.html" class="vm-nav-link">Citas</a></li>
-        <li><a href="../ubicacion/index.html" class="vm-nav-link">Ubicación</a></li>
+        <li><a href="/" class="vm-nav-link">Inicio</a></li>
+        <li><a href="/nosotros/" class="vm-nav-link">Nosotros</a></li>
+        <li><a href="/laboratorio/" class="vm-nav-link active" aria-current="page">Laboratorio</a></li>
+        <li><a href="/catalogo-visual/" class="vm-nav-link">Catálogo Visual</a></li>
+        <li><a href="/especialistas/" class="vm-nav-link">Especialistas</a></li>
+        <li><a href="/citas/" class="vm-nav-link">Citas</a></li>
+        <li><a href="/ubicacion/" class="vm-nav-link">Ubicación</a></li>
       </ul>
     </nav>
 
     <!-- Trailing -->
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="../citas/index.html" class="vm-btn-cta" style="display:none" id="nav-cta">
+      <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
         <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
         Agendar Cita
       </a>
@@ -359,6 +366,85 @@
   </div>
 </div>
 
+
+  <!-- SECCIÓN SEO & PREGUNTAS FRECUENTES (LOCAL SEO CARACAS / PETARE / PALO VERDE) -->
+  <section class="py-16 bg-surface-container-lowest border-t border-border-subtle" id="preguntas-frecuentes">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary mb-3">
+          <span class="material-symbols-outlined text-sm">help</span> Preguntas Frecuentes
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-on-surface tracking-tight">
+          Exámenes de Laboratorio en Caracas y Petare
+        </h2>
+        <p class="text-sm text-text-muted mt-2">
+          Resolvemos tus dudas sobre requisitos de ayuno, perfil 20, cotización inmediata y entrega de resultados.
+        </p>
+      </div>
+
+      <div class="space-y-4 max-w-3xl mx-auto">
+        <!-- FAQ Item 1 -->
+        <details class="group bg-white rounded-2xl border border-border-subtle p-5 shadow-sm transition-all duration-200 open:shadow-md hover:border-primary/40">
+          <summary class="flex justify-between items-center font-bold text-on-surface cursor-pointer list-none select-none text-base">
+            <span>¿En cuánto tiempo entregan los resultados de los exámenes?</span>
+            <span class="material-symbols-outlined text-primary transition-transform duration-200 group-open:rotate-180">expand_more</span>
+          </summary>
+          <div class="mt-3 text-sm text-text-muted leading-relaxed border-t border-border-subtle/50 pt-3">
+            La mayoría de las pruebas de rutina como <strong>Hematología Completa, Perfil 20, Química Sanguínea, Examen de Orina y Heces</strong> se entregan el mismo día o en un lapso máximo de <strong>24 horas</strong>. Puedes consultarlos y descargarlos en línea desde nuestro portal o recibirlos directamente por WhatsApp y correo electrónico.
+          </div>
+        </details>
+
+        <!-- FAQ Item 2 -->
+        <details class="group bg-white rounded-2xl border border-border-subtle p-5 shadow-sm transition-all duration-200 open:shadow-md hover:border-primary/40">
+          <summary class="flex justify-between items-center font-bold text-on-surface cursor-pointer list-none select-none text-base">
+            <span>¿Cómo puedo cotizar mi orden médica de exámenes por WhatsApp?</span>
+            <span class="material-symbols-outlined text-primary transition-transform duration-200 group-open:rotate-180">expand_more</span>
+          </summary>
+          <div class="mt-3 text-sm text-text-muted leading-relaxed border-t border-border-subtle/50 pt-3">
+            Es muy fácil y rápido: solo tómale una foto a tu orden médica y envíala a nuestro WhatsApp oficial al 
+            <a href="https://wa.me/584241288247?text=Hola,%20adjunto%20mi%20orden%20m%C3%A9dica%20para%20cotizaci%C3%B3n." target="_blank" rel="noopener noreferrer" class="text-primary font-bold hover:underline inline-flex items-center gap-1">
+              0424-1288247 <span class="material-symbols-outlined text-xs">chat</span>
+            </a>. 
+            Te responderemos al instante con el presupuesto detallado en divisas y bolívares (tasa oficial BCV) y los métodos de pago disponibles.
+          </div>
+        </details>
+
+        <!-- FAQ Item 3 -->
+        <details class="group bg-white rounded-2xl border border-border-subtle p-5 shadow-sm transition-all duration-200 open:shadow-md hover:border-primary/40">
+          <summary class="flex justify-between items-center font-bold text-on-surface cursor-pointer list-none select-none text-base">
+            <span>¿Tienen servicio de toma de muestras a domicilio en Caracas?</span>
+            <span class="material-symbols-outlined text-primary transition-transform duration-200 group-open:rotate-180">expand_more</span>
+          </summary>
+          <div class="mt-3 text-sm text-text-muted leading-relaxed border-t border-border-subtle/50 pt-3">
+            ¡Sí! Con nuestro servicio <strong>Venemedical Care Móvil</strong>, nuestro personal de bioanálisis acude directamente a tu residencia u oficina en Petare, Palo Verde, Municipio Sucre, La California, Boleíta y diversas zonas de Caracas. Ideal para personas mayores, niños o pacientes con movilidad reducida.
+          </div>
+        </details>
+
+        <!-- FAQ Item 4 -->
+        <details class="group bg-white rounded-2xl border border-border-subtle p-5 shadow-sm transition-all duration-200 open:shadow-md hover:border-primary/40">
+          <summary class="flex justify-between items-center font-bold text-on-surface cursor-pointer list-none select-none text-base">
+            <span>¿Cuáles son las condiciones de ayuno recomendadas?</span>
+            <span class="material-symbols-outlined text-primary transition-transform duration-200 group-open:rotate-180">expand_more</span>
+          </summary>
+          <div class="mt-3 text-sm text-text-muted leading-relaxed border-t border-border-subtle/50 pt-3">
+            Para pruebas químicas y perfiles (Glicemia, Colesterol, Triglicéridos, Perfil 20) se requiere un ayuno estricto de entre <strong>8 y 12 horas</strong>. Durante ese tiempo solo puedes ingerir agua pura. Atendemos por orden de llegada para toma de muestras en sede de lunes a viernes desde las 7:00 AM y sábados desde las 8:00 AM.
+          </div>
+        </details>
+      </div>
+
+      <!-- Banner de Cotización Rápida -->
+      <div class="mt-12 bg-gradient-to-r from-primary to-primary-container text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl max-w-3xl mx-auto">
+        <div class="text-center sm:text-left">
+          <h3 class="text-lg sm:text-xl font-bold">¿Necesitas cotizar exámenes de inmediato?</h3>
+          <p class="text-xs sm:text-sm text-white/80 mt-1">Escríbenos directamente a WhatsApp y recibe tu presupuesto con tasa oficial.</p>
+        </div>
+        <a href="https://wa.me/584241288247?text=Hola,%20deseo%20cotizar%20ex%C3%A1menes%20de%20laboratorio." target="_blank" rel="noopener noreferrer" class="flex-shrink-0 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all hover:scale-105">
+          <span class="material-symbols-outlined">chat</span> Cotizar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- FOOTER -->
@@ -366,7 +452,7 @@
   <div class="vm-footer-inner">
     <!-- Brand -->
     <div>
-      <a href="../index.html" aria-label="Venemedical inicio">
+      <a href="/" aria-label="Venemedical inicio">
         <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
       </a>
       <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
@@ -376,12 +462,12 @@
     <div>
       <p class="vm-footer-heading">Navegación</p>
       <nav class="vm-footer-nav" aria-label="Enlaces del footer">
-        <a href="../index.html" class="vm-footer-link active">Inicio</a>
-        <a href="../nosotros/index.html" class="vm-footer-link">Nosotros</a>
-        <a href="../laboratorio/index.html" class="vm-footer-link">Laboratorio</a>
-        <a href="../especialistas/index.html" class="vm-footer-link">Especialistas</a>
-        <a href="../citas/index.html" class="vm-footer-link">Agendar Cita</a>
-        <a href="../ubicacion/index.html" class="vm-footer-link">Ubicación</a>
+        <a href="/" class="vm-footer-link active">Inicio</a>
+        <a href="/nosotros/" class="vm-footer-link">Nosotros</a>
+        <a href="/laboratorio/" class="vm-footer-link">Laboratorio</a>
+        <a href="/especialistas/" class="vm-footer-link">Especialistas</a>
+        <a href="/citas/" class="vm-footer-link">Agendar Cita</a>
+        <a href="/ubicacion/" class="vm-footer-link">Ubicación</a>
       </nav>
     </div>
 
@@ -389,8 +475,8 @@
     <div>
       <p class="vm-footer-heading">Legal</p>
       <nav class="vm-footer-nav">
-        <a href="../aviso-de-privacidad/index.html" class="vm-footer-link">Aviso de Privacidad</a>
-        <a href="../terminos-y-condiciones/index.html" class="vm-footer-link">Términos y Condiciones</a>
+        <a href="/aviso-de-privacidad/" class="vm-footer-link">Aviso de Privacidad</a>
+        <a href="/terminos-y-condiciones/" class="vm-footer-link">Términos y Condiciones</a>
       </nav>
     </div>
 
@@ -427,9 +513,9 @@
       <h3 style="margin:0 0 8px 0;font-size:18px;font-weight:700;color:var(--color-on-surface)">Aviso de Cookies y Términos Legal</h3>
       <p class="vm-cookie-text">
         Para acceder y utilizar los servicios de nuestro portal, debe aceptar nuestra
-        <a href="../aviso-de-privacidad/index.html" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Política de Privacidad</a>
+        <a href="/aviso-de-privacidad/" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Política de Privacidad</a>
         y nuestros
-        <a href="../terminos-y-condiciones/index.html" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Términos y Condiciones</a>.
+        <a href="/terminos-y-condiciones/" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Términos y Condiciones</a>.
       </p>
     </div>
     <div class="vm-cookie-actions">

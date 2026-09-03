@@ -653,6 +653,13 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"></noscript>
+  <!-- Clean URL normalizer for SEO -->
+  <script id="canonical-url-cleaner">
+    if (window.location.pathname.endsWith('/index.html')) {
+      var cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') || '/';
+      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
 </head>
 
 <body>
@@ -661,17 +668,17 @@
 <div id="mobile-backdrop" class="vm-backdrop" aria-hidden="true"></div>
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú" role="navigation">
   <div class="vm-drawer-head">
-    <a href="../index.html" aria-label="Inicio"><img src="../assets/images/logo.png" alt="Venemedical" class="vm-drawer-logo"></a>
+    <a href="/" aria-label="Inicio"><img src="../assets/images/logo.png" alt="Venemedical" class="vm-drawer-logo"></a>
     <button id="drawer-close" class="vm-drawer-close" aria-label="Cerrar"><span class="mi">close</span></button>
   </div>
   <nav class="vm-drawer-nav">
-    <a href="../index.html"><span class="mi">home</span>Inicio</a>
-    <a href="../nosotros/index.html"><span class="mi">info</span>Nosotros</a>
-    <a href="../laboratorio/index.html"><span class="mi">science</span>Laboratorio</a>
-    <a href="../catalogo-visual/index.html" class="active" aria-current="page"><span class="mi">auto_stories</span>Catálogo Visual</a>
-    <a href="../especialistas/index.html"><span class="mi">stethoscope</span>Especialistas</a>
-    <a href="../citas/index.html"><span class="mi">calendar_month</span>Citas</a>
-    <a href="../ubicacion/index.html"><span class="mi">location_on</span>Ubicación</a>
+    <a href="/"><span class="mi">home</span>Inicio</a>
+    <a href="/nosotros/"><span class="mi">info</span>Nosotros</a>
+    <a href="/laboratorio/"><span class="mi">science</span>Laboratorio</a>
+    <a href="/catalogo-visual/" class="active" aria-current="page"><span class="mi">auto_stories</span>Catálogo Visual</a>
+    <a href="/especialistas/"><span class="mi">stethoscope</span>Especialistas</a>
+    <a href="/citas/"><span class="mi">calendar_month</span>Citas</a>
+    <a href="/ubicacion/"><span class="mi">location_on</span>Ubicación</a>
   </nav>
   <div class="vm-drawer-foot" style="padding:14px;display:flex;flex-direction:column;gap:12px">
     <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500">
@@ -688,7 +695,7 @@
         Instagram: @venemedicalcare
       </a>
     </div>
-    <a href="../citas/index.html" class="vm-drawer-cta">
+    <a href="/citas/" class="vm-drawer-cta">
       <span class="mi" style="font-size:18px">calendar_month</span>Agendar Cita Médica
     </a>
   </div>
@@ -721,17 +728,17 @@
 <!-- ═══════════ NAVBAR ═══════════ -->
 <header class="vm-navbar">
   <div class="vm-navbar-inner">
-    <a href="../index.html" aria-label="Venemedical Inicio">
+    <a href="/" aria-label="Venemedical Inicio">
       <img src="../assets/images/logo.png" alt="Venemedical" class="vm-logo">
     </a>
     <ul class="vm-nav" role="list">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../nosotros/index.html">Nosotros</a></li>
-      <li><a href="../laboratorio/index.html">Laboratorio</a></li>
-      <li><a href="../catalogo-visual/index.html" class="active" aria-current="page">Catálogo Visual</a></li>
-      <li><a href="../especialistas/index.html">Especialistas</a></li>
-      <li><a href="../citas/index.html">Citas</a></li>
-      <li><a href="../ubicacion/index.html">Ubicación</a></li>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/nosotros/">Nosotros</a></li>
+      <li><a href="/laboratorio/">Laboratorio</a></li>
+      <li><a href="/catalogo-visual/" class="active" aria-current="page">Catálogo Visual</a></li>
+      <li><a href="/especialistas/">Especialistas</a></li>
+      <li><a href="/citas/">Citas</a></li>
+      <li><a href="/ubicacion/">Ubicación</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:8px">
       <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer" class="vm-cta" id="nav-wa" style="display:none">
@@ -746,7 +753,7 @@
 
 <!-- ═══════════ BREADCRUMB ═══════════ -->
 <div class="breadcrumb">
-  <a href="../index.html">Inicio</a>
+  <a href="/">Inicio</a>
   <span class="sep" aria-hidden="true">›</span>
   <span aria-current="page">Catálogo Visual</span>
 </div>
@@ -853,21 +860,21 @@
     <div>
       <h4 class="footer-heading">Navegación</h4>
       <nav class="footer-nav">
-        <a href="../index.html" class="footer-link">Inicio</a>
-        <a href="../nosotros/index.html" class="footer-link">Nosotros</a>
-        <a href="../laboratorio/index.html" class="footer-link">Laboratorio</a>
-        <a href="../catalogo-visual/index.html" class="footer-link active">Catálogo Visual</a>
-        <a href="../especialistas/index.html" class="footer-link">Especialistas</a>
-        <a href="../citas/index.html" class="footer-link">Citas</a>
+        <a href="/" class="footer-link">Inicio</a>
+        <a href="/nosotros/" class="footer-link">Nosotros</a>
+        <a href="/laboratorio/" class="footer-link">Laboratorio</a>
+        <a href="/catalogo-visual/" class="footer-link active">Catálogo Visual</a>
+        <a href="/especialistas/" class="footer-link">Especialistas</a>
+        <a href="/citas/" class="footer-link">Citas</a>
       </nav>
     </div>
     <div>
       <h4 class="footer-heading">Servicios</h4>
       <nav class="footer-nav">
-        <a href="../laboratorio/index.html" class="footer-link">Exámenes Clínicos</a>
-        <a href="../catalogo-visual/index.html" class="footer-link">Catálogo de Lentes</a>
-        <a href="../citas/index.html" class="footer-link">Agendar una Cita</a>
-        <a href="../resultados/index.html" class="footer-link">Consultar Resultados</a>
+        <a href="/laboratorio/" class="footer-link">Exámenes Clínicos</a>
+        <a href="/catalogo-visual/" class="footer-link">Catálogo de Lentes</a>
+        <a href="/citas/" class="footer-link">Agendar una Cita</a>
+        <a href="/resultados/" class="footer-link">Consultar Resultados</a>
       </nav>
     </div>
     <div>
@@ -881,8 +888,8 @@
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Venemedical. Todos los derechos reservados.
-      | <a href="../aviso-de-privacidad/index.html">Aviso de Privacidad</a>
-      | <a href="../terminos-y-condiciones/index.html">Términos y Condiciones</a>
+      | <a href="/aviso-de-privacidad/">Aviso de Privacidad</a>
+      | <a href="/terminos-y-condiciones/">Términos y Condiciones</a>
     </p>
   </div>
 </footer>
@@ -903,9 +910,9 @@
       <h3 style="margin:0 0 8px 0;font-size:18px;font-weight:700;color:var(--color-on-surface)">Aviso de Cookies y Términos Legal</h3>
       <p class="vm-cookie-text">
         Para acceder y utilizar los servicios de nuestro portal, debe aceptar nuestra
-        <a href="../aviso-de-privacidad/index.html" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Política de Privacidad</a>
+        <a href="/aviso-de-privacidad/" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Política de Privacidad</a>
         y nuestros
-        <a href="../terminos-y-condiciones/index.html" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Términos y Condiciones</a>.
+        <a href="/terminos-y-condiciones/" style="color:var(--color-primary);text-decoration:underline;font-weight:600">Términos y Condiciones</a>.
       </p>
     </div>
     <div class="vm-cookie-actions">
