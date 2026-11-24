@@ -1,65 +1,499 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://venemedical.com/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/"/>
+    <image:image>
+      <image:loc>https://venemedical.com/assets/images/logo.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/assets/images/unnamed.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://venemedical.com/laboratorio/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/laboratorio/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/laboratorio/"/>
+    <image:image>
+      <image:loc>https://venemedical.com/assets/images/unnamed.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://venemedical.com/citas/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/citas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/citas/"/>
   </url>
   <url>
     <loc>https://venemedical.com/catalogo-visual/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/catalogo-visual/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/catalogo-visual/"/>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p2_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p1_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p27_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p3_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p3_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p3_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p3_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p3_img5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p3_img6.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p4_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p4_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p4_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p4_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p4_img5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p4_img6.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p5_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p5_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p5_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p5_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p5_img5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p5_img6.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p6_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p6_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p6_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p7_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p7_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p7_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p7_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p8_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p8_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p9_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p9_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p10_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p10_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p10_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p10_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p10_img5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p11_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p11_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p12_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p12_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p13_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p13_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p13_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p13_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p13_img5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p14_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p14_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p15_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p15_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p15_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p16_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p16_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p17_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p17_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p17_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p17_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p18_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p18_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p18_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p19_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p19_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p19_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p19_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p20_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p20_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p20_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p21_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p21_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p21_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p22_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p22_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p22_img3.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p22_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p23_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p23_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p24_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p24_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p25_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p25_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p25_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p25_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p25_img5.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p26_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_dama_p26_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p2_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p2_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p3_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p3_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p4_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p4_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p5_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p5_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p5_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p6_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p6_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p7_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p7_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p7_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p7_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p8_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p8_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p9_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p9_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p10_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p10_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p10_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p11_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p11_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p12_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p12_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p12_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p13_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p13_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p13_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p14_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p14_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p14_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p15_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p15_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p15_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p16_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p16_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p16_img3.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p16_img4.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p16_img7.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p16_img8.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p17_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p17_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p18_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p18_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p19_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p19_img2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p20_img1.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://venemedical.com/imagenes_catalogos_palazzo/palazzo_caballeros_p20_img2.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://venemedical.com/especialistas/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/especialistas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/especialistas/"/>
   </url>
   <url>
     <loc>https://venemedical.com/ubicacion/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/ubicacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/ubicacion/"/>
   </url>
   <url>
     <loc>https://venemedical.com/nosotros/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/nosotros/"/>
   </url>
   <url>
     <loc>https://venemedical.com/resultados/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/resultados/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/resultados/"/>
   </url>
   <url>
     <loc>https://venemedical.com/aviso-de-privacidad/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/aviso-de-privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/aviso-de-privacidad/"/>
   </url>
   <url>
     <loc>https://venemedical.com/terminos-y-condiciones/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://venemedical.com/terminos-y-condiciones/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://venemedical.com/terminos-y-condiciones/"/>
   </url>
 </urlset>
