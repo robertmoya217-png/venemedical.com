@@ -64,40 +64,28 @@
     onScroll(); // run once on load
   }
 
-  /* ── 3. Cookie Banner ─────────────────────────────────────────── */
+  /* ── 3. Cookie Banner (barra inferior no bloqueante) ─────────── */
   function initCookieBanner() {
     var banner = document.getElementById('vm-cookie-banner');
     if (!banner) return;
 
-    var isLegalPage = window.location.pathname.indexOf('aviso-de-privacidad') !== -1 ||
-                      window.location.pathname.indexOf('terminos-y-condiciones') !== -1;
+    var accepted = false;
+    try { accepted = localStorage.getItem('vm_cookies_accepted') === '1'; } catch (_e) {}
 
-    if (isLegalPage) {
-      document.body.classList.add('legal-page');
-    }
-
-    // Si ya aceptó, no mostrar y marcar body
-    if (localStorage.getItem('vm_cookies_accepted') === '1') {
+    if (accepted) {
       banner.style.display = 'none';
       banner.classList.add('hidden');
       document.body.classList.add('cookies-accepted');
-      document.body.style.overflow = '';
       return;
-    }
-
-    // Si NO ha aceptado y NO está en una página de legales, bloquear el scroll para forzar aceptación
-    if (!isLegalPage) {
-      document.body.style.overflow = 'hidden';
     }
 
     var acceptBtn = document.getElementById('vm-cookie-accept');
     if (acceptBtn) {
       acceptBtn.addEventListener('click', function () {
-        localStorage.setItem('vm_cookies_accepted', '1');
+        try { localStorage.setItem('vm_cookies_accepted', '1'); } catch (_e) {}
         document.body.classList.add('cookies-accepted');
-        document.body.style.overflow = '';
         banner.classList.add('hidden');
-        setTimeout(function () { banner.style.display = 'none'; }, 400);
+        setTimeout(function () { banner.style.display = 'none'; }, 350);
       });
     }
   }

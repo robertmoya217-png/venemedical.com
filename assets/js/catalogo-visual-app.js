@@ -129,9 +129,9 @@
   /* ──────────────────────────────────────────────────────────────────
      CARRUSEL HERO
   ────────────────────────────────────────────────────────────────── */
-  let carouselIdx      = 0;
-  let carouselPaused   = false;
-  let carouselInterval = null;
+  let carouselIdx    = 0;
+  let carouselTimer  = null;
+  let carouselPaused = false;
   const SLIDE_DURATION = 5500;
 
   function buildSlide(s) {
@@ -152,9 +152,10 @@
           el('button', {
             class: 'btn-primary',
             onclick: () => {
-              const col = s.g === 'Dama' ? 'Palazzo Dama & Finezza' : s.g === 'Caballero' ? 'Palazzo Caballeros' : 'TODOS';
+              const col = s.g === 'Dama' ? 'Palazzo Dama & Finezza' : s.g === 'Caballero' ? 'Palazzo Caballeros' : 'Cristales Anti-Reflejo';
               state.collection = col;
               applyFilters();
+              renderChips();
               renderCatalog();
               document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
@@ -169,17 +170,26 @@
     return slide;
   }
 
+  function scheduleNextSlide() {
+    clearTimeout(carouselTimer);
+    const pbar = $('cpbar');
+    if (pbar) {
+      pbar.classList.remove('running');
+      void pbar.offsetWidth;
+      if (!carouselPaused && !document.hidden) pbar.classList.add('running');
+    }
+    if (carouselPaused || document.hidden) return;
+    carouselTimer = setTimeout(() => goToSlide(carouselIdx + 1), SLIDE_DURATION);
+  }
+
   function initCarousel(slides) {
     const track  = $('ctrack');
     const dots   = $('cdots');
-    const pbar   = $('cpbar');
     const wrap   = document.querySelector('.carousel-wrap');
     if (!track || !slides.length) return;
 
-    // Render slides
     slides.forEach(s => track.appendChild(buildSlide(s)));
 
-    // Render dots
     slides.forEach((_, i) => {
       const dot = el('button', {
         class: 'carousel-dot' + (i === 0 ? ' active' : ''),
@@ -191,7 +201,6 @@
       dots.appendChild(dot);
     });
 
-    // Touch/swipe
     let tx = 0;
     wrap.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
     wrap.addEventListener('touchend',   e => {
@@ -200,19 +209,22 @@
       if (d < -45) goToSlide(carouselIdx - 1);
     }, { passive: true });
 
-    wrap.addEventListener('mouseenter', () => { carouselPaused = true;  });
-    wrap.addEventListener('mouseleave', () => { carouselPaused = false; });
+    wrap.addEventListener('mouseenter', () => { carouselPaused = true; wrap.classList.add('paused'); clearTimeout(carouselTimer); });
+    wrap.addEventListener('mouseleave', () => { carouselPaused = false; wrap.classList.remove('paused'); scheduleNextSlide(); });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) clearTimeout(carouselTimer);
+      else if (!carouselPaused) scheduleNextSlide();
+    });
 
     $('c-prev').addEventListener('click', () => goToSlide(carouselIdx - 1));
     $('c-next').addEventListener('click', () => goToSlide(carouselIdx + 1));
 
-    startCarouselProgress(pbar, slides.length);
+    scheduleNextSlide();
   }
 
   function goToSlide(n) {
     const slides  = document.querySelectorAll('.carousel-slide');
     const dots    = document.querySelectorAll('.carousel-dot');
-    const pbar    = $('cpbar');
     const len     = slides.length;
     carouselIdx   = ((n % len) + len) % len;
 
@@ -223,65 +235,38 @@
       d.setAttribute('aria-selected', i === carouselIdx ? 'true' : 'false');
     });
 
-    if (pbar) { pbar.style.transition = 'none'; pbar.style.width = '0%'; setTimeout(() => { pbar.style.transition = ''; }, 60); }
-  }
-
-  function startCarouselProgress(pbar, total) {
-    if (carouselInterval) clearInterval(carouselInterval);
-    let t0 = Date.now();
-
-    carouselInterval = setInterval(() => {
-      if (carouselPaused) { t0 = Date.now() - (parseFloat(pbar.style.width) / 100 * SLIDE_DURATION); return; }
-      const elapsed = Date.now() - t0;
-      const pct = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
-      pbar.style.width = pct + '%';
-      if (elapsed >= SLIDE_DURATION) {
-        goToSlide(carouselIdx + 1);
-        t0 = Date.now();
-      }
-    }, 60);
+    scheduleNextSlide();
   }
 
   /* ──────────────────────────────────────────────────────────────────
      RENDERIZADO DEL CATÁLOGO
   ────────────────────────────────────────────────────────────────── */
-  function createImageEl(src, alt) {
-    const wrap = el('div', { class: 'card-img-wrap' });
-    const sk   = el('div', { class: 'skeleton' });
-    const img  = el('img', { src: '', alt: alt, loading: 'lazy', decoding: 'async' });
-
+  function attachNativeLazyImg(wrap, src, alt, skStyle) {
+    const sk  = el('div', skStyle ? { class: 'skeleton', style: skStyle } : { class: 'skeleton' });
+    const img = el('img', { src: src, alt: alt, loading: 'lazy', decoding: 'async' });
+    const markDone = () => { img.classList.add('loaded'); sk.classList.add('done'); };
+    img.onload  = markDone;
+    img.onerror = () => { sk.classList.add('done'); img.alt = 'No disponible'; };
     wrap.appendChild(sk);
     wrap.appendChild(img);
-
-    // Lazy load via Intersection Observer
-    if ('IntersectionObserver' in window) {
-      const obs = new IntersectionObserver((entries, o) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            img.src = src;
-            img.onload = () => { img.classList.add('loaded'); sk.classList.add('done'); };
-            img.onerror = () => { sk.classList.add('done'); img.alt = 'No disponible'; };
-            o.disconnect();
-          }
-        });
-      }, { rootMargin: '200px' });
-      obs.observe(img);
-    } else {
-      img.src = src;
-      img.onload = () => { img.classList.add('loaded'); sk.classList.add('done'); };
-    }
+    if (img.complete && img.naturalWidth > 0) markDone();
     return wrap;
   }
 
+  function openModalForItem(item) {
+    const filteredIdx = state.filtered.indexOf(item);
+    if (filteredIdx !== -1) openModal(filteredIdx);
+  }
+
   function createGridCard(item) {
-    const imgWrap = createImageEl(item.url, item.title);
+    const imgWrap = attachNativeLazyImg(el('div', { class: 'card-img-wrap' }), item.url, item.title);
 
     const ref = el('span', { class: 'card-ref' }, item.ref);
 
     const overlay = el('div', { class: 'card-overlay' },
       el('button', {
         class: 'card-overlay-btn cob-zoom',
-        onclick: (e) => { e.stopPropagation(); openModal(item.idx); }
+        onclick: (e) => { e.stopPropagation(); openModalForItem(item); }
       }, icon('zoom_in', ''), ' Ampliar'),
       el('a', {
         class: 'card-overlay-btn cob-wa',
@@ -307,39 +292,19 @@
       role: 'button',
       tabindex: '0',
       'aria-label': 'Ver ' + item.title,
-      onclick: () => openModal(item.idx)
+      onclick: () => openModalForItem(item)
     }, imgWrap, foot);
 
-    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(item.idx); }});
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModalForItem(item); }});
     return card;
   }
 
   function createListCard(item) {
-    const thumbWrap = el('div', { class: 'list-thumb' });
-    const sk  = el('div', { class: 'skeleton', style: 'border-radius:var(--r-lg)' });
-    const img = el('img', { src: '', alt: item.title, loading: 'lazy', decoding: 'async' });
-    thumbWrap.appendChild(sk);
-    thumbWrap.appendChild(img);
-
-    if ('IntersectionObserver' in window) {
-      const obs = new IntersectionObserver((entries, o) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            img.src = item.url;
-            img.onload = () => { img.classList.add('loaded'); sk.classList.add('done'); };
-            o.disconnect();
-          }
-        });
-      }, { rootMargin: '200px' });
-      obs.observe(img);
-    } else {
-      img.src = item.url;
-      img.onload = () => { img.classList.add('loaded'); sk.classList.add('done'); };
-    }
+    const thumbWrap = attachNativeLazyImg(el('div', { class: 'list-thumb' }), item.url, item.title, 'border-radius:var(--r-lg)');
 
     return el('article', {
       class: 'list-card',
-      onclick: () => openModal(item.idx)
+      onclick: () => openModalForItem(item)
     },
       el('div', { style: 'display:flex;align-items:center;gap:10px;min-width:0;flex:1' },
         thumbWrap,
@@ -350,7 +315,7 @@
         )
       ),
       el('div', { class: 'list-actions', onclick: e => e.stopPropagation() },
-        el('button', { class: 'list-btn view', onclick: () => openModal(item.idx) }, icon('visibility', ''), ' Ver'),
+        el('button', { class: 'list-btn view', onclick: () => openModalForItem(item) }, icon('visibility', ''), ' Ver'),
         el('a', {
           class: 'list-btn wa',
           href: waUrl('Hola, me interesa: ' + item.title + ' (Ref: ' + item.ref + ')'),

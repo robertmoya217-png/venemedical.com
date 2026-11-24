@@ -6,6 +6,7 @@
   <title>Agendar Cita Médica y Exámenes de Laboratorio en Caracas | Venemedical</title>
   <meta name="description" content="Agenda tu consulta médica con especialistas o exámenes de laboratorio en Caracas en 3 simples pasos. Confirmación inmediata vía WhatsApp. ¡Sin esperas ni colas!">
   <link rel="canonical" href="https://venemedical.com/citas/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- Open Graph -->
     <meta name="keywords" content="agendar cita medica caracas, agendar laboratorio petare, citas venemedical, consulta medica caracas palo verde">
@@ -55,16 +56,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Material Symbols (UNA sola vez) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <!-- Fuentes e iconos sin bloqueo de render -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block"></noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Config centralizada -->
-  <script src="../assets/js/tailwind-config.js"></script>
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="../assets/css/venemedical.css">
+  <link rel="stylesheet" href="../assets/css/tailwind.min.css">
   <!-- Clean URL normalizer for SEO -->
   <script id="canonical-url-cleaner">
     if (window.location.pathname.endsWith('/index.html')) {
@@ -81,7 +82,7 @@
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
   <div class="vm-drawer-header">
     <a href="/">
-      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48" loading="lazy" decoding="async">
     </a>
     <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
       <span class="material-symbols-outlined">close</span>
@@ -171,7 +172,7 @@
   <div class="vm-navbar-inner">
     <!-- Logo -->
     <a href="/" aria-label="Venemedical - Página de inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48" decoding="async" fetchpriority="high">
     </a>
 
     <!-- Nav Desktop -->
@@ -188,7 +189,7 @@
 
     <!-- Trailing -->
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
+      <a href="/citas/" class="vm-btn-cta" id="nav-cta">
         <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
         Agendar Cita
       </a>
@@ -477,7 +478,7 @@
     <!-- Brand -->
     <div>
       <a href="/" aria-label="Venemedical inicio">
-        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52" loading="lazy" decoding="async">
       </a>
       <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
     </div>
@@ -558,20 +559,15 @@
      class="vm-whatsapp-btn"
      aria-label="Contactar a Venemebot por WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="vm-whatsapp-icon" aria-hidden="true">
-      <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7C53.7 322.6 45 289 45 254c0-98.7 80.3-179 179-179 47.8 0 92.8 18.6 126.6 52.4 33.8 33.8 52.4 78.8 52.4 126.6 0 98.7-80.3 178.7-179.1 178.7zm101.7-134.1c-5.6-2.8-33.1-16.3-38.2-18.2-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18.2-17.6 22-3.3 3.7-6.5 4.2-12.1 1.4-5.6-2.8-23.7-8.7-45.1-27.8-16.7-14.9-28-33.3-31.3-39-3.3-5.6-.4-8.6 2.4-11.4 2.5-2.5 5.6-6.5 8.4-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7 1-6.9-.5-9.8-1.4-2.8-12.5-30.1-<!-- JS compartido (al final del body para no bloquear render) -->
-<script src="../assets/js/supabase-client.js"></script>
-<script src="../assets/js/venemedical.js"></script>
-<script>
-  // Mostrar el botón CTA del navbar en desktop
-  var navCta = document.getElementById('nav-cta');
-  if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
-  window.addEventListener('resize', function() {
-    if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
-  });
-  // Mostrar badge hero
-  var badge = document.getElementById('hero-badge');
-  if (badge && window.innerWidth > 480) badge.style.display = 'flex';
+      <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7C53.7 322.6 45 289 45 254c0-98.7 80.3-179 179-179 47.8 0 92.8 18.6 126.6 52.4 33.8 33.8 52.4 78.8 52.4 126.6 0 98.7-80.3 178.7-179.1 178.7zm101.7-134.1c-5.6-2.8-33.1-16.3-38.2-18.2-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18.2-17.6 22-3.3 3.7-6.5 4.2-12.1 1.4-5.6-2.8-23.7-8.7-45.1-27.8-16.7-14.9-28-33.3-31.3-39-3.3-5.6-.4-8.6 2.4-11.4 2.5-2.5 5.6-6.5 8.4-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7 1-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.8 1.4-14.9 6.9-5.1 5.6-19.6 19.2-19.6 46.8 0 27.6 20.1 54.3 22.9 58 2.8 3.7 39.6 60.5 95.9 84.9 13.4 5.8 23.9 9.3 32.1 11.9 13.5 4.3 25.8 3.7 35.5 2.3 10.8-1.6 33.1-13.5 37.8-26.6 4.7-13.1 4.7-24.3 3.3-26.6-1.4-2.3-5.1-3.7-10.7-6.5z"/>
+    </svg>
+  </a>
+</div>
 
+<!-- JS compartido (al final del body para no bloquear render) -->
+<script src="../assets/js/venemedical.js" defer></script>
+<script src="../assets/js/campana.js" defer></script>
+<script>
   // Lógica del Booking Wizard
   var currentStep = 1;
   var selectedService = '';
@@ -684,6 +680,12 @@
     }
   }
 
+  function escHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
   function generateSummaryReceipt() {
     var summaryEl = document.getElementById('booking-summary-receipt');
     if (!summaryEl) return;
@@ -710,7 +712,7 @@
       if (selectedExams.length > 0) {
         detailsHtml = '<ul class="list-disc list-inside text-[11px] text-text-main mt-1 space-y-0.5">';
         selectedExams.forEach(function(ex) {
-          detailsHtml += '<li>' + ex + '</li>';
+          detailsHtml += '<li>' + escHtml(ex) + '</li>';
         });
         detailsHtml += '</ul>';
       } else {
@@ -722,14 +724,14 @@
       var specialty = document.getElementById('cita-servicio-med').value;
       dateVal = document.getElementById('cita-fecha-med').value;
       timeVal = document.getElementById('cita-hora-med').value;
-      detailsHtml = '<p class="text-[11px] font-bold text-text-main mt-1">Especialidad: ' + specialty + '</p>';
+      detailsHtml = '<p class="text-[11px] font-bold text-text-main mt-1">Especialidad: ' + escHtml(specialty) + '</p>';
       
     } else if (selectedService === 'domicilio') {
       serviceName = '🚗 Toma de Muestras a Domicilio';
       var zone = document.getElementById('cita-zona-dom').value.trim();
       dateVal = document.getElementById('cita-fecha-dom').value;
       timeVal = document.getElementById('cita-hora-dom').value;
-      detailsHtml = '<p class="text-[11px] font-bold text-text-main mt-1">Zona de Toma: ' + zone + '</p>';
+      detailsHtml = '<p class="text-[11px] font-bold text-text-main mt-1">Zona de Toma: ' + escHtml(zone) + '</p>';
     }
     
     var dateText = 'No especificada';
@@ -746,7 +748,7 @@
       '<div class="space-y-2">',
         '<div class="flex justify-between border-b border-border-subtle pb-1">',
           '<span class="text-[10px] text-text-muted font-semibold">Servicio:</span>',
-          '<span class="text-[10px] font-bold text-primary">' + serviceName + '</span>',
+          '<span class="text-[10px] font-bold text-primary">' + escHtml(serviceName) + '</span>',
         '</div>',
         '<div class="border-b border-border-subtle pb-1">',
           '<span class="text-[10px] text-text-muted font-semibold">Detalles:</span>',
@@ -754,11 +756,11 @@
         '</div>',
         '<div class="flex justify-between border-b border-border-subtle pb-1">',
           '<span class="text-[10px] text-text-muted font-semibold">Fecha:</span>',
-          '<span class="text-[10px] font-bold text-text-main">' + dateText + '</span>',
+          '<span class="text-[10px] font-bold text-text-main">' + escHtml(dateText) + '</span>',
         '</div>',
         '<div class="flex justify-between">',
           '<span class="text-[10px] text-text-muted font-semibold">Horario:</span>',
-          '<span class="text-[10px] font-bold text-text-main">' + (timeVal || 'Cualquiera') + '</span>',
+          '<span class="text-[10px] font-bold text-text-main">' + escHtml(timeVal || 'Cualquiera') + '</span>',
         '</div>',
       '</div>'
     ].join('');

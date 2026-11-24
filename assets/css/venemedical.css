@@ -3,10 +3,7 @@
    Versión: 2.0 | GitHub Pages compatible
    ════════════════════════════════════════════════════════════════════ */
 
-/* ── 1. Google Fonts (una sola vez, para todo el sitio) ─────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-/* ── 2. Reset y Box Model ────────────────────────────────────────── */
+/* ── 1. Reset y Box Model (Inter se precarga sin bloqueo en HTML) ─ */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -188,7 +185,7 @@ img {
   list-style: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .vm-nav-links {
     display: flex;
   }
@@ -257,6 +254,16 @@ img {
   transform: translateY(0);
 }
 
+#nav-cta {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  #nav-cta {
+    display: inline-flex;
+  }
+}
+
 /* Botón hamburguesa */
 .vm-menu-toggle {
   display: flex;
@@ -276,7 +283,7 @@ img {
   background: var(--color-surface-container-low);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .vm-menu-toggle {
     display: none;
   }
@@ -308,13 +315,15 @@ img {
   z-index: 999;
   box-shadow: var(--shadow-xl);
   transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
 .vm-drawer.open {
   transform: translateX(0);
+  visibility: visible;
 }
 
 .vm-drawer-header {
@@ -552,6 +561,8 @@ img {
   padding: 24px;
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition-base), transform var(--transition-base);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 220px;
 }
 
 .vm-card:hover {
@@ -559,70 +570,91 @@ img {
   transform: translateY(-2px);
 }
 
-/* ── 9. Cookie Banner & Modal Overlay ────────────────────────────── */
+/* ── 9. Cookie Banner (barra inferior no bloqueante) ─────────────── */
 .vm-cookie-banner {
   position: fixed;
-  inset: 0;
-  z-index: 100000;
-  padding: 16px;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  inset: auto 0 0 0;
+  z-index: 9998;
+  padding: 12px 16px;
+  background: transparent;
+  pointer-events: none;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
-body.legal-page .vm-cookie-banner {
-  inset: auto 0 0 0;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  pointer-events: none;
-}
-
-body.legal-page .vm-cookie-banner .vm-cookie-inner {
-  pointer-events: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .vm-cookie-banner.hidden {
   opacity: 0;
+  transform: translateY(16px);
   visibility: hidden;
   pointer-events: none;
 }
 
 .vm-cookie-inner {
-  max-width: 520px;
+  pointer-events: auto;
+  max-width: 780px;
   width: 100%;
   margin: 0 auto;
   background: var(--color-surface-pure);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
-  padding: 28px 24px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-xl);
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
   align-items: center;
-  text-align: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.vm-cookie-inner > div:first-child {
+  font-size: 22px !important;
+  flex-shrink: 0;
+}
+
+.vm-cookie-inner > div:nth-child(2) {
+  flex: 1;
+  min-width: 200px;
+}
+
+.vm-cookie-inner h3 {
+  font-size: 13px !important;
+  margin: 0 0 2px 0 !important;
 }
 
 .vm-cookie-text {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--color-on-surface-variant);
-  line-height: 1.6;
-  text-align: center;
+  line-height: 1.45;
+  text-align: left;
 }
 
 .vm-cookie-actions {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  width: 100%;
+  flex-shrink: 0;
+}
+
+.vm-cookie-actions .vm-btn {
+  padding: 9px 18px !important;
+  font-size: 13px !important;
+  width: auto !important;
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .vm-cookie-inner > div:first-child,
+  .vm-cookie-inner h3 {
+    display: none;
+  }
+  .vm-cookie-actions {
+    width: 100%;
+  }
+  .vm-cookie-actions .vm-btn {
+    width: 100% !important;
+  }
 }
 
 /* ── 10. Venemebot Widget (WhatsApp) ─────────────────────────────── */
@@ -754,6 +786,13 @@ body.legal-page .vm-cookie-banner .vm-cookie-inner {
 
 /* ── 15. Responsive Utilidades ───────────────────────────────────── */
 @media (max-width: 767px) {
+  /* Evita zoom forzado de iOS Safari al enfocar campos < 16px */
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
   .vm-hero {
     padding: 48px var(--spacing-margin-mobile) 64px;
   }
@@ -839,3 +878,199 @@ body.legal-page .vm-cookie-banner .vm-cookie-inner {
   transform: translateY(-4px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
+/* ── 20. Banner Black Friday (intacto el diseño original del sitio) */
+.vm-bf-nums { font-variant-numeric: tabular-nums; }
+
+@keyframes vm-bf-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.vm-bf-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #f5c451;
+  box-shadow: 0 0 8px #f5c451;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: vm-bf-blink 1.6s ease-in-out infinite;
+}
+
+/* Barra superior 1 línea (todas las páginas) */
+.vm-bf-bar {
+  background: #090d16;
+  color: #f8fafc;
+  font-size: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(245, 196, 81, 0.35);
+  position: relative;
+  z-index: 40;
+}
+
+.vm-bf-bar-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.vm-bf-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.vm-bf-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 196, 81, 0.14);
+  color: #f8d477;
+  border: 1px solid rgba(245, 196, 81, 0.55);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 2px 9px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.vm-bf-bar-label { color: #cbd5e1; font-size: 12px; }
+.vm-bf-bar-label strong { color: #ffffff; font-weight: 800; }
+
+.vm-bf-bar-cta {
+  background: #f5c451;
+  color: #090d16;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vm-bf-bar-cta:hover { filter: brightness(1.08); }
+
+/* Franja Black Friday compacta arriba del Hero (sin tocar el Hero original) */
+.vm-bf-strip {
+  background: linear-gradient(100deg, #090d16 0%, #0f1e3a 60%, #090d16 100%);
+  border-bottom: 2px solid #f5c451;
+  padding: 14px var(--spacing-gutter);
+}
+
+.vm-bf-strip-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+}
+
+.vm-bf-strip-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.vm-bf-strip-titles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+}
+
+.vm-bf-strip-titles strong {
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #f5c451;
+}
+
+.vm-bf-strip-titles span {
+  font-size: 13px;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.vm-bf-strip-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.vm-bf-clock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vm-bf-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(245, 196, 81, 0.45);
+  border-radius: 10px;
+  min-width: 54px;
+  padding: 6px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.vm-bf-box b {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.vm-bf-box small {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f8d477;
+  margin-top: 2px;
+}
+
+.vm-bf-colon {
+  font-size: 18px;
+  font-weight: 900;
+  color: #f5c451;
+}
+
+.vm-bf-strip-btn {
+  background: #f5c451;
+  color: #090d16;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 11px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(245, 196, 81, 0.3);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.vm-bf-strip-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+@media (max-width: 767px) {
+  .vm-bf-bar { padding: 7px 12px; }
+  .vm-bf-bar-cta { padding: 4px 9px; font-size: 10px; }
+  .vm-bf-strip { padding: 14px var(--spacing-margin-mobile); }
+  .vm-bf-strip-right { width: 100%; justify-content: space-between; }
+  .vm-bf-box { min-width: 48px; padding: 5px 6px; }
+  .vm-bf-box b { font-size: 18px; }
+  .vm-bf-strip-btn { padding: 10px 14px; font-size: 12px; }
+}
+
+

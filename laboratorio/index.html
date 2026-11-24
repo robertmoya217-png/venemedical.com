@@ -6,6 +6,7 @@
   <title>Laboratorio Clínico en Caracas y Petare | Exámenes de Sangre y Perfil 20 - Venemedical</title>
   <meta name="description" content="Laboratorio clínico en Caracas (Palo Verde / Petare). Perfil 20, hematología completa, química sanguínea, pruebas especiales y toma de muestras a domicilio. ¡Resultados en 24h!">
   <link rel="canonical" href="https://venemedical.com/laboratorio/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- Open Graph -->
     <meta name="keywords" content="laboratorio petare, laboratorio palo verde, perfil 20 caracas, examenes de sangre caracas, laboratorio clinico sucre miranda, pruebas especiales caracas, venemedical laboratorio">
@@ -119,16 +120,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Material Symbols (UNA sola vez) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <!-- Fuentes e iconos sin bloqueo de render -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block"></noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Config centralizada -->
-  <script src="../assets/js/tailwind-config.js"></script>
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="../assets/css/venemedical.css">
+  <link rel="stylesheet" href="../assets/css/tailwind.min.css">
   <!-- Clean URL normalizer for SEO -->
   <script id="canonical-url-cleaner">
     if (window.location.pathname.endsWith('/index.html')) {
@@ -145,7 +146,7 @@
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
   <div class="vm-drawer-header">
     <a href="/">
-      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48" loading="lazy" decoding="async">
     </a>
     <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
       <span class="material-symbols-outlined">close</span>
@@ -235,7 +236,7 @@
   <div class="vm-navbar-inner">
     <!-- Logo -->
     <a href="/" aria-label="Venemedical - Página de inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48" decoding="async" fetchpriority="high">
     </a>
 
     <!-- Nav Desktop -->
@@ -253,7 +254,7 @@
 
     <!-- Trailing -->
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
+      <a href="/citas/" class="vm-btn-cta" id="nav-cta">
         <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
         Agendar Cita
       </a>
@@ -277,14 +278,14 @@
                         Tecnología de vanguardia y especialistas altamente capacitados para brindar resultados precisos y confiables en tiempo récord. Su salud respaldada por casi una década de excelencia médica.
                     </p>
 <div class="flex flex-wrap gap-4 mt-4">
-<button class="bg-[#28A745] text-on-primary px-6 py-3 rounded-lg hover:shadow-md transition-all font-label-md text-label-md flex items-center gap-2">
+<a href="/citas/" class="bg-[#28A745] text-on-primary px-6 py-3 rounded-lg hover:shadow-md transition-all font-label-md text-label-md flex items-center gap-2">
 <span class="material-symbols-outlined filled-icon">calendar_month</span>
                             Agendar Prueba
-                        </button>
-<button class="bg-surface-container text-primary-fixed-variant px-6 py-3 rounded-lg hover:bg-border-subtle transition-all font-label-md text-label-md flex items-center gap-2 border border-border-subtle">
+                        </a>
+<a href="#catalogo-examenes" class="bg-surface-container text-primary px-6 py-3 rounded-lg hover:bg-border-subtle transition-all font-label-md text-label-md flex items-center gap-2 border border-border-subtle">
 <span class="material-symbols-outlined">science</span>
                             Ver Catálogo
-                        </button>
+                        </a>
 </div>
 </div>
 <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container shadow-sm">
@@ -331,9 +332,17 @@
     <span class="material-symbols-outlined animate-spin text-primary text-4xl">autorenew</span>
   </div>
 
+  <!-- Contador de resultados -->
+  <p id="catalogo-count" class="text-xs font-semibold text-text-muted mb-4 text-center hidden"></p>
+
   <!-- Grid de Resultados -->
   <div id="catalogo-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
     <!-- Tarjetas dinámicas insertadas por JS -->
+  </div>
+
+  <!-- Paginación incremental -->
+  <div id="catalogo-more-wrap" class="mt-8 text-center hidden">
+    <button id="catalogo-more-btn" type="button" class="vm-btn vm-btn-outline">Ver más exámenes</button>
   </div>
 
   <!-- Estado Vacío -->
@@ -344,27 +353,6 @@
   </div>
 
 </section>
-
-<!-- Bottom Sheet para Resultados de Búsqueda (Móvil) -->
-<div id="search-bottom-sheet" class="fixed inset-0 z-50 flex flex-col justify-end pointer-events-none sm:hidden transition-all duration-300">
-  <div id="search-bottom-sheet-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-  <div id="search-bottom-sheet-content" class="relative bg-surface-pure w-full h-[75vh] rounded-t-2xl shadow-xl flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto">
-    <!-- Header/Handle -->
-    <div class="w-full flex justify-center py-3 cursor-grab" id="bottom-sheet-handle">
-      <div class="w-12 h-1.5 bg-border-subtle rounded-full"></div>
-    </div>
-    <div class="px-4 pb-3 border-b border-border-subtle flex justify-between items-center">
-       <h3 class="font-headline-sm text-on-surface">Resultados (<span id="bottom-sheet-count">0</span>)</h3>
-       <button id="close-bottom-sheet" class="text-on-surface-variant hover:text-error transition-colors p-1">
-         <span class="material-symbols-outlined">close</span>
-       </button>
-    </div>
-    <!-- Contenido Scroll -->
-    <div id="bottom-sheet-results" class="flex-grow overflow-y-auto p-4 flex flex-col gap-3">
-      <!-- Resultados inyectados por JS -->
-    </div>
-  </div>
-</div>
 
 
   <!-- SECCIÓN SEO & PREGUNTAS FRECUENTES (LOCAL SEO CARACAS / PETARE / PALO VERDE) -->
@@ -453,7 +441,7 @@
     <!-- Brand -->
     <div>
       <a href="/" aria-label="Venemedical inicio">
-        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52" loading="lazy" decoding="async">
       </a>
       <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
     </div>
@@ -540,19 +528,9 @@
 </div>
 
 <!-- JS compartido (al final del body para no bloquear render) -->
-<script src="../assets/data/catalogo_data.js"></script>
-<script src="../assets/js/venemedical.js"></script>
-<script src="../assets/js/catalogo.js"></script>
-<script>
-  // Mostrar el botón CTA del navbar en desktop
-  var navCta = document.getElementById('nav-cta');
-  if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
-  window.addEventListener('resize', function() {
-    if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
-  });
-  // Mostrar badge hero
-  var badge = document.getElementById('hero-badge');
-  if (badge && window.innerWidth > 480) badge.style.display = 'flex';
-</script>
+<script src="../assets/data/catalogo_data.js" defer></script>
+<script src="../assets/js/venemedical.js" defer></script>
+<script src="../assets/js/campana.js" defer></script>
+<script src="../assets/js/catalogo.js" defer></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
   <title>Ubicación y Horarios en Caracas (Palo Verde / Petare) | Venemedical</title>
   <meta name="description" content="Cómo llegar a Venemedical: Local 11, Sucre, Palo Verde / Petare, Caracas. Teléfonos, horarios (Lunes a Sábado), direcciones y mapa interactivo en Google Maps.">
   <link rel="canonical" href="https://venemedical.com/ubicacion/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- Open Graph -->
     <meta name="keywords" content="ubicacion venemedical caracas, como llegar venemedical petare, laboratorio palo verde direccion, telefonos venemedical miranda">
@@ -87,16 +88,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Material Symbols (UNA sola vez) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <!-- Fuentes e iconos sin bloqueo de render -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block"></noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Config centralizada -->
-  <script src="../assets/js/tailwind-config.js"></script>
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="../assets/css/venemedical.css">
+  <link rel="stylesheet" href="../assets/css/tailwind.min.css">
   <!-- Clean URL normalizer for SEO -->
   <script id="canonical-url-cleaner">
     if (window.location.pathname.endsWith('/index.html')) {
@@ -113,7 +114,7 @@
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
   <div class="vm-drawer-header">
     <a href="/">
-      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48" loading="lazy" decoding="async">
     </a>
     <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
       <span class="material-symbols-outlined">close</span>
@@ -199,7 +200,7 @@
   <div class="vm-navbar-inner">
     <!-- Logo -->
     <a href="/" aria-label="Venemedical - Página de inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48" decoding="async" fetchpriority="high">
     </a>
 
     <!-- Nav Desktop -->
@@ -216,7 +217,7 @@
 
     <!-- Trailing -->
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
+      <a href="/citas/" class="vm-btn-cta" id="nav-cta">
         <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
         Agendar Cita
       </a>
@@ -229,10 +230,8 @@
 
 <main class="flex-grow">
 
-  <!-- HERO SECTION with 3D Canvas Background -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-[#001a40] via-[#003f87] to-[#0056b3] py-20 px-gutter">
-    <!-- Three.js 3D Canvas -->
-    <canvas id="globe-canvas" class="absolute inset-0 w-full h-full opacity-30 pointer-events-none"></canvas>
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#001a40] via-[#003f87] to-[#0056b3] py-16 md:py-20 px-4 sm:px-gutter">
     <!-- Floating particles overlay -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div class="absolute w-2 h-2 bg-white/20 rounded-full animate-ping" style="top:15%;left:20%;animation-delay:0s;animation-duration:3s"></div>
@@ -252,13 +251,6 @@
       <p class="text-base md:text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
         Instalaciones modernas diseñadas para tu comodidad. Atención médica de primer nivel a minutos de tu hogar.
       </p>
-      <!-- Live Status Badge -->
-      <div id="live-status-badge" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 px-4 py-2.5 rounded-xl mt-2">
-        <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span id="status-text" class="text-sm font-bold text-white"></span>
-        <span class="text-white/40 text-xs">|</span>
-        <span id="status-hours" class="text-xs text-white/60"></span>
-      </div>
     </div>
   </section>
 
@@ -329,12 +321,12 @@
               </div>
             </div>
             <div class="space-y-3">
-              <a href="https://wa.me/584241296288" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-primary/5 border border-transparent hover:border-primary/20 transition-all">
+              <a href="tel:+584241296288" class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-primary/5 border border-transparent hover:border-primary/20 transition-all">
                 <div>
-                  <span class="text-[9px] text-text-muted uppercase tracking-wider font-bold block">Recepción Central</span>
+                  <span class="text-[9px] text-text-muted uppercase tracking-wider font-bold block">Recepción Central (Llamadas)</span>
                   <span class="text-sm font-bold text-primary">0424-1296288</span>
                 </div>
-                <span class="material-symbols-outlined text-emerald-600 text-base">chat</span>
+                <span class="material-symbols-outlined text-primary text-base">call</span>
               </a>
               <a href="https://wa.me/584241288247" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-primary/5 border border-transparent hover:border-primary/20 transition-all">
                 <div>
@@ -415,7 +407,7 @@
     <!-- Brand -->
     <div>
       <a href="/" aria-label="Venemedical inicio">
-        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52" loading="lazy" decoding="async">
       </a>
       <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
     </div>
@@ -502,17 +494,7 @@
 </div>
 
 <!-- JS compartido (al final del body para no bloquear render) -->
-<script src="../assets/js/venemedical.js"></script>
-<script>
-  // Mostrar el botón CTA del navbar en desktop
-  var navCta = document.getElementById('nav-cta');
-  if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
-  window.addEventListener('resize', function() {
-    if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
-  });
-  // Mostrar badge hero
-  var badge = document.getElementById('hero-badge');
-  if (badge && window.innerWidth > 480) badge.style.display = 'flex';
-</script>
+<script src="../assets/js/venemedical.js" defer></script>
+<script src="../assets/js/campana.js" defer></script>
 </body>
 </html>

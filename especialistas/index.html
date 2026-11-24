@@ -6,6 +6,7 @@
   <title>Médicos Especialistas en Caracas | Cardiología, Ginecología y Más - Venemedical</title>
   <meta name="description" content="Consultas con médicos especialistas en Caracas (Palo Verde / Petare): Cardiología, Ginecología, Medicina Interna, Urología y Neurología. Agenda tu cita en Venemedical.">
   <link rel="canonical" href="https://venemedical.com/especialistas/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- Open Graph -->
     <meta name="keywords" content="medicos especialistas caracas, cardiologo caracas, ginecologo petare, urologo caracas, medicina interna palo verde, neurologo sucre miranda">
@@ -80,16 +81,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Material Symbols (UNA sola vez) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <!-- Fuentes e iconos sin bloqueo de render -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block"></noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Config centralizada -->
-  <script src="../assets/js/tailwind-config.js"></script>
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="../assets/css/venemedical.css">
+  <link rel="stylesheet" href="../assets/css/tailwind.min.css">
   <!-- Clean URL normalizer for SEO -->
   <script id="canonical-url-cleaner">
     if (window.location.pathname.endsWith('/index.html')) {
@@ -106,7 +107,7 @@
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
   <div class="vm-drawer-header">
     <a href="/">
-      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48" loading="lazy" decoding="async">
     </a>
     <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
       <span class="material-symbols-outlined">close</span>
@@ -192,7 +193,7 @@
   <div class="vm-navbar-inner">
     <!-- Logo -->
     <a href="/" aria-label="Venemedical - Página de inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48" decoding="async" fetchpriority="high">
     </a>
 
     <!-- Nav Desktop -->
@@ -209,7 +210,7 @@
 
     <!-- Trailing -->
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
+      <a href="/citas/" class="vm-btn-cta" id="nav-cta">
         <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
         Agendar Cita
       </a>
@@ -223,27 +224,29 @@
 <main class="flex-grow">
 <!-- Hero Section -->
 <section class="w-full text-center max-w-3xl flex flex-col items-center gap-6 mx-auto px-margin-mobile md:px-gutter mt-8 mb-8">
-<h1 class="font-headline-xl text-headline-xl text-primary md:font-headline-xl-mobile md:text-headline-xl-mobile">Nuestros Especialistas</h1>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-primary">Nuestros Especialistas</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant">Un equipo médico altamente calificado, respaldado por casi una década de experiencia clínica, dedicado a brindarle una atención precisa, empática y de excelencia.</p>
 </section>
 <!-- Search and Filter Bar -->
-<section class="w-full max-w-4xl bg-surface-pure p-4 rounded-xl shadow-sm border border-border-subtle flex flex-col md:flex-row gap-4 items-center mx-auto mb-10 px-margin-mobile md:px-gutter">
+<div class="max-w-4xl mx-auto px-margin-mobile md:px-gutter mb-10">
+<section class="w-full bg-surface-pure p-4 rounded-xl shadow-sm border border-border-subtle flex flex-col gap-4">
 <div class="relative w-full flex-grow">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
 <input id="search-especialistas" class="w-full pl-10 pr-4 py-3 bg-surface border border-border-subtle rounded-lg focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors font-body-md text-body-md text-text-main placeholder:text-text-muted" placeholder="Buscar por especialidad o nombre del médico..." type="text"/>
 </div>
-<div class="flex gap-2 w-full md:w-auto shrink-0 overflow-x-auto pb-2 md:pb-0" id="filter-chips">
-<button onclick="filterCards('todos')" class="chip-btn active px-4 py-2 bg-primary-container text-white rounded-lg font-label-md text-label-md whitespace-nowrap shadow-sm transition-colors">Todos</button>
-<button onclick="filterCards('cardiologia')" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Cardiología</button>
-<button onclick="filterCards('ginecologia')" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Ginecología</button>
-<button onclick="filterCards('medicina-interna')" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Med. Interna</button>
-<button onclick="filterCards('urologia')" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Urología</button>
-<button onclick="filterCards('neurologia')" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Neurología</button>
-<button onclick="filterCards('traumatologia')" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Traumatología</button>
+<div class="flex gap-2 w-full overflow-x-auto pb-2 md:pb-0 no-scrollbar" id="filter-chips">
+<button type="button" data-filter="todos" onclick="filterCards('todos', this)" class="chip-btn active px-4 py-2 bg-primary-container text-white rounded-lg font-label-md text-label-md whitespace-nowrap shadow-sm transition-colors">Todos</button>
+<button type="button" data-filter="cardiologia" onclick="filterCards('cardiologia', this)" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Cardiología</button>
+<button type="button" data-filter="ginecologia" onclick="filterCards('ginecologia', this)" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Ginecología</button>
+<button type="button" data-filter="medicina-interna" onclick="filterCards('medicina-interna', this)" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Med. Interna</button>
+<button type="button" data-filter="urologia" onclick="filterCards('urologia', this)" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Urología</button>
+<button type="button" data-filter="neurologia" onclick="filterCards('neurologia', this)" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Neurología</button>
+<button type="button" data-filter="traumatologia" onclick="filterCards('traumatologia', this)" class="chip-btn px-4 py-2 bg-surface text-on-surface-variant border border-border-subtle rounded-lg font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">Traumatología</button>
 </div>
 </section>
+</div>
 <!-- Specialists Bento Grid -->
-<section class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="specialists-grid">
+<section class="w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="specialists-grid">
 
 <!-- Card: Dr. Jair Betancourt - Cardiología -->
 <div class="specialist-card bg-surface-pure rounded-xl border border-border-subtle p-6 flex flex-col gap-4 hover:shadow-md transition-shadow relative overflow-hidden group" data-specialty="cardiologia">
@@ -378,40 +381,39 @@
 </div>
 
 </section>
+<p id="specialists-empty" class="hidden text-center text-sm text-text-muted pb-16 px-4">No se encontraron especialistas con ese criterio.</p>
 
 <script>
-function filterCards(specialty) {
-  const cards = document.querySelectorAll('.specialist-card');
-  const chips = document.querySelectorAll('.chip-btn');
-  const search = document.getElementById('search-especialistas').value.toLowerCase();
+function applySpecialistFilter(specialty) {
+  const search = document.getElementById('search-especialistas').value.toLowerCase().trim();
+  let visible = 0;
+  document.querySelectorAll('.specialist-card').forEach(card => {
+    const sp = card.dataset.specialty;
+    const name = card.querySelector('h3').textContent.toLowerCase();
+    const show = (specialty === 'todos' || sp === specialty) && (search === '' || name.includes(search) || sp.includes(search));
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const empty = document.getElementById('specialists-empty');
+  if (empty) empty.classList.toggle('hidden', visible > 0);
+}
 
-  chips.forEach(c => {
+function filterCards(specialty, btn) {
+  document.querySelectorAll('.chip-btn').forEach(c => {
     c.classList.remove('active', 'bg-primary-container', 'text-white');
     c.classList.add('bg-surface', 'text-on-surface-variant', 'border', 'border-border-subtle');
   });
-  event.currentTarget.classList.add('active', 'bg-primary-container', 'text-white');
-  event.currentTarget.classList.remove('bg-surface', 'text-on-surface-variant', 'border', 'border-border-subtle');
-
-  cards.forEach(card => {
-    const sp = card.dataset.specialty;
-    const name = card.querySelector('h3').textContent.toLowerCase();
-    const matchSpecialty = specialty === 'todos' || sp === specialty;
-    const matchSearch = name.includes(search) || sp.includes(search);
-    card.style.display = (matchSpecialty && matchSearch) ? '' : 'none';
-  });
+  if (btn) {
+    btn.classList.add('active', 'bg-primary-container', 'text-white');
+    btn.classList.remove('bg-surface', 'text-on-surface-variant', 'border', 'border-border-subtle');
+  }
+  applySpecialistFilter(specialty);
 }
 
 document.getElementById('search-especialistas').addEventListener('input', function() {
   const activeChip = document.querySelector('.chip-btn.active');
-  const specialty = activeChip ? activeChip.getAttribute('onclick').match(/'([^']+)'/)[1] : 'todos';
-  const search = this.value.toLowerCase();
-  document.querySelectorAll('.specialist-card').forEach(card => {
-    const sp = card.dataset.specialty;
-    const name = card.querySelector('h3').textContent.toLowerCase();
-    const matchSpecialty = specialty === 'todos' || sp === specialty;
-    const matchSearch = search === '' || name.includes(search) || sp.includes(search);
-    card.style.display = (matchSpecialty && matchSearch) ? '' : 'none';
-  });
+  const specialty = activeChip ? activeChip.dataset.filter : 'todos';
+  applySpecialistFilter(specialty);
 });
 </script>
 
@@ -423,7 +425,7 @@ document.getElementById('search-especialistas').addEventListener('input', functi
     <!-- Brand -->
     <div>
       <a href="/" aria-label="Venemedical inicio">
-        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52" loading="lazy" decoding="async">
       </a>
       <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
     </div>
@@ -510,17 +512,7 @@ document.getElementById('search-especialistas').addEventListener('input', functi
 </div>
 
 <!-- JS compartido (al final del body para no bloquear render) -->
-<script src="../assets/js/venemedical.js"></script>
-<script>
-  // Mostrar el botón CTA del navbar en desktop
-  var navCta = document.getElementById('nav-cta');
-  if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
-  window.addEventListener('resize', function() {
-    if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
-  });
-  // Mostrar badge hero
-  var badge = document.getElementById('hero-badge');
-  if (badge && window.innerWidth > 480) badge.style.display = 'flex';
-</script>
+<script src="../assets/js/venemedical.js" defer></script>
+<script src="../assets/js/campana.js" defer></script>
 </body>
 </html>

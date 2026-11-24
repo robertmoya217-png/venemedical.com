@@ -7,6 +7,7 @@
   <title>Venemedical | Centro Médico y Laboratorio Clínico en Caracas (Palo Verde / Petare)</title>
   <meta name="description" content="Centro Médico y Laboratorio Clínico en Caracas (Palo Verde, Sucre). Exámenes de laboratorio, perfil 20, toma de muestras a domicilio y consultas con especialistas. ¡Resultados en 24h!">
   <link rel="canonical" href="https://venemedical.com/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- Open Graph -->
     <meta name="keywords" content="laboratorio petare, laboratorio palo verde, laboratorio clinico caracas, perfil 20 caracas, clinica caracas, examenes de sangre sucre, centro medico petare, venemedical">
@@ -179,17 +180,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Material Symbols (UNA sola vez) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
-    rel="stylesheet">
+  <!-- Fuentes e iconos sin bloqueo de render -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block"></noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Config centralizada -->
-  <script src="./assets/js/tailwind-config.js"></script>
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="./assets/css/venemedical.css">
+  <link rel="stylesheet" href="./assets/css/tailwind.min.css">
   <!-- Clean URL normalizer for SEO -->
   <script id="canonical-url-cleaner">
     if (window.location.pathname.endsWith('/index.html')) {
@@ -207,7 +207,7 @@
   <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
     <div class="vm-drawer-header">
       <a href="/">
-        <img src="./assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+        <img src="./assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48" loading="lazy" decoding="async">
       </a>
       <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
         <span class="material-symbols-outlined">close</span>
@@ -270,25 +270,25 @@
   <!-- ══════════════════════════════════════════════════════════════ -->
 
   <!-- TOP CONTACT BAR (FUERA DEL FOOTER) -->
-  <div class="bg-primary text-white text-xs py-2 px-gutter border-b border-primary/20 relative z-40">
-    <div class="max-w-container-max mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-      <!-- Horario -->
-      <div class="flex items-center gap-1.5 opacity-90">
+  <div class="bg-primary text-white text-xs py-2 px-4 sm:px-gutter border-b border-primary/20 relative z-40">
+    <div class="max-w-container-max mx-auto flex items-center justify-between gap-x-4 gap-y-1">
+      <!-- Horario (oculto en móvil chico para mantener 1 sola línea) -->
+      <div class="hidden sm:flex items-center gap-1.5 opacity-90">
         <span class="material-symbols-outlined text-sm" style="font-size:16px">schedule</span>
         <span>Lun–Vie 7am–4:30pm · Sáb 8am–1pm y Feriados</span>
       </div>
 
       <!-- Quick Contact Channels -->
-      <div class="flex items-center gap-4 sm:gap-6 flex-wrap font-medium ml-auto">
-        <a href="tel:+584241296288" class="flex items-center gap-1 hover:underline">
+      <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-3 sm:gap-6 font-medium sm:ml-auto">
+        <a href="tel:+584241296288" class="flex items-center gap-1 hover:underline whitespace-nowrap">
           <span class="material-symbols-outlined text-sm" style="font-size:16px">call</span>
-          +58 424 1296288
+          0424-1296288
         </a>
-        <a href="https://wa.me/584241288247?text=Hola,%20deseo%20atenci%C3%B3n%20en%20Venemedical." target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-emerald-300 font-bold hover:underline">
+        <a href="https://wa.me/584241288247?text=Hola,%20deseo%20atenci%C3%B3n%20en%20Venemedical." target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-emerald-300 font-bold hover:underline whitespace-nowrap">
           <span class="material-symbols-outlined text-sm" style="font-size:16px">chat</span>
-          +58 424 1288247 (WhatsApp)
+          WhatsApp
         </a>
-        <a href="https://www.instagram.com/venemedicalcare" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 opacity-90 hover:opacity-100 hover:underline">
+        <a href="https://www.instagram.com/venemedicalcare" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-1 opacity-90 hover:opacity-100 hover:underline">
           <span class="material-symbols-outlined text-sm" style="font-size:16px">photo_camera</span>
           Instagram
         </a>
@@ -301,7 +301,7 @@
     <div class="vm-navbar-inner">
       <!-- Logo -->
       <a href="/" aria-label="Venemedical - Página de inicio">
-        <img src="./assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+        <img src="./assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48" decoding="async" fetchpriority="high">
       </a>
 
       <!-- Nav Desktop -->
@@ -319,7 +319,7 @@
 
       <!-- Trailing -->
       <div style="display:flex;align-items:center;gap:12px">
-        <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
+        <a href="/citas/" class="vm-btn-cta" id="nav-cta">
           <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
           Agendar Cita
         </a>
@@ -346,7 +346,7 @@
           </div>
 
           <h1
-            class="font-headline-xl text-headline-xl text-on-surface md:font-headline-xl md:text-headline-xl font-headline-xl-mobile text-headline-xl-mobile">
+            class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface">
             Precisión y Confianza en tu <span class="text-primary">Salud</span>
           </h1>
 
@@ -365,15 +365,15 @@
           </div>
 
           <!-- High-Converting Sales CTA Box -->
-          <div class="mt-8 p-6 bg-gradient-to-br from-surface-pure to-surface-container-low rounded-2xl border-2 border-red-500/30 shadow-xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-bl-xl shadow flex items-center gap-1 sales-alert-badge">
+          <div class="mt-8 p-5 sm:p-6 bg-gradient-to-br from-surface-pure to-surface-container-low rounded-2xl border-2 border-red-500/30 shadow-xl relative overflow-hidden">
+            <div class="inline-flex items-center gap-1 bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow mb-3 sales-alert-badge">
               <span class="material-symbols-outlined text-sm" style="font-size:16px">error</span>
               ¡ATENCIÓN INMEDIATA! 🚨
             </div>
 
-            <div class="flex items-center gap-2 mb-2 pt-2 sm:pt-0">
+            <div class="flex items-center gap-2 mb-2">
               <span class="text-red-500 font-black text-xl animate-pulse">❗</span>
-              <h3 class="text-xl font-extrabold text-on-surface">Agendar Cita Médica o Examen</h3>
+              <h3 class="text-lg sm:text-xl font-extrabold text-on-surface">Agendar Cita Médica o Examen</h3>
             </div>
 
             <p class="text-sm text-text-muted mb-4">
@@ -415,9 +415,9 @@
           <div class="w-full bg-white rounded-3xl border border-border-subtle shadow-xl overflow-hidden p-6 sm:p-8 flex flex-col justify-between min-h-[460px] relative z-10">
             
             <!-- Widget Header -->
-            <div class="mb-5 flex flex-col-reverse xs:flex-row items-start justify-between gap-4">
-              <div class="flex-1">
-                <div class="flex items-center justify-between mb-2">
+            <div class="mb-5 flex flex-col-reverse sm:flex-row items-start justify-between gap-4">
+              <div class="flex-1 w-full">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     Reserva Activa
@@ -433,7 +433,7 @@
                   Cotiza exámenes o agenda con especialistas. Sin colas ni esperas.
                 </p>
               </div>
-              <img src="./assets/images/unnamed.png" alt="Venemedical Logo Circular" class="w-14 h-14 object-contain rounded-full border border-border-subtle bg-white p-1 shadow-sm flex-shrink-0 mx-auto xs:mx-0">
+              <img src="./assets/images/unnamed.png" alt="Venemedical Logo Circular" class="w-14 h-14 object-contain rounded-full border border-border-subtle bg-white p-1 shadow-sm flex-shrink-0 mx-auto sm:mx-0" loading="lazy" decoding="async">
             </div>
 
             <!-- Tabs Nav -->
@@ -542,7 +542,7 @@
                   </select>
                 </div>
 
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label for="appointment_date" class="block text-[10px] font-bold text-text-muted mb-1">Fecha de Interés</label>
                     <input type="date" id="appointment_date" class="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs focus:outline-none focus:border-primary bg-surface-container-low" onchange="updateMedQuote()">
@@ -827,7 +827,7 @@
       <!-- Brand -->
       <div>
         <a href="/" aria-label="Venemedical inicio">
-          <img src="./assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+          <img src="./assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52" loading="lazy" decoding="async">
         </a>
         <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.
         </p>
@@ -915,18 +915,9 @@
   </div>
 
   <!-- JS compartido (al final del body para no bloquear render) -->
-  <script src="./assets/js/venemedical.js"></script>
+  <script src="./assets/js/venemedical.js" defer></script>
+  <script src="./assets/js/campana.js" defer></script>
   <script>
-    // Mostrar el botón CTA del navbar en desktop
-    var navCta = document.getElementById('nav-cta');
-    if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
-    window.addEventListener('resize', function () {
-      if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
-    });
-    // Mostrar badge hero
-    var badge = document.getElementById('hero-badge');
-    if (badge && window.innerWidth > 480) badge.style.display = 'flex';
-
     // Lógica del Widget de Cotización y Reserva Hero
     function setActiveWidgetTab(tabId) {
       document.querySelectorAll('.widget-tab-content').forEach(function(content) {

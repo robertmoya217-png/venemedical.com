@@ -6,6 +6,7 @@
   <title>Nosotros | Centro Médico y Laboratorio Clínico en Caracas - Venemedical</title>
   <meta name="description" content="Casi una década de excelencia en salud: tecnología diagnóstica de alta precisión, especialistas calificados y compromiso con tu bienestar en Caracas.">
   <link rel="canonical" href="https://venemedical.com/nosotros/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- Open Graph -->
     <meta name="keywords" content="sobre venemedical, historia venemedical caracas, equipo medico venemedical petare palo verde">
@@ -47,16 +48,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Material Symbols (UNA sola vez) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <!-- Fuentes e iconos sin bloqueo de render -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block"></noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Config centralizada -->
-  <script src="../assets/js/tailwind-config.js"></script>
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="../assets/css/venemedical.css">
+  <link rel="stylesheet" href="../assets/css/tailwind.min.css">
   <!-- Clean URL normalizer for SEO -->
   <script id="canonical-url-cleaner">
     if (window.location.pathname.endsWith('/index.html')) {
@@ -73,7 +74,7 @@
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
   <div class="vm-drawer-header">
     <a href="/">
-      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48" loading="lazy" decoding="async">
     </a>
     <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
       <span class="material-symbols-outlined">close</span>
@@ -159,7 +160,7 @@
   <div class="vm-navbar-inner">
     <!-- Logo -->
     <a href="/" aria-label="Venemedical - Página de inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48" decoding="async" fetchpriority="high">
     </a>
 
     <!-- Nav Desktop -->
@@ -176,7 +177,7 @@
 
     <!-- Trailing -->
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
+      <a href="/citas/" class="vm-btn-cta" id="nav-cta">
         <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
         Agendar Cita
       </a>
@@ -197,14 +198,14 @@
 <p class="font-body-lg text-body-lg text-on-surface-variant">En Venemedical, combinamos precisión clínica con atención compasiva. Nuestro enfoque de minimalismo clínico garantiza una experiencia sin fricciones para nuestros pacientes, priorizando la claridad, la higiene y resultados confiables.</p>
 </div>
 <div class="rounded-xl overflow-hidden shadow-sm border border-border-subtle bg-surface-pure aspect-[4/3] relative">
-<img class="w-full h-full object-cover" data-alt="A pristine, modern medical facility waiting area bathed in soft, natural light. The minimalist design features clinical white walls, subtle light gray flooring, and sleek, highly polished surfaces that emphasize cleanliness and sterilization. Deep medical blue accents provide a calming contrast. The space is uncluttered, conveying a sense of quiet authority, modern corporate professionalism, and accessible healthcare without any human figures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJk_RPUPEsYpstnuA9uxzvvABpEtJ447shQvPZqg8PNCaGIen7ynIMu3TEKB9ZI_S7hjl15sZfXMt2jG9NL5R-kIC6uSbOBBKJesfhrEkyweSxFbyJP5Bp9k9bU8r8cz7dvJSGNO_cwTHMH2yMEh28IcUpJbQhGtKK2djkZKkNjJ8qHnaGE_pQFBgck3zxlULV1Be4X9yoL1IMREuE8Ac2z5BYTws8vnniVA3FDYJoNGRDlSkJuMM"/>
+<img class="w-full h-full object-cover" alt="Sala de espera moderna e instalaciones clínicas de Venemedical en Caracas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJk_RPUPEsYpstnuA9uxzvvABpEtJ447shQvPZqg8PNCaGIen7ynIMu3TEKB9ZI_S7hjl15sZfXMt2jG9NL5R-kIC6uSbOBBKJesfhrEkyweSxFbyJP5Bp9k9bU8r8cz7dvJSGNO_cwTHMH2yMEh28IcUpJbQhGtKK2djkZKkNjJ8qHnaGE_pQFBgck3zxlULV1Be4X9yoL1IMREuE8Ac2z5BYTws8vnniVA3FDYJoNGRDlSkJuMM"/>
 </div>
 </div>
 </section>
 <!-- Mission & Vision Bento Grid -->
 <section class="py-section-padding bg-surface-container-low px-margin-mobile md:px-gutter">
 <div class="max-w-container-max mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[250px]">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[250px]">
 <!-- Misión -->
 <div class="md:col-span-8 bg-surface-pure rounded-xl p-8 border border-border-subtle shadow-sm flex flex-col justify-center">
 <div class="flex items-center gap-4 mb-4">
@@ -217,7 +218,7 @@
 </div>
 <!-- Image Block -->
 <div class="md:col-span-4 bg-surface-pure rounded-xl overflow-hidden border border-border-subtle shadow-sm relative group">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A close-up shot of a state-of-the-art medical microscope in a brightly lit, sterile laboratory setting. The equipment is sleek and modern, constructed of polished metal and white composites, perfectly aligning with a minimalist clinical aesthetic. The background is slightly blurred (bokeh) featuring subtle hints of medical blue and health green instrumentation. The lighting is crisp and cool, highlighting the precision and advanced technology used in modern diagnostics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALoPAVSRJIKzEoCv_-_IxvA60UMf5WcewdNx5Mp7W4cxSQz9v2UhGG_Iyj3Y-G2rdycq29TF8mRibC4JrveYGF7G1cVDIkExsto3EytBt7e8eKnAvaBmQ8_I7MDoQ_nfpOJaZ73IohH2Bu9Vi8RK9td8QurIOyquI5WBKYIajTpGab7jC6YTxslWebo6gGq9WgFrjzEwA1NovqCWHRzJad_W-BJbEBs8Sy7Q6IM_9buprorVC5G2M"/>
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Microscopio clínico de alta precisión en el laboratorio Venemedical" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALoPAVSRJIKzEoCv_-_IxvA60UMf5WcewdNx5Mp7W4cxSQz9v2UhGG_Iyj3Y-G2rdycq29TF8mRibC4JrveYGF7G1cVDIkExsto3EytBt7e8eKnAvaBmQ8_I7MDoQ_nfpOJaZ73IohH2Bu9Vi8RK9td8QurIOyquI5WBKYIajTpGab7jC6YTxslWebo6gGq9WgFrjzEwA1NovqCWHRzJad_W-BJbEBs8Sy7Q6IM_9buprorVC5G2M"/>
 </div>
 <!-- Vision -->
 <div class="md:col-span-12 bg-primary-container text-on-primary rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center gap-8">
@@ -273,7 +274,7 @@
     <!-- Brand -->
     <div>
       <a href="/" aria-label="Venemedical inicio">
-        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52" loading="lazy" decoding="async">
       </a>
       <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
     </div>
@@ -360,17 +361,7 @@
 </div>
 
 <!-- JS compartido (al final del body para no bloquear render) -->
-<script src="../assets/js/venemedical.js"></script>
-<script>
-  // Mostrar el botón CTA del navbar en desktop
-  var navCta = document.getElementById('nav-cta');
-  if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
-  window.addEventListener('resize', function() {
-    if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
-  });
-  // Mostrar badge hero
-  var badge = document.getElementById('hero-badge');
-  if (badge && window.innerWidth > 480) badge.style.display = 'flex';
-</script>
+<script src="../assets/js/venemedical.js" defer></script>
+<script src="../assets/js/campana.js" defer></script>
 </body>
 </html>

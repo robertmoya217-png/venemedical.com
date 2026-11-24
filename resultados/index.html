@@ -6,6 +6,7 @@
   <title>Consultar Resultados de Laboratorio en Línea | Venemedical</title>
   <meta name="description" content="Consulta y descarga tus resultados de laboratorio clínico en línea de manera segura, rápida y confidencial desde cualquier dispositivo con Venemedical.">
   <link rel="canonical" href="https://venemedical.com/resultados/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- Open Graph -->
     <meta name="keywords" content="resultados de laboratorio venemedical, ver resultados online laboratorio caracas, descargar analisis clinicos venemedical">
@@ -46,16 +47,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Material Symbols (UNA sola vez) -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <!-- Fuentes e iconos sin bloqueo de render -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,400,0..1&display=block"></noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <!-- Config centralizada -->
-  <script src="../assets/js/tailwind-config.js"></script>
 
   <!-- Sistema de Diseño Centralizado -->
   <link rel="stylesheet" href="../assets/css/venemedical.css">
+  <link rel="stylesheet" href="../assets/css/tailwind.min.css">
   <!-- Clean URL normalizer for SEO -->
   <script id="canonical-url-cleaner">
     if (window.location.pathname.endsWith('/index.html')) {
@@ -72,7 +73,7 @@
 <aside id="mobile-drawer" class="vm-drawer" aria-label="Menú de navegación">
   <div class="vm-drawer-header">
     <a href="/">
-      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-drawer-logo" width="160" height="48" loading="lazy" decoding="async">
     </a>
     <button onclick="closeMobileMenu()" class="vm-drawer-close" aria-label="Cerrar menú">
       <span class="material-symbols-outlined">close</span>
@@ -158,7 +159,7 @@
   <div class="vm-navbar-inner">
     <!-- Logo -->
     <a href="/" aria-label="Venemedical - Página de inicio">
-      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48">
+      <img src="../assets/images/logo.png" alt="Venemedical Care Logo" class="vm-navbar-logo" width="200" height="48" decoding="async" fetchpriority="high">
     </a>
 
     <!-- Nav Desktop -->
@@ -175,7 +176,7 @@
 
     <!-- Trailing -->
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/citas/" class="vm-btn-cta" style="display:none" id="nav-cta">
+      <a href="/citas/" class="vm-btn-cta" id="nav-cta">
         <span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>
         Agendar Cita
       </a>
@@ -187,26 +188,27 @@
 </header>
 
 <main class="flex-grow">
-  <div class="max-w-container-max mx-auto space-y-12">
+  <div class="max-w-container-max mx-auto space-y-10 py-12 px-4 sm:px-gutter">
     <div class="text-center max-w-2xl mx-auto space-y-4">
       <span class="inline-block bg-secondary-container/30 text-secondary font-label-md px-4 py-1.5 rounded-full uppercase tracking-wider font-semibold">Portal de Pacientes</span>
-      <h1 class="font-headline-xl text-headline-xl text-on-surface font-bold">Resultados en Línea</h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant">Consulta el estado y descarga los resultados de tus exámenes de laboratorio de manera segura, rápida y confidencial.</p>
+      <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface font-bold">Resultados en Línea</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant">Solicita tus resultados de laboratorio de manera segura, rápida y confidencial directamente por WhatsApp.</p>
     </div>
 
-    <div class="max-w-md mx-auto bg-surface p-8 rounded-2xl border border-border-subtle shadow-md space-y-6">
-      <h2 class="font-headline-md text-headline-md font-semibold text-primary text-center">Consultar Resultados</h2>
-      <form onsubmit="event.preventDefault(); alert('Conectando con el servidor de resultados Venemedical... Por favor comunícate también vía WhatsApp si requieres asistencia inmediata.');" class="space-y-4">
+    <div class="max-w-md mx-auto bg-surface p-6 sm:p-8 rounded-2xl border border-border-subtle shadow-md space-y-6">
+      <h2 class="font-headline-md text-headline-md font-semibold text-primary text-center">Solicitar Resultados</h2>
+      <form id="results-form" onsubmit="event.preventDefault(); var c=document.getElementById('res-cedula').value.trim(), o=document.getElementById('res-orden').value.trim(); if(!c||!o) return; window.open('https://wa.me/584241288247?text='+encodeURIComponent('Hola Venemedical, solicito mis resultados de laboratorio:\n- Cédula: '+c+'\n- N° Orden/Factura: '+o), '_blank', 'noopener,noreferrer');" class="space-y-4">
         <div>
-          <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Cédula de Identidad / Documento</label>
-          <input type="text" placeholder="Ej: V-12345678" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
+          <label for="res-cedula" class="block font-label-md text-label-md font-medium text-on-surface mb-2">Cédula de Identidad / Documento</label>
+          <input id="res-cedula" type="text" placeholder="Ej: V-12345678" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
         </div>
         <div>
-          <label class="block font-label-md text-label-md font-medium text-on-surface mb-2">Número de Orden / Factura</label>
-          <input type="text" placeholder="Ej: LAB-2026-9876" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
+          <label for="res-orden" class="block font-label-md text-label-md font-medium text-on-surface mb-2">Número de Orden / Factura</label>
+          <input id="res-orden" type="text" placeholder="Ej: LAB-2026-9876" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary bg-surface-pure text-on-surface font-body-md" />
         </div>
-        <button type="submit" class="w-full bg-primary-container text-white py-3.5 rounded-lg font-label-md text-label-md font-bold hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
-          Buscar Resultados
+        <button type="submit" class="w-full bg-emerald-600 text-white py-3.5 rounded-lg font-label-md text-label-md font-bold hover:bg-emerald-700 transition-colors shadow-sm inline-flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[20px]">chat</span>
+          Solicitar Resultados por WhatsApp
         </button>
       </form>
       <div class="pt-4 border-t border-border-subtle text-center space-y-2">
@@ -226,7 +228,7 @@
     <!-- Brand -->
     <div>
       <a href="/" aria-label="Venemedical inicio">
-        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52">
+        <img src="../assets/images/logo.png" alt="Venemedical Logo" class="vm-footer-logo" width="200" height="52" loading="lazy" decoding="async">
       </a>
       <p class="vm-footer-desc">Casi una década de excelencia médica. Precisión y confianza al servicio de tu salud.</p>
     </div>
@@ -313,17 +315,7 @@
 </div>
 
 <!-- JS compartido (al final del body para no bloquear render) -->
-<script src="../assets/js/venemedical.js"></script>
-<script>
-  // Mostrar el botón CTA del navbar en desktop
-  var navCta = document.getElementById('nav-cta');
-  if (navCta && window.innerWidth >= 768) navCta.style.display = 'inline-flex';
-  window.addEventListener('resize', function() {
-    if (navCta) navCta.style.display = window.innerWidth >= 768 ? 'inline-flex' : 'none';
-  });
-  // Mostrar badge hero
-  var badge = document.getElementById('hero-badge');
-  if (badge && window.innerWidth > 480) badge.style.display = 'flex';
-</script>
+<script src="../assets/js/venemedical.js" defer></script>
+<script src="../assets/js/campana.js" defer></script>
 </body>
 </html>
